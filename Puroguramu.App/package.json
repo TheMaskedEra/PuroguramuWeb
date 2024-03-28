@@ -1,0 +1,16 @@
+{
+  "name": "porugumaru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/styles.css",
+    "css:build:watch": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/styles.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
