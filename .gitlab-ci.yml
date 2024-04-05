@@ -6,4 +6,13 @@ include:
 variables:
   NET_VERSION: "6.0"
   BUILD_DOCKER: "true"
+  
+before_script:
+  - 'which npm || (curl -sL https://deb.nodesource.com/setup_21.x | bash -)'
+  - 'which npm || apt-get install -y nodejs'
+  - npm install
+
+build:
+  script:
+    - dotnet build -c $CONFIGURATION
 
