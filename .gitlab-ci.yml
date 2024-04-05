@@ -8,8 +8,7 @@ variables:
   BUILD_DOCKER: "true"
   
 before_script:
-  - apt-get update
-  - apt-get install -y curl
+  - apt-get update && apt-get install -y curl
   - curl -sL https://deb.nodesource.com/setup_16.x | bash -
   - apt-get install -y nodejs
   - cd Puroguramu.App
