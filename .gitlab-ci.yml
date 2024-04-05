@@ -10,6 +10,7 @@ variables:
 before_script:
   - 'which npm || (curl -sL https://deb.nodesource.com/setup_21.x | bash -)'
   - 'which npm || apt-get install -y nodejs'
+  - cd Puroguramu.App
   - npm install
 
 build:
