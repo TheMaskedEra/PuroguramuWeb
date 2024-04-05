@@ -8,10 +8,10 @@ variables:
   BUILD_DOCKER: "true"
   
 before_script:
-  - apk update
-  - apk add --no-cache nodejs npm
-  - 'which npm || (curl -sL https://deb.nodesource.com/setup_21.x | sh)'
-  - 'which npm || apk add --no-cache nodejs'
+  - apt-get update
+  - apt-get install -y curl
+  - curl -sL https://deb.nodesource.com/setup_16.x | bash -
+  - apt-get install -y nodejs
   - cd Puroguramu.App
   - npm install
 
