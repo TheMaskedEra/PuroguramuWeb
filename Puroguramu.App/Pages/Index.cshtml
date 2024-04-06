@@ -9,9 +9,10 @@
 <html lang="fr">
 <head>
     <title>@ViewData["Title"]</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="~/css/styles.css" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ace.js" integrity="sha512-hWCQiPFpU0dM1jkN2dkt/OrdSXO4KN5y2utMvF0ZkacWmRvbOlEygqBW0YiJwq/nn6iywh4XnMGMG6ESQYM7WA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <style>
     	.ace_editor {
@@ -63,7 +64,7 @@
                                 <h5><span>@testResult.Status</span>&nbsp;@testResult.Label</h5>
                                 @if (testResult.HasError)
                                 {
-                                    <p>@testResult.ErrorMessage</p>
+                                    <p class="text-red-500">@testResult.ErrorMessage</p>
                                 }
                             </div>
                         }
