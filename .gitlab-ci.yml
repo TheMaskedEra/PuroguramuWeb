@@ -5,6 +5,7 @@ include:
       - 'dotnet.yml'
   
 stages:
+  - package:docker
   - build
   - test
   - quality
