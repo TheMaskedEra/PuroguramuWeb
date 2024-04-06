@@ -4,42 +4,18 @@ include:
     file:
       - 'dotnet.yml'
   
-stages:
-  - package:docker
-  - build
-  - test
-  - quality
 
 variables:
   NET_VERSION: "6.0"
   BUILD_DOCKER: "true"
-  
-build:
-  image: mcr.microsoft.com/dotnet/sdk:6.0
-  stage: build
-  script:
-    - apt-get update && apt-get install -y curl
-    - curl -sL https://deb.nodesource.com/setup_21.x | bash -
-    - apt-get install -y nodejs
-    - npm install -g npm@latest
-    - cd Puroguramu.App
-    - npm install
-    - dotnet build -c $CONFIGURATION
 
-test:
-  image: mcr.microsoft.com/dotnet/sdk:6.0
-  stage: test
-  script:
-    - apt-get update && apt-get install -y curl
-    - curl -sL https://deb.nodesource.com/setup_21.x | bash -
-    - apt-get install -y nodejs
-    - npm install -g npm@latest
-    - cd Puroguramu.App
-    - npm install
-    - dotnet test -c $CONFIGURATION
+image: mcr.microsoft.com/dotnet/sdk:6.0
 
-quality:
-  image: zricethezav/gitleaks:v8.16.4
-  stage: quality
-  script:
-    - gitleaks detect -v --report-path gl-secret-detection-report.json
+before_script:
+  - apt-get update && apt-get install -y curl
+  - curl -sL https://deb.nodesource.com/setup_21.x | bash -
+  - apt-get install -y nodejs
+  - npm install -g npm@latest
+  - cd Puroguramu.App
+  - npm install
+  - dotnet build -c $CONFIGURATION
