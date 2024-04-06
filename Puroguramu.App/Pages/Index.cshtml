@@ -7,16 +7,48 @@
 }
 
 @section Title {
-    Puroguramu
+    Puroguramu - Accueil
 }
 
-<section>
-    <p>This would be a big description of the app to force users to signin</p>
-</section>
+<img class="h-40 mx-auto" src="~/assets/icon.png" alt="app logo">
 
-<section class="mt-5">
-    <h2>Exercices</h2>
-    <ul class="mt-5 text-white">
-        <li><a asp-page="/Exercise" class="py-1 px-2 rounded-md bg-blue-500 hover:bg-blue-600">Exercice 1</a></li>
+<h2 class="w-fit mx-auto text-center text-2xl font-semibold">Bienvenue sur Puroguramu, <br/>Votre compagnon d'apprentissage en programmation !</h2>
+
+<section class="w-1/2 mx-auto text-center">
+    <p class="my-10">
+        Découvrez une plateforme interactive conçue spécialement pour les étudiants en développement d'applications,
+        où vous pouvez affiner vos compétences à travers une variété d'exercices pratiques et engageants. Inspirée par
+        des sites renommés comme Coding Bat et Code Wars, Puroguramu offre une expérience unique pour maîtriser la
+        programmation.
+    </p>
+
+    <h3 class="w-fit mx-auto text-xl font-semibold mb-5">Puroguramu c'est...</h3>
+    <ul class="w-3/4 mx-auto flex flex-col gap-4">
+        <li>
+            <b class="font-semibold">+1000</b> exercices disponibles
+        </li>
+        <li>
+            <b class="font-semibold">+50</b> leçons interactives
+        </li>
+        <li>
+            <b class="font-semibold">+100</b> étudiants inscrits
+        </li>
     </ul>
+
+    <p class="my-10">
+        Que vous souhaitiez renforcer votre compréhension de la programmation ou explorer de nouvelles techniques,
+        Puroguramu est l'endroit idéal pour vous épanouir en tant que développeur.
+    </p>
+
+    <h3 class="w-fit mx-auto text-xl font-semibold mb-5">Prêt à commencer ?</h3>
+    <p>
+        Inscrivez-vous dès maintenant pour commencer votre voyage dans le monde de la programmation, ou
+        connectez-vous pour continuer à perfectionner vos compétences.
+    </p>
+
+    <div class="w-fit mx-auto flex gap-4 my-10">
+        <a asp-page="/Auth/Signin" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Inscription</a>
+        <a asp-page="/Auth/Login" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Connexion</a>
+    </div>
+
 </section>

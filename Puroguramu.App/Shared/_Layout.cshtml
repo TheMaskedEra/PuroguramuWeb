@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="fr">
+<html lang="fr" class="bg-gradient-to-tr from-slate-900 from-75% via-blue-900 via-85% to-slate-900 to-95% backdrop-blur-xl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,9 @@
     <title>@RenderSection("Title", true)</title>
 </head>
 
-<body class="w-full min-h-screen flex flex-col">
+<body class="w-full min-h-screen flex flex-col text-white">
 
-<header class="w-full">
+<header class="w-full fixed top-0 backdrop-blur-md">
     <nav class="mx-5 flex justify-between items-center">
         
         <span class="flex gap-1 items-center">
@@ -28,13 +28,15 @@
         </ul>
         
     </nav>
+    <hr class="w-full border-t-1 border-gray-400" />
 </header>
 
-<main class="m-5">
+<main class="mt-24 mx-5 mb-10">
     @RenderBody()
 </main>
 
 <footer class="w-full mt-auto">
+    <hr class="w-full border-t-1 border-gray-400" />
     <p class="w-fit mx-auto py-5">Vullo Enzo - Vanden Broeck Alexis &copy; 2024 Puroguramu</p>
 </footer>
 
