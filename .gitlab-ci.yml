@@ -7,8 +7,12 @@ variables:
   NET_VERSION: "6.0"
   BUILD_DOCKER: "true"
   
+  image: ubuntu:latest
+  
 before_script:
-  - apk update && apk add --no-cache curl nodejs npm
+  - apt-get update && apt-get install -y curl
+  - curl -sL https://deb.nodesource.com/setup_21.x | bash -
+  - apt-get install -y nodejs npm
   - cd Puroguramu.App
   - npm install
 
