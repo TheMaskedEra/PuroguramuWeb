@@ -1,0 +1,84 @@
+@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Puroguramu.App.Pages
+@model Puroguramu.App.Pages.ExerciseModel
+
+@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+@section Title {
+    Exercice 1
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ace.js" integrity="sha512-hWCQiPFpU0dM1jkN2dkt/OrdSXO4KN5y2utMvF0ZkacWmRvbOlEygqBW0YiJwq/nn6iywh4XnMGMG6ESQYM7WA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    .ace_editor {
+        border: 1px solid lightgray;
+        margin: auto;
+        height: 256px;
+        width: 75%;
+    }
+    .scrollmargin {
+        height: 80px;
+    }
+    .scrollmargin2 {
+        height: 180px;
+    }
+</style>
+
+<section>
+    <p class="my-5">
+        Créez une fonction <code>Power</code> C# prenant en paramètre
+        une base <em>b</em> de type <code>float</code> et un exposant <em>e</em> de type <code>int</code>.
+        <code>Power(b, e)</code> retourne le <code>float</code> <em>b</em><sup><em>e</em></sup>.
+    </p>
+    <form method="post">
+        <div>
+            <div class="mb-2">
+                <span>Status: </span>
+                <strong>@Model.ExerciseResultStatus</strong>
+            </div>
+            <div>
+                <div>
+                    <div id="ProposalEditor">@Model.Proposal</div>
+                    <div>
+                        <button class="px-2 py-1 rounded-md text-white bg-blue-500 hover:bg-blue-600">Exécuter</button>
+                    </div>
+                    <input asp-for="Proposal" type="hidden"></input>
+                </div>
+                <div class="my-5">
+                    <h4>Résultats</h4>
+                    @foreach (TestResultViewModel testResult in Model.TestResult)
+                    {
+                    <div>
+                        <h5><span>@testResult.Status</span>&nbsp;@testResult.Label</h5>
+                        @if (testResult.HasError)
+                        {
+                        <p class="text-red-500">@testResult.ErrorMessage</p>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<script defer>
+    document.addEventListener('DOMContentLoaded', (evt) => {
+
+        const proposalEditor = ace.edit("ProposalEditor");
+        const proposalInput = document.getElementById("Proposal");
+
+        proposalEditor.setTheme("ace/theme/xcode");
+        proposalEditor.session.setMode("ace/mode/csharp");
+
+        proposalInput.value = proposalEditor.session.getValue();
+        proposalEditor.session.on('change', (evt) => {
+            proposalInput.value = proposalEditor.session.getValue();
+        });
+    });
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+
