@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Puroguramu.App.Middlewares;
 using Puroguramu.Domains;
+using Puroguramu.Infrastructures.Data;
 using Puroguramu.Infrastructures.Dummies;
 using Puroguramu.Infrastructures.Roslyn;
 
@@ -8,6 +10,12 @@ builder.Services.AddScoped<ILogger, Logger<object>>();
 builder.Services.AddScoped<ReverseProxyLinksMiddleware>();
 builder.Services.AddScoped<IExercisesRepository, DummyExercisesRepository>();
 builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
+
+builder.Services.AddDefaultIdentity<Users>()
+    .AddEntityFrameworkStores<PuroguramuDbContext>();
 
 builder.Services.AddRazorPages();
 
@@ -27,6 +35,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
