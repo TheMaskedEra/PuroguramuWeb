@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Puroguramu.Infrastructures.Data.Entities;
 
-namespace Puroguramu.Infrastructures.Data;
+namespace Puroguramu.Infrastructures.Data.Entities;
 
 public class Languages
 {

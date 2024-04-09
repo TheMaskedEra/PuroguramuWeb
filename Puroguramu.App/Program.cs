@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Puroguramu.App.Middlewares;
 using Puroguramu.Domains;
+using Puroguramu.Infrastructures.Data;
 using Puroguramu.Infrastructures.Dummies;
 using Puroguramu.Infrastructures.Roslyn;
 
@@ -10,6 +12,10 @@ builder.Services.AddScoped<IExercisesRepository, DummyExercisesRepository>();
 builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
 
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CoursesDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("DbContext"));
+});
 
 var app = builder.Build();
 
