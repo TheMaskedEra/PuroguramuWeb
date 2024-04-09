@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dotnet": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/styles.css && dotnet run",
+    "dotnet:watch": "dotnet watch --no-hot-reload",
     "css:build": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/styles.css",
     "css:build:watch": "npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/styles.css --watch"
   },

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Puroguramu.App.Middlewares;
 using Puroguramu.Domains;
 using Puroguramu.Infrastructures.Dummies;
@@ -10,6 +11,7 @@ builder.Services.AddScoped<IExercisesRepository, DummyExercisesRepository>();
 builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
 
 builder.Services.AddRazorPages();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 var app = builder.Build();
 
@@ -27,6 +29,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
