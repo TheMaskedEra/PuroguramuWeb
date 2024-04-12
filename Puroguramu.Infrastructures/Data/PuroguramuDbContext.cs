@@ -6,7 +6,6 @@ namespace Puroguramu.Infrastructures.Data;
 
 public class PuroguramuDbContext : IdentityDbContext<Users>
 {
-
     public PuroguramuDbContext(DbContextOptions options)
         :base(options)
     {
