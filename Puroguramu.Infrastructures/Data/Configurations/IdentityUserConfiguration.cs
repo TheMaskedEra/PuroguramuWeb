@@ -1,0 +1,6 @@
+﻿namespace Puroguramu.Infrastructures.Data.Configurations;
+
+public class IdentityUserConfiguration
+{
+    
+}

@@ -11,8 +11,8 @@ using Puroguramu.Infrastructures.Data;
 namespace Puroguramu.Infrastructures.Migrations
 {
     [DbContext(typeof(PuroguramuDbContext))]
-    [Migration("20240412155123_ConfigurationsForLanguagesLessonsCoursesAndSeededData")]
-    partial class ConfigurationsForLanguagesLessonsCoursesAndSeededData
+    [Migration("20240412161001_InitalCreate")]
+    partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
