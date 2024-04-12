@@ -1,25 +1,9 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore;
+using Puroguramu.App;
 using Puroguramu.App.Middlewares;
-using Puroguramu.Domains;
-using Puroguramu.Infrastructures.Data;
-using Puroguramu.Infrastructures.Dummies;
-using Puroguramu.Infrastructures.Roslyn;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddScoped<ILogger, Logger<object>>();
-builder.Services.AddScoped<ReverseProxyLinksMiddleware>();
-builder.Services.AddScoped<IExercisesRepository, DummyExercisesRepository>();
-builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
 
-builder.Services.AddRazorPages();
-
-builder.Services.AddDbContext<PuroguramuDbContext>(options =>
-{
-    options.UseSqlite(builder.Configuration.GetConnectionString("DbContext"));
-});
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+BuilderConfigurator.Configure(builder);
 
 var app = builder.Build();
 
