@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Puroguramu.App.Middlewares;
 using Puroguramu.Domains;
@@ -11,13 +12,12 @@ builder.Services.AddScoped<ReverseProxyLinksMiddleware>();
 builder.Services.AddScoped<IExercisesRepository, DummyExercisesRepository>();
 builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie();
-
-builder.Services.AddDefaultIdentity<Users>()
-    .AddEntityFrameworkStores<PuroguramuDbContext>();
-
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CoursesDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("DbContext"));
+});
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 var app = builder.Build();
 

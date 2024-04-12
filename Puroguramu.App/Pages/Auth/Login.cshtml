@@ -1,0 +1,36 @@
+@page
+@model Puroguramu.App.Pages.Auth.LoginModel
+
+@{
+    Layout = "Shared/_Layout";
+    ViewData["Title"] = "Connexion";
+    ViewData["PageTitle"] = "Connexion";
+}
+
+<section class="w-1/2 mx-auto">
+    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" action="" method="post">
+        <div>
+            <label for="credential" class="block mb-2 text-sm font-medium">Email ou matricule <span class="text-red-500">*</span></label>
+            <input type="text" name="credential" id="credential" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="name@company.com" required>
+        </div>
+        <div>
+            <label for="password" class="block mb-2 text-sm font-medium">Mot de passe <span class="text-red-500">*</span></label>
+            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" required>
+        </div>
+        <div class="flex items-center justify-between">
+            <div class="flex items-start">
+                <div class="flex items-center h-5">
+                    <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" required="">
+                </div>
+                <div class="ml-3 text-sm">
+                    <label for="remember">Se souvenir de moi</label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">Connexion</button>
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Pas encore de compte? <a asp-page="/Auth/Signin" class="font-medium text-blue-600 hover:underline">S'inscrire</a>
+        </p>
+    </form>
+</section>
+

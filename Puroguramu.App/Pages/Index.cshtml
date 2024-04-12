@@ -1,95 +1,52 @@
 ﻿@page
 
-@using Microsoft.AspNetCore.Mvc.TagHelpers
-@using Puroguramu.App.Pages
 @model Puroguramu.App.Pages.IndexModel
 
-<!DOCTYPE html>
+@{
+    Layout = "Shared/_Layout";
+    ViewData["Title"] = "Accueil";
+    ViewData["PageTitle"] = "Bienvenue sur Puroguramu, <br/>Votre compagnon d'apprentissage en programmation !";
+}
 
-<html lang="fr">
-<head>
-    <title>@ViewData["Title"]</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="~/css/styles.css" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ace.js" integrity="sha512-hWCQiPFpU0dM1jkN2dkt/OrdSXO4KN5y2utMvF0ZkacWmRvbOlEygqBW0YiJwq/nn6iywh4XnMGMG6ESQYM7WA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <style>
-    	.ace_editor {
-    		border: 1px solid lightgray;
-    		margin: auto;
-    		height: 256px;
-    	}
-    	.scrollmargin {
-    		height: 80px;
-    	}
-    	.scrollmargin2 {
-    		height: 180px;
-    	}
-        </style>
-</head>
-<body>
-<main>
-    <section>
-        <div>
-            <h1>Puroguramu</h1>
-            <h2>Votre compagnon pour la programmation C#.</h2>
-        </div>
-    </section>
-    <section>
-        <p class="box content">
-            Créez une fonction <code>Power</code> C# prenant en paramètre 
-            une base <em>b</em> de type <code>float</code> et un exposant <em>e</em> de type <code>int</code>. 
-            <code>Power(b, e)</code> retourne le <code>float</code> <em>b</em><sup><em>e</em></sup>.
-        </p>
-        <form method="post">
-            <div>
-                <div>
-                    <span>Status: </span>
-                    <strong>@Model.ExerciseResultStatus</strong>
-                </div>
-                <div>
-                    <div>
-                        <div id="ProposalEditor">@Model.Proposal</div>
-                        <div>
-                            <button>Exécuter</button>
-                        </div>
-                        <input asp-for="Proposal" type="hidden"></input>
-                    </div>
-                    <div>
-                        <h4>Résultats</h4>
-                        @foreach (TestResultViewModel testResult in Model.TestResult)
-                        {
-                            <div>
-                                <h5><span>@testResult.Status</span>&nbsp;@testResult.Label</h5>
-                                @if (testResult.HasError)
-                                {
-                                    <p class="text-red-500">@testResult.ErrorMessage</p>
-                                }
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </form>
-    </section>
-</main>
-<script defer>
-    document.addEventListener('DOMContentLoaded', (evt) => {
-         
-           const proposalEditor = ace.edit("ProposalEditor");
-           const proposalInput = document.getElementById("Proposal");
-           
-           proposalEditor.setTheme("ace/theme/xcode");
-           proposalEditor.session.setMode("ace/mode/csharp");
-           
-           proposalInput.value = proposalEditor.session.getValue();
-           proposalEditor.session.on('change', (evt) => {
-               proposalInput.value = proposalEditor.session.getValue();
-           });           
-    });
-</script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
-</body>
-</html>
+@section PageImage {
+    <img class="h-40 mx-auto" src="~/assets/icon.png" alt="app logo">
+}
+
+<section class="w-10/12 md:w-1/2 mx-auto text-center">
+    <p class="my-10">
+        Découvrez une plateforme interactive conçue spécialement pour les étudiants en développement d'applications,
+        où vous pouvez affiner vos compétences à travers une variété d'exercices pratiques et engageants. Inspirée par
+        des sites renommés comme Coding Bat et Code Wars, Puroguramu offre une expérience unique pour maîtriser la
+        programmation.
+    </p>
+
+    <h3 class="w-fit mx-auto text-xl font-semibold mb-5">Puroguramu c'est...</h3>
+    <ul class="w-3/4 mx-auto flex flex-col gap-4">
+        <li>
+            <b class="font-semibold">+1000</b> exercices disponibles
+        </li>
+        <li>
+            <b class="font-semibold">+50</b> leçons interactives
+        </li>
+        <li>
+            <b class="font-semibold">+100</b> étudiants inscrits
+        </li>
+    </ul>
+
+    <p class="my-10">
+        Que vous souhaitiez renforcer votre compréhension de la programmation ou explorer de nouvelles techniques,
+        Puroguramu est l'endroit idéal pour vous épanouir en tant que développeur.
+    </p>
+
+    <h3 class="w-fit mx-auto text-xl font-semibold mb-5">Prêt à commencer ?</h3>
+    <p>
+        Inscrivez-vous dès maintenant pour commencer votre voyage dans le monde de la programmation, ou
+        connectez-vous pour continuer à perfectionner vos compétences.
+    </p>
+
+    <div class="w-fit mx-auto flex gap-4 my-10">
+        <a asp-page="/Auth/Signin" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Inscription</a>
+        <a asp-page="/Auth/Login" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Connexion</a>
+    </div>
+
+</section>

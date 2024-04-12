@@ -1,0 +1,57 @@
+@page
+@model Puroguramu.App.Pages.Auth.SigninModel
+
+@{
+    Layout = "Shared/_Layout";
+    ViewData["Title"] = "Inscription";
+    ViewData["PageTitle"] = "Inscription";
+}
+
+<section class="w-1/2 mx-auto">
+    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" action="" method="post">
+        <div class="w-full flex items-center justify-between">
+            <div class="w-1/2 mr-1">
+                <label for="name" class="block mb-2 text-sm font-medium">Nom <span class="text-red-500">*</span></label>
+                <input type="text" name="name" id="name" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" placeholder="Doe" required>
+            </div>
+            <div class="w-1/2 ml-2">
+                <label for="first-name" class="block mb-2 text-sm font-medium">Prénom <span class="text-red-500">*</span></label>
+                <input type="text" name="first-name" id="first-name" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" placeholder="John" required>
+            </div>
+        </div>
+        
+        <div>
+            <label for="email" class="block mb-2 text-sm font-medium">Email <span class="text-red-500">*</span></label>
+            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="name@company.com" required>
+        </div>
+        <div>
+            <label for="password" class="block mb-2 text-sm font-medium">Mot de passe <span class="text-red-500">*</span></label>
+            <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="••••••••" required>
+        </div>
+        <div>
+            <label for="password-conf" class="block mb-2 text-sm font-medium">Confirmation du mot de passe <span class="text-red-500">*</span></label>
+            <input type="password" name="password-conf" id="password-conf" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="••••••••" required>
+        </div>
+
+        <div class="w-full flex items-center justify-between">
+            <div class="w-1/2 mr-1">
+                <label for="group" class="block mb-2 text-sm font-medium">Groupe <span class="text-red-500">*</span></label>
+                <select name="group" id="group" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" required>
+                    <option value="1">2i1</option>
+                    <option value="2">2i2</option>
+                    <option value="3">2i3</option>
+                    <option value="3">2i4</option>
+                </select>
+            </div>
+            <div class="w-1/2 ml-2">
+                <label for="matricule" class="block mb-2 text-sm font-medium">Matricule <span class="text-red-500">*</span></label>
+                <input type="text" name="matricule" id="matricule" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" placeholder="X000000" required>
+            </div>
+        </div>
+
+        <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">Inscription</button>
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Déjà membre de la plateforme ? <a asp-page="/Auth/Login" class="font-medium text-blue-600 hover:underline">Se connecter</a>
+        </p>
+    </form>
+</section>
