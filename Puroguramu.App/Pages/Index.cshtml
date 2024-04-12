@@ -5,13 +5,14 @@
 @{
     Layout = "Shared/_Layout";
     ViewData["Title"] = "Accueil";
+    ViewData["PageTitle"] = "Bienvenue sur Puroguramu, <br/>Votre compagnon d'apprentissage en programmation !";
 }
 
-<img class="h-40 mx-auto" src="~/assets/icon.png" alt="app logo">
+@section PageImage {
+    <img class="h-40 mx-auto" src="~/assets/icon.png" alt="app logo">
+}
 
-<h2 class="w-fit mx-auto text-center text-2xl font-semibold">Bienvenue sur Puroguramu, <br/>Votre compagnon d'apprentissage en programmation !</h2>
-
-<section class="w-1/2 mx-auto text-center">
+<section class="w-10/12 md:w-1/2 mx-auto text-center">
     <p class="my-10">
         Découvrez une plateforme interactive conçue spécialement pour les étudiants en développement d'applications,
         où vous pouvez affiner vos compétences à travers une variété d'exercices pratiques et engageants. Inspirée par
