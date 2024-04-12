@@ -6,6 +6,8 @@ public class Lessons
 {
     public int Id { get; set; }
 
+    public int CourseId { get; set; } = -1;
+
     public Courses Course { get; set; } = null!;
 
     [StringLength(150)]

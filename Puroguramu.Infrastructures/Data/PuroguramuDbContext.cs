@@ -1,6 +1,4 @@
-﻿using System.Collections.Immutable;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Puroguramu.Infrastructures.Data.Configurations;
 using Puroguramu.Infrastructures.Data.Entities;
@@ -28,6 +26,8 @@ public class PuroguramuDbContext : IdentityDbContext<Users>
     {
         base.OnModelCreating(builder);
 
-
+        builder.ApplyConfiguration(new LanguagesConfiguration());
+        builder.ApplyConfiguration(new CoursesConfiguration());
+        builder.ApplyConfiguration(new LessonsConfiguration());
     }
 }

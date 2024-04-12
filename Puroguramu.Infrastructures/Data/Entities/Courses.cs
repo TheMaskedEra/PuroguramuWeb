@@ -9,6 +9,8 @@ public class Courses
     [StringLength(150)]
     public string Title { get; set; } = null!;
 
+    public int LanguageId { get; set; } = -1;
+
     public Languages Language { get; set; } = null!;
 
     public ICollection<Lessons> Lessons { get; set; } = new List<Lessons>();

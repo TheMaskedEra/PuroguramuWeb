@@ -10,7 +10,7 @@ using Puroguramu.Infrastructures.Roslyn;
 
 namespace Puroguramu.App;
 
-public class BuilderConfigurator
+public static class BuilderConfigurator
 {
     public static void Configure(WebApplicationBuilder builder)
     {
@@ -37,7 +37,10 @@ public class BuilderConfigurator
         }
 
         builder.Services
-            .AddDefaultIdentity<Users>()
+            .AddDefaultIdentity<Users>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            })
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<PuroguramuDbContext>();
 

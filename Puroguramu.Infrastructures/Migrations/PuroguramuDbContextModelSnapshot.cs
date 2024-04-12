@@ -165,9 +165,25 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("Title", "LanguageId");
+
                     b.HasIndex("LanguageId");
 
                     b.ToTable("Courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            LanguageId = 1,
+                            Title = "Beginners"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            LanguageId = 1,
+                            Title = "Amateurs"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Exercises", b =>
@@ -217,7 +233,21 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("Name");
+
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "C#"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = " Java"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Lessons", b =>
@@ -244,9 +274,29 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("Title");
+
                     b.HasIndex("CourseId");
 
                     b.ToTable("Lessons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CourseId = 1,
+                            Description = "",
+                            IsVisible = true,
+                            Title = "Variables"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CourseId = 1,
+                            Description = "",
+                            IsVisible = false,
+                            Title = "Functions"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Users", b =>
@@ -267,6 +317,11 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Group")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -290,6 +345,11 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("RegistrationNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
