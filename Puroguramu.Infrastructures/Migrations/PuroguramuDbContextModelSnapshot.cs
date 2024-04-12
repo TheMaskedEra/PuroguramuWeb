@@ -8,8 +8,8 @@ using Puroguramu.Infrastructures.Data;
 
 namespace Puroguramu.Infrastructures.Migrations
 {
-    [DbContext(typeof(CoursesDbContext))]
-    partial class CoursesDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PuroguramuDbContext))]
+    partial class PuroguramuDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

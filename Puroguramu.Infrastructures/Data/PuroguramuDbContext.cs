@@ -1,34 +1,24 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Puroguramu.Infrastructures.Data.Configurations;
+﻿using Microsoft.EntityFrameworkCore;
+using Puroguramu.Infrastructures.Data.Entities;
 
 namespace Puroguramu.Infrastructures.Data;
 
-public class PuroguramuDbContext : IdentityDbContext<Users>
+public class PuroguramuDbContext : DbContext
 {
     public PuroguramuDbContext(DbContextOptions options)
         :base(options)
     {
     }
 
+    public DbSet<Languages> Languages { get; set; }
+
+    public DbSet<Courses> Courses { get; set; }
+
     public DbSet<Lessons> Lessons { get; set; }
+
+    public DbSet<Exercises> Exercises { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Languages>()
-            .HasIndex(l => l.Name)
-            .IsUnique();
-
-        modelBuilder.Entity<Lessons>()
-            .HasIndex(l => l.Title)
-            .IsUnique();
-
-        modelBuilder.Entity<Courses>()
-            .HasIndex(c => new { c.Title, c.Language })
-            .IsUnique();
-
-        modelBuilder.ApplyConfiguration(new LessonOrdersConfiguration());
-
-        base.OnModelCreating(modelBuilder);
     }
 }

@@ -9,8 +9,8 @@ using Puroguramu.Infrastructures.Data;
 
 namespace Puroguramu.Infrastructures.Migrations
 {
-    [DbContext(typeof(CoursesDbContext))]
-    [Migration("20240412105759_InitalCreate")]
+    [DbContext(typeof(PuroguramuDbContext))]
+    [Migration("20240412121832_InitalCreate")]
     partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

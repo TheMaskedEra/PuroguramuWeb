@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using Puroguramu.App.Middlewares;
 using Puroguramu.Domains;
 using Puroguramu.Infrastructures.Data;
@@ -13,10 +13,12 @@ builder.Services.AddScoped<IExercisesRepository, DummyExercisesRepository>();
 builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
 
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<CoursesDbContext>(options =>
+
+builder.Services.AddDbContext<PuroguramuDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DbContext"));
 });
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 var app = builder.Build();
