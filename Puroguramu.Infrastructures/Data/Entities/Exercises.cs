@@ -18,5 +18,9 @@ public class Exercises
     [StringLength(500)]
     public string Skeleton { get; set; } = string.Empty;
 
+    public int LessonId { get; set; }
+
     public Lessons Lesson { get; set; } = null!;
+
+    public ExerciseOrders Order { get; set; } = null!;
 }

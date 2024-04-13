@@ -186,6 +186,44 @@ namespace Puroguramu.Infrastructures.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.ExerciseOrders", b =>
+                {
+                    b.Property<int>("ExerciseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ExerciseAfterId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ExerciseBeforeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ExerciseId");
+
+                    b.HasIndex("ExerciseAfterId");
+
+                    b.HasIndex("ExerciseBeforeId");
+
+                    b.ToTable("ExerciseOrders");
+
+                    b.HasData(
+                        new
+                        {
+                            ExerciseId = 1,
+                            ExerciseAfterId = 2
+                        },
+                        new
+                        {
+                            ExerciseId = 2,
+                            ExerciseAfterId = 3,
+                            ExerciseBeforeId = 1
+                        },
+                        new
+                        {
+                            ExerciseId = 3,
+                            ExerciseBeforeId = 2
+                        });
+                });
+
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Exercises", b =>
                 {
                     b.Property<int>("Id")
@@ -217,7 +255,39 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasIndex("LessonId");
 
+                    b.HasIndex("Title", "LessonId")
+                        .IsUnique();
+
                     b.ToTable("Exercises");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DifficultyLevel = 1,
+                            Instructions = "Instructions Here",
+                            LessonId = 2,
+                            Skeleton = "Skeleton Here",
+                            Title = "HelloWorld"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DifficultyLevel = 1,
+                            Instructions = "Instructions Here",
+                            LessonId = 2,
+                            Skeleton = "Skeleton Here",
+                            Title = "HelloThere"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DifficultyLevel = 1,
+                            Instructions = "Instructions Here",
+                            LessonId = 2,
+                            Skeleton = "Skeleton Here",
+                            Title = "Obi-Wan"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Languages", b =>
@@ -481,6 +551,29 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.ExerciseOrders", b =>
+                {
+                    b.HasOne("Puroguramu.Infrastructures.Data.Entities.Exercises", "ExerciseAfter")
+                        .WithMany()
+                        .HasForeignKey("ExerciseAfterId");
+
+                    b.HasOne("Puroguramu.Infrastructures.Data.Entities.Exercises", "ExerciseBefore")
+                        .WithMany()
+                        .HasForeignKey("ExerciseBeforeId");
+
+                    b.HasOne("Puroguramu.Infrastructures.Data.Entities.Exercises", "Exercise")
+                        .WithOne("Order")
+                        .HasForeignKey("Puroguramu.Infrastructures.Data.Entities.ExerciseOrders", "ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exercise");
+
+                    b.Navigation("ExerciseAfter");
+
+                    b.Navigation("ExerciseBefore");
+                });
+
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Exercises", b =>
                 {
                     b.HasOne("Puroguramu.Infrastructures.Data.Entities.Lessons", "Lesson")
@@ -529,6 +622,12 @@ namespace Puroguramu.Infrastructures.Migrations
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Courses", b =>
                 {
                     b.Navigation("Lessons");
+                });
+
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Exercises", b =>
+                {
+                    b.Navigation("Order")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Languages", b =>
