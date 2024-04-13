@@ -19,4 +19,6 @@ public class Lessons
     public bool IsVisible { get; set; } = false;
 
     public ICollection<Exercises> Exercises { get; set; } = new List<Exercises>();
+
+    public LessonOrders Order { get; set; } = null!;
 }

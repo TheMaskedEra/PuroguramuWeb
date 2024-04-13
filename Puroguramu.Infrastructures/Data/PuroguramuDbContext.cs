@@ -29,5 +29,6 @@ public class PuroguramuDbContext : IdentityDbContext<Users>
         builder.ApplyConfiguration(new LanguagesConfiguration());
         builder.ApplyConfiguration(new CoursesConfiguration());
         builder.ApplyConfiguration(new LessonsConfiguration());
+        builder.ApplyConfiguration(new LessonOrdersConfiguration());
     }
 }

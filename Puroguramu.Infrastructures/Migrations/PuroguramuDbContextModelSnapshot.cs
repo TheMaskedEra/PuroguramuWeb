@@ -250,6 +250,44 @@ namespace Puroguramu.Infrastructures.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.LessonOrders", b =>
+                {
+                    b.Property<int>("LessonId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("LessonAfterId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("LessonBeforeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("LessonId");
+
+                    b.HasIndex("LessonAfterId");
+
+                    b.HasIndex("LessonBeforeId");
+
+                    b.ToTable("LessonOrders");
+
+                    b.HasData(
+                        new
+                        {
+                            LessonId = 1,
+                            LessonAfterId = 2
+                        },
+                        new
+                        {
+                            LessonId = 2,
+                            LessonAfterId = 3,
+                            LessonBeforeId = 1
+                        },
+                        new
+                        {
+                            LessonId = 3,
+                            LessonBeforeId = 2
+                        });
+                });
+
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Lessons", b =>
                 {
                     b.Property<int>("Id")
@@ -294,8 +332,16 @@ namespace Puroguramu.Infrastructures.Migrations
                             Id = 2,
                             CourseId = 1,
                             Description = "",
-                            IsVisible = false,
+                            IsVisible = true,
                             Title = "Functions"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourseId = 1,
+                            Description = "",
+                            IsVisible = true,
+                            Title = "Classes"
                         });
                 });
 
@@ -446,6 +492,29 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.Navigation("Lesson");
                 });
 
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.LessonOrders", b =>
+                {
+                    b.HasOne("Puroguramu.Infrastructures.Data.Entities.Lessons", "LessonAfter")
+                        .WithMany()
+                        .HasForeignKey("LessonAfterId");
+
+                    b.HasOne("Puroguramu.Infrastructures.Data.Entities.Lessons", "LessonBefore")
+                        .WithMany()
+                        .HasForeignKey("LessonBeforeId");
+
+                    b.HasOne("Puroguramu.Infrastructures.Data.Entities.Lessons", "Lesson")
+                        .WithOne("Order")
+                        .HasForeignKey("Puroguramu.Infrastructures.Data.Entities.LessonOrders", "LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("LessonAfter");
+
+                    b.Navigation("LessonBefore");
+                });
+
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Lessons", b =>
                 {
                     b.HasOne("Puroguramu.Infrastructures.Data.Entities.Courses", "Course")
@@ -470,6 +539,9 @@ namespace Puroguramu.Infrastructures.Migrations
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Lessons", b =>
                 {
                     b.Navigation("Exercises");
+
+                    b.Navigation("Order")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

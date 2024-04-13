@@ -10,6 +10,8 @@ public class LessonsConfiguration : IEntityTypeConfiguration<Lessons>
 
     public const int FunctionsId = 2;
 
+    public const int ClassesId = 3;
+
     public void Configure(EntityTypeBuilder<Lessons> builder)
     {
         builder.HasAlternateKey(l => l.Title);
@@ -25,6 +27,7 @@ public class LessonsConfiguration : IEntityTypeConfiguration<Lessons>
         builder.HasData(new List<Lessons>
         {
             new() { Id = VariablesId, CourseId = CoursesConfiguration.CSharpBeginnersId, Title = "Variables", IsVisible = true },
-            new() { Id = FunctionsId, CourseId = CoursesConfiguration.CSharpBeginnersId, Title = "Functions"},
+            new() { Id = FunctionsId, CourseId = CoursesConfiguration.CSharpBeginnersId, Title = "Functions", IsVisible = true},
+            new () { Id =  ClassesId, CourseId = CoursesConfiguration.CSharpBeginnersId, Title = "Classes", IsVisible = true},
         });
 }
