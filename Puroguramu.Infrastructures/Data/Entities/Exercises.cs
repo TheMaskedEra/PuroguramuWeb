@@ -5,7 +5,7 @@ namespace Puroguramu.Infrastructures.Data.Entities;
 
 public class Exercises
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     [StringLength(150)]
     public string Title { get; set; } = string.Empty;
@@ -18,7 +18,7 @@ public class Exercises
     [StringLength(500)]
     public string Skeleton { get; set; } = string.Empty;
 
-    public int LessonId { get; set; }
+    public string LessonId { get; set; } = string.Empty;
 
     public Lessons Lesson { get; set; } = null!;
 

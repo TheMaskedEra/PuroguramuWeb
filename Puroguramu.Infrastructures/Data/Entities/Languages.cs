@@ -5,7 +5,7 @@ namespace Puroguramu.Infrastructures.Data.Entities;
 
 public class Languages
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     [StringLength(50)]
     public string Name { get; set; } = string.Empty;

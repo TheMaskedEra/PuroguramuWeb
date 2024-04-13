@@ -6,11 +6,11 @@ namespace Puroguramu.Infrastructures.Data.Configurations;
 
 public class LessonsConfiguration : IEntityTypeConfiguration<Lessons>
 {
-    public const int VariablesId = 1;
+    public static readonly Guid VariablesId = Guid.NewGuid();
 
-    public const int FunctionsId = 2;
+    public static readonly Guid FunctionsId = Guid.NewGuid();
 
-    public const int ClassesId = 3;
+    public static readonly Guid ClassesId = Guid.NewGuid();
 
     public void Configure(EntityTypeBuilder<Lessons> builder)
     {
@@ -20,14 +20,14 @@ public class LessonsConfiguration : IEntityTypeConfiguration<Lessons>
             .WithMany(c => c.Lessons)
             .HasForeignKey(l => l.CourseId);
 
-        SeedData(builder);
+        //SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<Lessons> builder) =>
         builder.HasData(new List<Lessons>
         {
-            new() { Id = VariablesId, CourseId = CoursesConfiguration.CSharpBeginnersId, Title = "Variables", IsVisible = true },
-            new() { Id = FunctionsId, CourseId = CoursesConfiguration.CSharpBeginnersId, Title = "Functions", IsVisible = true},
-            new () { Id =  ClassesId, CourseId = CoursesConfiguration.CSharpBeginnersId, Title = "Classes", IsVisible = true},
+            new() { Id = VariablesId.ToString(), CourseId = CoursesConfiguration.CSharpBeginnersId.ToString(), Title = "Variables", IsVisible = true },
+            new() { Id = FunctionsId.ToString(), CourseId = CoursesConfiguration.CSharpBeginnersId.ToString(), Title = "Functions", IsVisible = true},
+            new () { Id =  ClassesId.ToString(), CourseId = CoursesConfiguration.CSharpBeginnersId.ToString(), Title = "Classes", IsVisible = true},
         });
 }

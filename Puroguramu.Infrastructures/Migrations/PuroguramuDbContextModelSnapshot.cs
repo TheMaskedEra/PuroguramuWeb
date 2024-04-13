@@ -169,7 +169,7 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
 
                     b.HasData(
                         new
@@ -203,7 +203,7 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasIndex("ExerciseBeforeId");
 
-                    b.ToTable("ExerciseOrders");
+                    b.ToTable("ExerciseOrders", (string)null);
 
                     b.HasData(
                         new
@@ -258,7 +258,7 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("Title", "LessonId")
                         .IsUnique();
 
-                    b.ToTable("Exercises");
+                    b.ToTable("Exercises", (string)null);
 
                     b.HasData(
                         new
@@ -306,7 +306,7 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Groups");
+                    b.ToTable("Groups", (string)null);
 
                     b.HasData(
                         new
@@ -346,7 +346,7 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasAlternateKey("Name");
 
-                    b.ToTable("Languages");
+                    b.ToTable("Languages", (string)null);
 
                     b.HasData(
                         new
@@ -378,7 +378,7 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasIndex("LessonBeforeId");
 
-                    b.ToTable("LessonOrders");
+                    b.ToTable("LessonOrders", (string)null);
 
                     b.HasData(
                         new
@@ -427,7 +427,7 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Lessons");
+                    b.ToTable("Lessons", (string)null);
 
                     b.HasData(
                         new
