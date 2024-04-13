@@ -290,6 +290,47 @@ namespace Puroguramu.Infrastructures.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Groups", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Groups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "2i1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "2i2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "2i3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "2i4"
+                        });
+                });
+
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Languages", b =>
                 {
                     b.Property<int>("Id")
@@ -316,7 +357,7 @@ namespace Puroguramu.Infrastructures.Migrations
                         new
                         {
                             Id = 2,
-                            Name = " Java"
+                            Name = "Java"
                         });
                 });
 
@@ -434,10 +475,8 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Group")
-                        .IsRequired()
-                        .HasMaxLength(3)
-                        .HasColumnType("TEXT");
+                    b.Property<int>("GroupId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -478,6 +517,8 @@ namespace Puroguramu.Infrastructures.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -617,6 +658,17 @@ namespace Puroguramu.Infrastructures.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Users", b =>
+                {
+                    b.HasOne("Puroguramu.Infrastructures.Data.Entities.Groups", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Courses", b =>

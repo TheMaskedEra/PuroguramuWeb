@@ -21,6 +21,6 @@ public class LanguagesConfiguration : IEntityTypeConfiguration<Languages>
         builder.HasData(new List<Languages>
         {
             new() {Id = CSharpId, Name = "C#"},
-            new() {Id = JavaId, Name =" Java"},
+            new() {Id = JavaId, Name = "Java"},
         });
 }

@@ -6,7 +6,6 @@ namespace Puroguramu.Infrastructures.Data.Configurations;
 
 public class ExercisesConfiguration : IEntityTypeConfiguration<Exercises>
 {
-
     public const int Exercise1Id = 1;
 
     public const int Exercise2Id = 2;
@@ -30,6 +29,5 @@ public class ExercisesConfiguration : IEntityTypeConfiguration<Exercises>
             new() { Id = Exercise1Id, Title = "HelloWorld", Instructions = "Instructions Here", DifficultyLevel = 1, Skeleton = "Skeleton Here", LessonId = LessonsConfiguration.FunctionsId },
             new() { Id = Exercise2Id, Title = "HelloThere", Instructions = "Instructions Here", DifficultyLevel = 1, Skeleton = "Skeleton Here", LessonId = LessonsConfiguration.FunctionsId },
             new() { Id = Exercise3Id, Title = "Obi-Wan", Instructions = "Instructions Here", DifficultyLevel = 1, Skeleton = "Skeleton Here", LessonId = LessonsConfiguration.FunctionsId },
-
         });
 }
