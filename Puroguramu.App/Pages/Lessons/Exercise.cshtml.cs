@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Puroguramu.Domains;
 
-namespace Puroguramu.App.Pages;
+namespace Puroguramu.App.Pages.Lessons;
 
+[Authorize(Roles = "Student, Teacher")]
 public class ExerciseModel : PageModel
 {
     private readonly IAssessExercise _assessor;

@@ -6,6 +6,5 @@ public class EditLessonModel : PageModel
 {
     public void OnGet()
     {
-
     }
 }

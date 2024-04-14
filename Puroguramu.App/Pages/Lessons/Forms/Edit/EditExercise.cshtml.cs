@@ -2,10 +2,9 @@
 
 namespace Puroguramu.App.Pages.Lessons.Forms.Edit;
 
-public class EditExerciseModel : PageModel
+public class EditExercise : PageModel
 {
     public void OnGet()
     {
-
     }
 }

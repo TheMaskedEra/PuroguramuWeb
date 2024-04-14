@@ -3,7 +3,6 @@
 @model Puroguramu.App.Pages.IndexModel
 
 @{
-    Layout = "Shared/_Layout";
     ViewData["Title"] = "Accueil";
     ViewData["PageTitle"] = "Bienvenue sur Puroguramu, <br/>Votre compagnon d'apprentissage en programmation !";
 }
@@ -23,13 +22,13 @@
     <h3 class="w-fit mx-auto text-xl font-semibold mb-5">Puroguramu c'est...</h3>
     <ul class="w-3/4 mx-auto flex flex-col gap-4">
         <li>
-            <b class="font-semibold">+1000</b> exercices disponibles
+            <b class="font-semibold">+@Model.ExerciseNumber</b> exercices disponibles
         </li>
         <li>
-            <b class="font-semibold">+50</b> leçons interactives
+            <b class="font-semibold">+@Model.LessonNumber</b> leçons interactives
         </li>
         <li>
-            <b class="font-semibold">+100</b> étudiants inscrits
+            <b class="font-semibold">+@Model.StudentNumber</b> étudiants inscrits
         </li>
     </ul>
 
@@ -45,8 +44,8 @@
     </p>
 
     <div class="w-fit mx-auto flex gap-4 my-10">
-        <a asp-page="/Auth/Signin" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Inscription</a>
-        <a asp-page="/Auth/Login" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Connexion</a>
+        <a asp-page="/Account/Register" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Inscription</a>
+        <a asp-page="/Account/Login" class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">Connexion</a>
     </div>
 
 </section>

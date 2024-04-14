@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.Scripting;
 
 using Puroguramu.Domains;
+using Puroguramu.Domains.Repositories;
 
 namespace Puroguramu.Infrastructures.Roslyn;
 

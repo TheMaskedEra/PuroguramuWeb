@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Puroguramu.App.Pages.Auth;
+namespace Puroguramu.App.Pages.Account;
 
-public class SigninModel : PageModel
+public class LoginModel : PageModel
 {
     public void OnGet()
     {
-
     }
 }

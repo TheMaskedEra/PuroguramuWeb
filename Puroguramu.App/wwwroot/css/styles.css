@@ -719,18 +719,6 @@ video {
   width: 83.333333%;
 }
 
-.w-\[1\%\] {
-  width: 1%;
-}
-
-.w-\[100\%\] {
-  width: 100%;
-}
-
-.w-\[56\%\] {
-  width: 56%;
-}
-
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1001,11 +989,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-yellow-500 {
-  --tw-text-opacity: 1;
-  color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 
 .backdrop-blur-md {
