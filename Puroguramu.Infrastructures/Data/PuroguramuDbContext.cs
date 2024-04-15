@@ -22,6 +22,8 @@ public class PuroguramuDbContext : IdentityDbContext<Users>
 
     public DbSet<Exercises> Exercises { get; set; }
 
+    public DbSet<Groups> Groups { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

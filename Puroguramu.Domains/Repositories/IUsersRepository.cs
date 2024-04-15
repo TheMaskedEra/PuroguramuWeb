@@ -4,7 +4,7 @@ namespace Puroguramu.Domains.Repositories;
 
 public interface IUsersRepository
 {
-    Task InsertAsync(AppUser appUser);
+    Task InsertAsync(AppUser appUser, string hashedPassword);
 
     Task UpdateAsync(AppUser appUser);
 }
