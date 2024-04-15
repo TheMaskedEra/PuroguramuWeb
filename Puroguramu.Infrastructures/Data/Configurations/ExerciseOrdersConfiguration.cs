@@ -18,14 +18,14 @@ public class ExerciseOrdersConfiguration : IEntityTypeConfiguration<ExerciseOrde
             .WithMany()
             .HasForeignKey(eo => eo.ExerciseAfterId);
 
-        SeedData(builder);
+        //SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<ExerciseOrders> builder) =>
         builder.HasData(new List<ExerciseOrders>
         {
-            new() { ExerciseId = ExercisesConfiguration.Exercise1Id, ExerciseAfterId = ExercisesConfiguration.Exercise2Id },
-            new() { ExerciseId = ExercisesConfiguration.Exercise2Id, ExerciseBeforeId = ExercisesConfiguration.Exercise1Id, ExerciseAfterId = ExercisesConfiguration.Exercise3Id },
-            new() { ExerciseId = ExercisesConfiguration.Exercise3Id, ExerciseBeforeId = ExercisesConfiguration.Exercise2Id },
+            new() { ExerciseId = ExercisesConfiguration.Exercise1Id.ToString(), ExerciseAfterId = ExercisesConfiguration.Exercise2Id.ToString() },
+            new() { ExerciseId = ExercisesConfiguration.Exercise2Id.ToString(), ExerciseBeforeId = ExercisesConfiguration.Exercise1Id.ToString(), ExerciseAfterId = ExercisesConfiguration.Exercise3Id.ToString() },
+            new() { ExerciseId = ExercisesConfiguration.Exercise3Id.ToString(), ExerciseBeforeId = ExercisesConfiguration.Exercise2Id.ToString() },
         });
 }

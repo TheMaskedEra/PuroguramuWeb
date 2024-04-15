@@ -8,7 +8,7 @@ public class Users : IdentityUser
     [StringLength(15)]
     public string RegistrationNumber { get; set; } = string.Empty;
 
-    public int GroupId { get; set; }
+    public string GroupId { get; set; } = string.Empty;
 
     public Groups Group { get; set; } = null!;
 }

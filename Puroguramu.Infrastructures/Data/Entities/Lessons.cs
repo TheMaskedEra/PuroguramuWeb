@@ -4,9 +4,9 @@ namespace Puroguramu.Infrastructures.Data.Entities;
 
 public class Lessons
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
-    public int CourseId { get; set; } = -1;
+    public string CourseId { get; set; } = string.Empty;
 
     public Courses Course { get; set; } = null!;
 

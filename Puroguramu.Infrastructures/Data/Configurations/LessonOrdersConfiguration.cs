@@ -22,14 +22,14 @@ public class LessonOrdersConfiguration : IEntityTypeConfiguration<LessonOrders>
             .WithMany()
             .HasForeignKey(lo => lo.LessonAfterId);
 
-        SeedData(builder);
+        //SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<LessonOrders> builder) =>
         builder.HasData(new List<LessonOrders>
         {
-            new() { LessonId = LessonsConfiguration.VariablesId, LessonAfterId = LessonsConfiguration.FunctionsId },
-            new() { LessonId = LessonsConfiguration.FunctionsId, LessonBeforeId = LessonsConfiguration.VariablesId, LessonAfterId = LessonsConfiguration.ClassesId },
-            new() { LessonId = LessonsConfiguration.ClassesId, LessonBeforeId = LessonsConfiguration.FunctionsId },
+            new() { LessonId = LessonsConfiguration.VariablesId.ToString(), LessonAfterId = LessonsConfiguration.FunctionsId.ToString() },
+            new() { LessonId = LessonsConfiguration.FunctionsId.ToString(), LessonBeforeId = LessonsConfiguration.VariablesId.ToString(), LessonAfterId = LessonsConfiguration.ClassesId.ToString() },
+            new() { LessonId = LessonsConfiguration.ClassesId.ToString(), LessonBeforeId = LessonsConfiguration.FunctionsId.ToString() },
         });
 }

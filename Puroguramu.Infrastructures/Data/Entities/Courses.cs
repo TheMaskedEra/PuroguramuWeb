@@ -4,12 +4,12 @@ namespace Puroguramu.Infrastructures.Data.Entities;
 
 public class Courses
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     [StringLength(150)]
     public string Title { get; set; } = null!;
 
-    public int LanguageId { get; set; } = -1;
+    public string LanguageId { get; set; } = string.Empty;
 
     public Languages Language { get; set; } = null!;
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Puroguramu.Infrastructures.Migrations
 {
-    public partial class InitalCreate : Migration
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,38 +24,22 @@ namespace Puroguramu.Infrastructures.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "Groups",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    RegistrationNumber = table.Column<string>(type: "TEXT", maxLength: 15, nullable: false),
-                    Group = table.Column<string>(type: "TEXT", maxLength: 3, nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_Groups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Languages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -81,6 +65,59 @@ namespace Puroguramu.Infrastructures.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    RegistrationNumber = table.Column<string>(type: "TEXT", maxLength: 15, nullable: false),
+                    GroupId = table.Column<string>(type: "TEXT", nullable: false),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Groups_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Courses",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
+                    LanguageId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Courses", x => x.Id);
+                    table.UniqueConstraint("AK_Courses_Title_LanguageId", x => new { x.Title, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_Courses_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -171,33 +208,11 @@ namespace Puroguramu.Infrastructures.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Courses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
-                    LanguageId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Courses", x => x.Id);
-                    table.UniqueConstraint("AK_Courses_Title_LanguageId", x => new { x.Title, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_Courses_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Lessons",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CourseId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    CourseId = table.Column<string>(type: "TEXT", nullable: false),
                     Title = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
                     Description = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
                     IsVisible = table.Column<bool>(type: "INTEGER", nullable: false)
@@ -218,13 +233,12 @@ namespace Puroguramu.Infrastructures.Migrations
                 name: "Exercises",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
                     Title = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
                     Instructions = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
                     DifficultyLevel = table.Column<int>(type: "INTEGER", nullable: false),
                     Skeleton = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
-                    LessonId = table.Column<int>(type: "INTEGER", nullable: false)
+                    LessonId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -237,35 +251,63 @@ namespace Puroguramu.Infrastructures.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Languages",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "C#" });
+            migrationBuilder.CreateTable(
+                name: "LessonOrders",
+                columns: table => new
+                {
+                    LessonId = table.Column<string>(type: "TEXT", nullable: false),
+                    LessonBeforeId = table.Column<string>(type: "TEXT", nullable: true),
+                    LessonAfterId = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LessonOrders", x => x.LessonId);
+                    table.ForeignKey(
+                        name: "FK_LessonOrders_Lessons_LessonAfterId",
+                        column: x => x.LessonAfterId,
+                        principalTable: "Lessons",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_LessonOrders_Lessons_LessonBeforeId",
+                        column: x => x.LessonBeforeId,
+                        principalTable: "Lessons",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_LessonOrders_Lessons_LessonId",
+                        column: x => x.LessonId,
+                        principalTable: "Lessons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
-            migrationBuilder.InsertData(
-                table: "Languages",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 2, " Java" });
-
-            migrationBuilder.InsertData(
-                table: "Courses",
-                columns: new[] { "Id", "LanguageId", "Title" },
-                values: new object[] { 1, 1, "Beginners" });
-
-            migrationBuilder.InsertData(
-                table: "Courses",
-                columns: new[] { "Id", "LanguageId", "Title" },
-                values: new object[] { 2, 1, "Amateurs" });
-
-            migrationBuilder.InsertData(
-                table: "Lessons",
-                columns: new[] { "Id", "CourseId", "Description", "IsVisible", "Title" },
-                values: new object[] { 1, 1, "", true, "Variables" });
-
-            migrationBuilder.InsertData(
-                table: "Lessons",
-                columns: new[] { "Id", "CourseId", "Description", "IsVisible", "Title" },
-                values: new object[] { 2, 1, "", false, "Functions" });
+            migrationBuilder.CreateTable(
+                name: "ExerciseOrders",
+                columns: table => new
+                {
+                    ExerciseId = table.Column<string>(type: "TEXT", nullable: false),
+                    ExerciseBeforeId = table.Column<string>(type: "TEXT", nullable: true),
+                    ExerciseAfterId = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExerciseOrders", x => x.ExerciseId);
+                    table.ForeignKey(
+                        name: "FK_ExerciseOrders_Exercises_ExerciseAfterId",
+                        column: x => x.ExerciseAfterId,
+                        principalTable: "Exercises",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ExerciseOrders_Exercises_ExerciseBeforeId",
+                        column: x => x.ExerciseBeforeId,
+                        principalTable: "Exercises",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ExerciseOrders_Exercises_ExerciseId",
+                        column: x => x.ExerciseId,
+                        principalTable: "Exercises",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -299,6 +341,11 @@ namespace Puroguramu.Infrastructures.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_GroupId",
+                table: "AspNetUsers",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -310,9 +357,41 @@ namespace Puroguramu.Infrastructures.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ExerciseOrders_ExerciseAfterId",
+                table: "ExerciseOrders",
+                column: "ExerciseAfterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExerciseOrders_ExerciseBeforeId",
+                table: "ExerciseOrders",
+                column: "ExerciseBeforeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Exercises_LessonId",
                 table: "Exercises",
                 column: "LessonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exercises_Title_LessonId",
+                table: "Exercises",
+                columns: new[] { "Title", "LessonId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Groups_Name",
+                table: "Groups",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LessonOrders_LessonAfterId",
+                table: "LessonOrders",
+                column: "LessonAfterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LessonOrders_LessonBeforeId",
+                table: "LessonOrders",
+                column: "LessonBeforeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lessons_CourseId",
@@ -338,13 +417,22 @@ namespace Puroguramu.Infrastructures.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Exercises");
+                name: "ExerciseOrders");
+
+            migrationBuilder.DropTable(
+                name: "LessonOrders");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Exercises");
+
+            migrationBuilder.DropTable(
+                name: "Groups");
 
             migrationBuilder.DropTable(
                 name: "Lessons");

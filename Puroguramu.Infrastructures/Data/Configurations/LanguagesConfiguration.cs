@@ -6,21 +6,21 @@ namespace Puroguramu.Infrastructures.Data.Configurations;
 
 public class LanguagesConfiguration : IEntityTypeConfiguration<Languages>
 {
-    public const int CSharpId = 1;
+    public static readonly Guid CSharpId = Guid.NewGuid();
 
-    public const int JavaId = 2;
+    public static readonly Guid JavaId = Guid.NewGuid();
 
     public void Configure(EntityTypeBuilder<Languages> builder)
     {
         builder.HasAlternateKey(l => l.Name);
 
-        SeedData(builder);
+        //SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<Languages> builder) =>
         builder.HasData(new List<Languages>
         {
-            new() {Id = CSharpId, Name = "C#"},
-            new() {Id = JavaId, Name = "Java"},
+            new() {Id = CSharpId.ToString(), Name = "C#"},
+            new() {Id = JavaId.ToString(), Name = "Java"},
         });
 }

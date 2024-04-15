@@ -2,15 +2,15 @@
 
 public class ExerciseOrders
 {
-    public int ExerciseId { get; set; }
+    public string ExerciseId { get; set; } = string.Empty;
 
     public Exercises Exercise { get; set; } = null!;
 
-    public int? ExerciseBeforeId { get; set; }
+    public string? ExerciseBeforeId { get; set; }
 
     public Exercises? ExerciseBefore { get; set; }
 
-    public int? ExerciseAfterId { get; set; }
+    public string? ExerciseAfterId { get; set; }
 
     public Exercises? ExerciseAfter { get; set; }
 }

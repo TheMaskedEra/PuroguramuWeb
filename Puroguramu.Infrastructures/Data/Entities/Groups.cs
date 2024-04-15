@@ -4,7 +4,7 @@ namespace Puroguramu.Infrastructures.Data.Entities;
 
 public class Groups
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     [StringLength(10)]
     public string Name { get; init; } = string.Empty;

@@ -151,12 +151,12 @@ namespace Puroguramu.Infrastructures.Migrations
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Courses", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("LanguageId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -170,32 +170,18 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("Courses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            LanguageId = 1,
-                            Title = "Beginners"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            LanguageId = 1,
-                            Title = "Amateurs"
-                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.ExerciseOrders", b =>
                 {
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ExerciseId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int?>("ExerciseAfterId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ExerciseAfterId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int?>("ExerciseBeforeId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ExerciseBeforeId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ExerciseId");
 
@@ -204,31 +190,12 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("ExerciseBeforeId");
 
                     b.ToTable("ExerciseOrders");
-
-                    b.HasData(
-                        new
-                        {
-                            ExerciseId = 1,
-                            ExerciseAfterId = 2
-                        },
-                        new
-                        {
-                            ExerciseId = 2,
-                            ExerciseAfterId = 3,
-                            ExerciseBeforeId = 1
-                        },
-                        new
-                        {
-                            ExerciseId = 3,
-                            ExerciseBeforeId = 2
-                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Exercises", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("DifficultyLevel")
                         .HasColumnType("INTEGER");
@@ -238,8 +205,9 @@ namespace Puroguramu.Infrastructures.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("LessonId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Skeleton")
                         .IsRequired()
@@ -259,42 +227,12 @@ namespace Puroguramu.Infrastructures.Migrations
                         .IsUnique();
 
                     b.ToTable("Exercises");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DifficultyLevel = 1,
-                            Instructions = "Instructions Here",
-                            LessonId = 2,
-                            Skeleton = "Skeleton Here",
-                            Title = "HelloWorld"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DifficultyLevel = 1,
-                            Instructions = "Instructions Here",
-                            LessonId = 2,
-                            Skeleton = "Skeleton Here",
-                            Title = "HelloThere"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DifficultyLevel = 1,
-                            Instructions = "Instructions Here",
-                            LessonId = 2,
-                            Skeleton = "Skeleton Here",
-                            Title = "Obi-Wan"
-                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Groups", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -307,35 +245,12 @@ namespace Puroguramu.Infrastructures.Migrations
                         .IsUnique();
 
                     b.ToTable("Groups");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "2i1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "2i2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "2i3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "2i4"
-                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Languages", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -347,30 +262,18 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasAlternateKey("Name");
 
                     b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "C#"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Java"
-                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.LessonOrders", b =>
                 {
-                    b.Property<int>("LessonId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("LessonId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int?>("LessonAfterId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("LessonAfterId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int?>("LessonBeforeId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("LessonBeforeId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("LessonId");
 
@@ -379,34 +282,16 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("LessonBeforeId");
 
                     b.ToTable("LessonOrders");
-
-                    b.HasData(
-                        new
-                        {
-                            LessonId = 1,
-                            LessonAfterId = 2
-                        },
-                        new
-                        {
-                            LessonId = 2,
-                            LessonAfterId = 3,
-                            LessonBeforeId = 1
-                        },
-                        new
-                        {
-                            LessonId = 3,
-                            LessonBeforeId = 2
-                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Lessons", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("CourseId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -428,32 +313,6 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Lessons");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CourseId = 1,
-                            Description = "",
-                            IsVisible = true,
-                            Title = "Variables"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CourseId = 1,
-                            Description = "",
-                            IsVisible = true,
-                            Title = "Functions"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CourseId = 1,
-                            Description = "",
-                            IsVisible = true,
-                            Title = "Classes"
-                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Users", b =>
@@ -475,8 +334,9 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("GroupId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
