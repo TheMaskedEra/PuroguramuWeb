@@ -18,7 +18,7 @@ public class CoursesConfiguration : IEntityTypeConfiguration<Courses>
 
         builder.HasAlternateKey(c => new {c.Title, c.LanguageId});
 
-        //SeedData(builder);
+        SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<Courses> builder) =>

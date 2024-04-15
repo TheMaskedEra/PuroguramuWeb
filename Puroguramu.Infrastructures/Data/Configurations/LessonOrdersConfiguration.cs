@@ -22,7 +22,7 @@ public class LessonOrdersConfiguration : IEntityTypeConfiguration<LessonOrders>
             .WithMany()
             .HasForeignKey(lo => lo.LessonAfterId);
 
-        //SeedData(builder);
+        SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<LessonOrders> builder) =>

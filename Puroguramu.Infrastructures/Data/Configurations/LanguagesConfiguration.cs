@@ -14,7 +14,7 @@ public class LanguagesConfiguration : IEntityTypeConfiguration<Languages>
     {
         builder.HasAlternateKey(l => l.Name);
 
-        //SeedData(builder);
+        SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<Languages> builder) =>

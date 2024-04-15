@@ -18,7 +18,7 @@ public class ExerciseOrdersConfiguration : IEntityTypeConfiguration<ExerciseOrde
             .WithMany()
             .HasForeignKey(eo => eo.ExerciseAfterId);
 
-        //SeedData(builder);
+        SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<ExerciseOrders> builder) =>

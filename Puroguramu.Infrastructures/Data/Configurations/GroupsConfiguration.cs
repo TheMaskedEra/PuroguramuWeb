@@ -19,7 +19,7 @@ public class GroupsConfiguration : IEntityTypeConfiguration<Groups>
     {
         builder.HasIndex(g => g.Name).IsUnique();
 
-        //SeedData(builder);
+        SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<Groups> builder) =>

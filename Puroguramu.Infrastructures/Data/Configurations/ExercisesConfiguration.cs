@@ -20,7 +20,7 @@ public class ExercisesConfiguration : IEntityTypeConfiguration<Exercises>
             .WithMany(l => l.Exercises)
             .HasForeignKey(e => e.LessonId);
 
-        //SeedData(builder);
+        SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<Exercises> builder) =>
