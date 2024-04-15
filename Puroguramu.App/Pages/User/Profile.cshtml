@@ -2,13 +2,12 @@
 @model Puroguramu.App.Pages.User.ProfileModel
 
 @{
-    Layout = "Shared/_Layout";
     ViewData["Title"] = "Profil";
     ViewData["PageTitle"] = "Modifier votre profil";
 }
 
 <section class="w-1/2 mx-auto">
-    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" action="" method="post">
+    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" method="post">
         <div>
             <label for="avatar" class="block mb-2 text-sm font-medium">Photo de profil</label>
             
@@ -35,8 +34,8 @@
                 <input type="text" name="name" id="name" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" placeholder="Doe" required>
             </div>
             <div class="w-1/2 ml-2">
-                <label for="first-name" class="block mb-2 text-sm font-medium">Prénom</label>
-                <input type="text" name="first-name" id="first-name" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" placeholder="John" required>
+                <label for="firstname" class="block mb-2 text-sm font-medium">Prénom</label>
+                <input type="text" name="firstname" id="firstname" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" placeholder="John" required>
             </div>
         </div>
 
@@ -49,17 +48,17 @@
             <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="••••••••" required>
         </div>
         <div>
-            <label for="password-conf" class="block mb-2 text-sm font-medium">Confirmation du mot de passe</label>
-            <input type="password" name="password-conf" id="password-conf" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="••••••••" required>
+            <label for="passwordConf" class="block mb-2 text-sm font-medium">Confirmation du mot de passe</label>
+            <input type="password" name="passwordConf" id="passwordConf" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" placeholder="••••••••" required>
         </div>
 
         <div class="w-full flex items-center justify-between">
             <label for="group" class="block mb-2 text-sm font-medium">Groupe</label>
             <select name="group" id="group" class="w-1/3 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" required>
-                <option value="1">2i1</option>
-                <option value="2">2i2</option>
-                <option value="3">2i3</option>
-                <option value="3">2i4</option>
+                <option value="2i1">2i1</option>
+                <option value="2i2">2i2</option>
+                <option value="2i3">2i3</option>
+                <option value="2i4">2i4</option>
             </select>
         </div>
 

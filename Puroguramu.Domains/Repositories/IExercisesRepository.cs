@@ -1,4 +1,4 @@
-﻿namespace Puroguramu.Domains;
+﻿namespace Puroguramu.Domains.Repositories;
 
 public interface IExercisesRepository
 {

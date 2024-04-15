@@ -12,7 +12,7 @@ public class PuroguramuDbContext : IdentityDbContext<Users>
     {
     }
 
-    public DbSet<Users> Users { get; set; }
+    public DbSet<Users> AppUsers { get; set; }
 
     public DbSet<Languages> Languages { get; set; }
 

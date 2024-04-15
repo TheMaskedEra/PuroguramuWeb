@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Puroguramu.App.Middlewares;
 using Puroguramu.Domains;
+using Puroguramu.Domains.Entities;
+using Puroguramu.Domains.Repositories;
 using Puroguramu.Infrastructures.Data;
 using Puroguramu.Infrastructures.Data.Entities;
-using Puroguramu.Infrastructures.Dummies;
+using Puroguramu.Infrastructures.Data.Repositories;
 using Puroguramu.Infrastructures.Roslyn;
 
 namespace Puroguramu.App;
@@ -16,8 +18,10 @@ public static class BuilderConfigurator
     {
         builder.Services.AddScoped<ILogger, Logger<object>>();
         builder.Services.AddScoped<ReverseProxyLinksMiddleware>();
-        builder.Services.AddScoped<IExercisesRepository, DummyExercisesRepository>();
+        builder.Services.AddScoped<IExercisesRepository, ExercisesRepository>();
         builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
+        builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+        builder.Services.AddScoped<IPasswordHasher<AppUser>, PasswordHasher<AppUser>>();
 
         builder.Services.AddRazorPages();
 
