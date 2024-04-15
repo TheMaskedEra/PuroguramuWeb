@@ -174,14 +174,14 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "62719556-63cc-4b8a-ba2c-a20e7edbc7df",
-                            LanguageId = "f3172d77-738b-45ea-bb4f-a033e6259a17",
+                            Id = "60749e3c-3e06-4361-9d06-959bf29335b4",
+                            LanguageId = "cc44892a-1e50-4fb9-a158-93a47b46885f",
                             Title = "Beginners"
                         },
                         new
                         {
-                            Id = "21b7f27d-0f76-45b9-a67e-6b631357d2e8",
-                            LanguageId = "f3172d77-738b-45ea-bb4f-a033e6259a17",
+                            Id = "a244bc92-7968-4b7e-9b5a-c654a0a9a357",
+                            LanguageId = "cc44892a-1e50-4fb9-a158-93a47b46885f",
                             Title = "Amateurs"
                         });
                 });
@@ -208,19 +208,19 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            ExerciseId = "e53a6542-17d4-4cd4-8c30-9b824e9db91d",
-                            ExerciseAfterId = "240c3dd6-28d7-4626-8179-8f54f6543d8c"
+                            ExerciseId = "5d9e5e19-83d6-4774-a3b3-f97eac071ea9",
+                            ExerciseAfterId = "b88dd734-62fd-40eb-b9c8-21cac1a37931"
                         },
                         new
                         {
-                            ExerciseId = "240c3dd6-28d7-4626-8179-8f54f6543d8c",
-                            ExerciseAfterId = "da484893-2ded-4fef-87ad-11dcc46d9b8d",
-                            ExerciseBeforeId = "e53a6542-17d4-4cd4-8c30-9b824e9db91d"
+                            ExerciseId = "b88dd734-62fd-40eb-b9c8-21cac1a37931",
+                            ExerciseAfterId = "9f1d612e-5090-46c3-9197-7a018dd31839",
+                            ExerciseBeforeId = "5d9e5e19-83d6-4774-a3b3-f97eac071ea9"
                         },
                         new
                         {
-                            ExerciseId = "da484893-2ded-4fef-87ad-11dcc46d9b8d",
-                            ExerciseBeforeId = "240c3dd6-28d7-4626-8179-8f54f6543d8c"
+                            ExerciseId = "9f1d612e-5090-46c3-9197-7a018dd31839",
+                            ExerciseBeforeId = "b88dd734-62fd-40eb-b9c8-21cac1a37931"
                         });
                 });
 
@@ -263,28 +263,28 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e53a6542-17d4-4cd4-8c30-9b824e9db91d",
+                            Id = "5d9e5e19-83d6-4774-a3b3-f97eac071ea9",
                             DifficultyLevel = 1,
                             Instructions = "Instructions Here",
-                            LessonId = "2a4ebd67-ebeb-49e9-8362-29603500db96",
+                            LessonId = "deac8366-ced2-4b14-86df-7de599338265",
                             Skeleton = "Skeleton Here",
                             Title = "HelloWorld"
                         },
                         new
                         {
-                            Id = "240c3dd6-28d7-4626-8179-8f54f6543d8c",
+                            Id = "b88dd734-62fd-40eb-b9c8-21cac1a37931",
                             DifficultyLevel = 1,
                             Instructions = "Instructions Here",
-                            LessonId = "2a4ebd67-ebeb-49e9-8362-29603500db96",
+                            LessonId = "deac8366-ced2-4b14-86df-7de599338265",
                             Skeleton = "Skeleton Here",
                             Title = "HelloThere"
                         },
                         new
                         {
-                            Id = "da484893-2ded-4fef-87ad-11dcc46d9b8d",
+                            Id = "9f1d612e-5090-46c3-9197-7a018dd31839",
                             DifficultyLevel = 1,
                             Instructions = "Instructions Here",
-                            LessonId = "2a4ebd67-ebeb-49e9-8362-29603500db96",
+                            LessonId = "deac8366-ced2-4b14-86df-7de599338265",
                             Skeleton = "Skeleton Here",
                             Title = "Obi-Wan"
                         });
@@ -310,22 +310,22 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b7e420fa-1a00-4dd5-bd04-b61fc9c35678",
+                            Id = "bdf1f2ac-0b96-4ff0-a967-b66aa5071000",
                             Name = "2i1"
                         },
                         new
                         {
-                            Id = "0c5003cf-2254-4737-be29-252eaaaba2ce",
+                            Id = "c881cf98-62bb-4199-ac16-c64269413832",
                             Name = "2i2"
                         },
                         new
                         {
-                            Id = "462d1685-32a7-4729-b3a6-f0f2d75ff916",
+                            Id = "01b06b31-e8c8-4e23-bafd-8b7086febec6",
                             Name = "2i3"
                         },
                         new
                         {
-                            Id = "21233326-fd5e-440f-8d6d-1ea6c1775a71",
+                            Id = "8792f63e-5a1d-4731-b5ee-7a0417a776ab",
                             Name = "2i4"
                         });
                 });
@@ -349,12 +349,12 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f3172d77-738b-45ea-bb4f-a033e6259a17",
+                            Id = "cc44892a-1e50-4fb9-a158-93a47b46885f",
                             Name = "C#"
                         },
                         new
                         {
-                            Id = "155f8183-e3d7-41f6-9b17-df3aa3110814",
+                            Id = "657e4a11-e883-4d71-9916-5501ccba0b19",
                             Name = "Java"
                         });
                 });
@@ -381,19 +381,19 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            LessonId = "74d02216-303e-442a-9c4a-40e6ac853f39",
-                            LessonAfterId = "2a4ebd67-ebeb-49e9-8362-29603500db96"
+                            LessonId = "c032fccb-4d25-4ccb-a035-ee985f301da6",
+                            LessonAfterId = "deac8366-ced2-4b14-86df-7de599338265"
                         },
                         new
                         {
-                            LessonId = "2a4ebd67-ebeb-49e9-8362-29603500db96",
-                            LessonAfterId = "0fb0dc5b-5316-47bc-88d5-31cd3fdc314f",
-                            LessonBeforeId = "74d02216-303e-442a-9c4a-40e6ac853f39"
+                            LessonId = "deac8366-ced2-4b14-86df-7de599338265",
+                            LessonAfterId = "bb21181d-4fe9-4c79-8766-41aa7acb76dc",
+                            LessonBeforeId = "c032fccb-4d25-4ccb-a035-ee985f301da6"
                         },
                         new
                         {
-                            LessonId = "0fb0dc5b-5316-47bc-88d5-31cd3fdc314f",
-                            LessonBeforeId = "2a4ebd67-ebeb-49e9-8362-29603500db96"
+                            LessonId = "bb21181d-4fe9-4c79-8766-41aa7acb76dc",
+                            LessonBeforeId = "deac8366-ced2-4b14-86df-7de599338265"
                         });
                 });
 
@@ -430,24 +430,24 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "74d02216-303e-442a-9c4a-40e6ac853f39",
-                            CourseId = "62719556-63cc-4b8a-ba2c-a20e7edbc7df",
+                            Id = "c032fccb-4d25-4ccb-a035-ee985f301da6",
+                            CourseId = "60749e3c-3e06-4361-9d06-959bf29335b4",
                             Description = "",
                             IsVisible = true,
                             Title = "Variables"
                         },
                         new
                         {
-                            Id = "2a4ebd67-ebeb-49e9-8362-29603500db96",
-                            CourseId = "62719556-63cc-4b8a-ba2c-a20e7edbc7df",
+                            Id = "deac8366-ced2-4b14-86df-7de599338265",
+                            CourseId = "60749e3c-3e06-4361-9d06-959bf29335b4",
                             Description = "",
                             IsVisible = true,
                             Title = "Functions"
                         },
                         new
                         {
-                            Id = "0fb0dc5b-5316-47bc-88d5-31cd3fdc314f",
-                            CourseId = "62719556-63cc-4b8a-ba2c-a20e7edbc7df",
+                            Id = "bb21181d-4fe9-4c79-8766-41aa7acb76dc",
+                            CourseId = "60749e3c-3e06-4361-9d06-959bf29335b4",
                             Description = "",
                             IsVisible = true,
                             Title = "Classes"
@@ -473,8 +473,18 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("GroupId")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
