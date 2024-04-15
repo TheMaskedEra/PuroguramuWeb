@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Puroguramu.Domains;
-using Puroguramu.Domains.Entities;
+using Puroguramu.Domains.Models;
 
 namespace Puroguramu.App.Pages.Lessons;
 
@@ -12,9 +12,9 @@ public class LessonPageModel : PageModel
     {
     }
 
-    public Lesson Lesson => new()
+    public Lesson Lesson => new("Lesson 1")
     {
-        Title = "Lesson 1", Description = "Description 1", FinishedPercentage = 100,
+        Description = "Description 1", FinishedPercentage = 100,
     };
 
     public List<Exercise> Exercises => new()

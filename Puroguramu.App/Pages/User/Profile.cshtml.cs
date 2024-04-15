@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Puroguramu.Domains.Entities;
+using Puroguramu.Domains.Models;
 using Puroguramu.Domains.Repositories;
 
 namespace Puroguramu.App.Pages.User;
@@ -20,21 +20,15 @@ public class ProfileModel : PageModel
     {
     }
 
-    public async Task<IActionResult> OnPost(string name, string firstname, string email, string password, string passwordConf, string group)
+    public async Task<IActionResult> OnPost(string matricule, string name, string firstname, string email, string password, string passwordConf, string group)
     {
         if (password != passwordConf)
         {
             return Page();
         }
 
-        var user = new AppUser
-        {
-            Name = name,
-            Firstname = firstname,
-            Email = email,
-            Password = password,
-            Group = group,
-        };
+        var user = new AppUser(matricule, name, firstname, email, group);
+
         await _repository.UpdateAsync(user);
         return Page();
     }

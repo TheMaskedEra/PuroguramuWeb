@@ -1,4 +1,4 @@
-﻿using Puroguramu.Domains.Entities;
+﻿using Puroguramu.Domains.Models;
 
 namespace Puroguramu.Domains.Repositories;
 

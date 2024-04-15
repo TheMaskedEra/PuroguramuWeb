@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Puroguramu.Domains.Entities;
+using Puroguramu.Domains.Models;
 using Puroguramu.Domains.Repositories;
 
 namespace Puroguramu.App.Pages.Account;
@@ -28,15 +28,8 @@ public class RegisterModel : PageModel
             return Page();
         }
 
-        var user = new AppUser
-        {
-            Matricule = matricule,
-            Name = name,
-            Firstname = firstname,
-            Email = email,
-            Group = group,
-        };
-        user.Password = _passwordHasher.HashPassword(user, password);
+        var user = new AppUser(matricule, name, firstname, email, group);
+        password = _passwordHasher.HashPassword(user, password);
 
         await _repository.InsertAsync(user);
         return RedirectToPage("/User/Dashboard");
