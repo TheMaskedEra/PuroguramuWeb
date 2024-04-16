@@ -18,8 +18,6 @@ public class UserRepository : IUserRepository
     //TODO Rajouter le filtre role étudiant
     public async Task<int> GetTotalStudentNumberAsync() => await _dbContext.Users.CountAsync();
 
-    public void Insert(AppUser appUser, string hashedPassword) => throw new NotImplementedException();
-
     public async Task InsertAsync(AppUser appUser, string hashedPassword)
     {
         await using (_dbContext)
@@ -40,8 +38,6 @@ public class UserRepository : IUserRepository
             await _dbContext.SaveChangesAsync();
         }
     }
-
-    public void Update(AppUser appUser) => throw new NotImplementedException();
 
     public Task UpdateAsync(AppUser appUser) => throw new NotImplementedException();
 }

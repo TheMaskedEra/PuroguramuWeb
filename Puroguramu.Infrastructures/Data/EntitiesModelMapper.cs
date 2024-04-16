@@ -28,4 +28,8 @@ public class EntitiesModelMapper
     public Lesson EFLessonToLesson() => throw new NotImplementedException();
 
     public Lessons LessonToEFLesson() => throw new NotImplementedException();
+
+    public Exercises ExerciseToEFExercise(Exercise exercise) => throw new NotImplementedException();
+
+    public Exercise EFExerciseToExercise(Exercises exercise) => throw new NotImplementedException();
 }

@@ -1,4 +1,6 @@
-﻿namespace Puroguramu.Domains.Repositories;
+﻿using Puroguramu.Domains.Models;
+
+namespace Puroguramu.Domains.Repositories;
 
 public interface IExerciseRepository
 {
@@ -6,9 +8,9 @@ public interface IExerciseRepository
 
     Exercise GetExercise(Guid exerciseId);
 
-    void AddExercise(Exercise exercise);
+    Task AddExerciseAsync(Exercise exercise);
 
-    void UpdateExercise(Guid exerciseId);
+    Task UpdateExerciseAsync(Guid exerciseId);
 
-    void DeleteExercise(Guid exerciseId);
+    Task DeleteExerciseAsync(Guid exerciseId);
 }

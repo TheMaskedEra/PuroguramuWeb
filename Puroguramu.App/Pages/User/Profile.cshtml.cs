@@ -29,7 +29,7 @@ public class ProfileModel : PageModel
 
         var user = new AppUser(matricule, name, firstname, email, group);
 
-        _repository.Update(user);
+        _repository.UpdateAsync(user);
         return Page();
     }
 }

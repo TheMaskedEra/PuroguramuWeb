@@ -6,7 +6,7 @@ public interface IUserRepository
 {
     Task<int> GetTotalStudentNumberAsync();
 
-    void Insert(AppUser appUser, string hashedPassword);
+    Task InsertAsync(AppUser appUser, string hashedPassword);
 
-    void Update(AppUser appUser);
+    Task UpdateAsync(AppUser appUser);
 }

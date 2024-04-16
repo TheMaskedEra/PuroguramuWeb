@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Puroguramu.Domains;
+using Puroguramu.Domains.Models;
 using Puroguramu.Domains.Repositories;
 
 namespace Puroguramu.Infrastructures.Data.Repositories;
@@ -19,9 +20,15 @@ public class ExerciseRepository : IExerciseRepository
 
     public Exercise GetExercise(Guid exerciseId) => throw new NotImplementedException();
 
-    public void AddExercise(Exercise exercise) => throw new NotImplementedException();
+    public async Task AddExerciseAsync(Exercise exercise)
+    {
+        var exerciseDto = _mapper.ExerciseToEFExercise(exercise);
+        _dbContext.Exercises.Add(exerciseDto);
 
-    public void UpdateExercise(Guid exerciseId) => throw new NotImplementedException();
+        await _dbContext.SaveChangesAsync();
+    }
 
-    public void DeleteExercise(Guid exerciseId) => throw new NotImplementedException();
+    public async Task UpdateExerciseAsync(Guid exerciseId) => throw new NotImplementedException();
+
+    public async Task DeleteExerciseAsync(Guid exerciseId) => throw new NotImplementedException();
 }

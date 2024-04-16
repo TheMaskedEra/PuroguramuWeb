@@ -1,4 +1,4 @@
-﻿namespace Puroguramu.Domains;
+﻿namespace Puroguramu.Domains.Models;
 
 public class Exercise
 {

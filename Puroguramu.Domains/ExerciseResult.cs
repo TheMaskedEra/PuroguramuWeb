@@ -1,4 +1,6 @@
-﻿namespace Puroguramu.Domains;
+﻿using Puroguramu.Domains.Models;
+
+namespace Puroguramu.Domains;
 
 public record ExerciseResult(Exercise Subject, string Proposal, IEnumerable<TestResult>? TestResults = null)
 {

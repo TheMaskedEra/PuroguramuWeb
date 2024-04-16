@@ -31,7 +31,7 @@ public class RegisterModel : PageModel
         var user = new AppUser(matricule, name, firstname, email, group);
         password = _passwordHasher.HashPassword(user, password);
 
-        _repository.Insert(user, password);
+        await _repository.InsertAsync(user, password);
         return RedirectToPage("/User/Dashboard");
     }
 }
