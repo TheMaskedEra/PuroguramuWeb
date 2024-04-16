@@ -4,7 +4,7 @@ namespace Puroguramu.Domains.Repositories;
 
 public interface IUserRepository
 {
-    int GetTotalNumber();
+    Task<int> GetTotalStudentNumberAsync();
 
     void Insert(AppUser appUser, string hashedPassword);
 

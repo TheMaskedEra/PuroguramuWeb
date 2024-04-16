@@ -18,11 +18,11 @@ public class IndexModel : PageModel
         _exerciseRepo = exerciseRepo;
     }
 
-    public void OnGet()
+    public async Task OnGetAsync()
     {
-        ExerciseNumber =  _exerciseRepo.GetTotalNumber();
-        LessonNumber = _lessonRepo.GetTotalNumber();
-        StudentNumber = _userRepo.GetTotalNumber();
+        ExerciseNumber = await _exerciseRepo.GetTotalNumberAsync();
+        LessonNumber = await _lessonRepo.GetTotalNumberAsync();
+        StudentNumber = await _userRepo.GetTotalStudentNumberAsync();
     }
 
     public int ExerciseNumber { get; private set; }

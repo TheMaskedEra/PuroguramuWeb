@@ -4,7 +4,7 @@ namespace Puroguramu.Domains.Repositories;
 
 public interface ILessonRepository
 {
-    int GetTotalNumber();
+    Task<int> GetTotalNumberAsync();
 
     void GetAllFromCourse(Course course);
 

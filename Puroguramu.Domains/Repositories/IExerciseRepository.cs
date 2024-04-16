@@ -2,7 +2,7 @@
 
 public interface IExerciseRepository
 {
-    int GetTotalNumber();
+    Task<int> GetTotalNumberAsync();
 
     Exercise GetExercise(Guid exerciseId);
 

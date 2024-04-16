@@ -15,15 +15,7 @@ public class ExerciseRepository : IExerciseRepository
         _dbContext = dbContext;
     }
 
-    public int GetTotalNumber() => _dbContext.Exercises.Count();
-
-    public async Task<int> GetTotalNumberAsync()
-    {
-        await using (_dbContext)
-        {
-            return await _dbContext.Exercises.CountAsync();
-        }
-    }
+    public async Task<int> GetTotalNumberAsync() => await _dbContext.Exercises.CountAsync();
 
     public Exercise GetExercise(Guid exerciseId) => throw new NotImplementedException();
 

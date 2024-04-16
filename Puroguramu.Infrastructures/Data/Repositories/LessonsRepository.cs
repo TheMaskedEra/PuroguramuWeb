@@ -15,19 +15,7 @@ public class LessonsRepository : ILessonRepository
         _dbContext = dbContext;
     }
 
-    public int GetTotalNumber() => _dbContext.Lessons.Count();
-
-    public async Task<int> GetTotalNumberAsync()
-    {
-        int totalNumber;
-
-        await using (_dbContext)
-        {
-            totalNumber = await _dbContext.Lessons.CountAsync();
-        }
-
-        return totalNumber;
-    }
+    public async Task<int> GetTotalNumberAsync() => await _dbContext.Lessons.CountAsync();
 
     public void GetAllFromCourse(Course course) => throw new NotImplementedException();
 
