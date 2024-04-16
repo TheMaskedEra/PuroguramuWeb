@@ -8,20 +8,20 @@ namespace Puroguramu.Infrastructures.Roslyn;
 
 public class RoslynAssessor : IAssessExercise
 {
-    private readonly IExercisesRepository _exercisesRepository;
+    private readonly IExerciseRepository _exerciseRepository;
 
     private static readonly ScriptOptions Options = ScriptOptions.Default
         .WithImports("System", "System.Linq", "Puroguramu.Domains")
         .WithReferences("System.Core","Puroguramu.Domains");
 
-    public RoslynAssessor(IExercisesRepository repository)
+    public RoslynAssessor(IExerciseRepository repository)
     {
-        _exercisesRepository = repository;
+        _exerciseRepository = repository;
     }
 
     public async Task<ExerciseResult> Assess(Guid exerciseId, string proposal)
     {
-        var exercise = _exercisesRepository.GetExercise(exerciseId);
+        var exercise = _exerciseRepository.GetExercise(exerciseId);
         var codeToRun = exercise.InjectIntoTemplate(proposal);
         try
         {
@@ -40,7 +40,7 @@ public class RoslynAssessor : IAssessExercise
 
     public async Task<ExerciseResult> StubForExercise(Guid exerciseId)
     {
-        var exercise = _exercisesRepository.GetExercise(exerciseId);
+        var exercise = _exerciseRepository.GetExercise(exerciseId);
 
         return await Task.FromResult(new ExerciseResult(exercise, exercise.Stub));
     }

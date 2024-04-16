@@ -37,5 +37,7 @@ public class IdentityRoleConfiguration : IEntityTypeConfiguration<IdentityRole>
             Name = "Student",
             NormalizedName = "STUDENT",
         };
+
+        builder.HasData(adminRole, teacherRole, studentRole);
     }
 }

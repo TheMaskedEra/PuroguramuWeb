@@ -4,16 +4,32 @@ using Puroguramu.Domains.Repositories;
 
 namespace Puroguramu.Infrastructures.Data.Repositories;
 
-public class UsersRepository : IUsersRepository
+public class UserRepository : IUserRepository
 {
     private readonly PuroguramuDbContext _dbContext;
 
     private readonly EntitiesModelMapper _mapper = new();
 
-    public UsersRepository(PuroguramuDbContext dbContext)
+    public UserRepository(PuroguramuDbContext dbContext)
     {
         _dbContext = dbContext;
     }
+
+    public int GetTotalNumber() => _dbContext.Users.Count();
+
+    public async Task<int> GetTotalNumberAsync()
+    {
+        int totalNumber;
+
+        await using (_dbContext)
+        {
+            totalNumber = await _dbContext.Users.CountAsync();
+        }
+
+        return totalNumber;
+    }
+
+    public void Insert(AppUser appUser, string hashedPassword) => throw new NotImplementedException();
 
     public async Task InsertAsync(AppUser appUser, string hashedPassword)
     {
@@ -35,6 +51,8 @@ public class UsersRepository : IUsersRepository
             await _dbContext.SaveChangesAsync();
         }
     }
+
+    public void Update(AppUser appUser) => throw new NotImplementedException();
 
     public Task UpdateAsync(AppUser appUser) => throw new NotImplementedException();
 }

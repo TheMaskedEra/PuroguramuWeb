@@ -9,9 +9,9 @@ namespace Puroguramu.App.Pages.User;
 [Authorize(Roles = "Student, Teacher")]
 public class ProfileModel : PageModel
 {
-    private readonly IUsersRepository _repository;
+    private readonly IUserRepository _repository;
 
-    public ProfileModel(IUsersRepository repository)
+    public ProfileModel(IUserRepository repository)
     {
         _repository = repository;
     }
@@ -29,7 +29,7 @@ public class ProfileModel : PageModel
 
         var user = new AppUser(matricule, name, firstname, email, group);
 
-        await _repository.UpdateAsync(user);
+        _repository.Update(user);
         return Page();
     }
 }

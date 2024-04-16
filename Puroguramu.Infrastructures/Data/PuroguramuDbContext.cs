@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Puroguramu.Infrastructures.Data.Configurations;
 using Puroguramu.Infrastructures.Data.Entities;
@@ -36,6 +37,7 @@ public class PuroguramuDbContext : IdentityDbContext<Users>
         builder.ApplyConfiguration(new ExerciseOrdersConfiguration());
         builder.ApplyConfiguration(new GroupsConfiguration());
 
-
+        builder.ApplyConfiguration(new IdentityRoleConfiguration());
+        builder.ApplyConfiguration(new IdentityUserConfiguration());
     }
 }

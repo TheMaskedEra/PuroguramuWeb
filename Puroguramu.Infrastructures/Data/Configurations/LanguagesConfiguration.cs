@@ -20,7 +20,7 @@ public class LanguagesConfiguration : IEntityTypeConfiguration<Languages>
     private static void SeedData(EntityTypeBuilder<Languages> builder) =>
         builder.HasData(new List<Languages>
         {
-            new() {Id = CSharpId.ToString(), Name = "C#"},
-            new() {Id = JavaId.ToString(), Name = "Java"},
+            new() { Id = CSharpId.ToString(), Name = "C#" },
+            new() { Id = JavaId.ToString(), Name = "Java" },
         });
 }
