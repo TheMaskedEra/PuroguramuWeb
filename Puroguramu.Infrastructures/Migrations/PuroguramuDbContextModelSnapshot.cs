@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Puroguramu.Infrastructures.Data;
 
@@ -11,10 +10,9 @@ using Puroguramu.Infrastructures.Data;
 namespace Puroguramu.Infrastructures.Migrations
 {
     [DbContext(typeof(PuroguramuDbContext))]
-    [Migration("20240415101608_Test")]
-    partial class Test
+    partial class PuroguramuDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.28");
@@ -43,6 +41,29 @@ namespace Puroguramu.Infrastructures.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "cab0375a-825e-4973-a826-2bd9d34feee8",
+                            ConcurrencyStamp = "cab0375a-825e-4973-a826-2bd9d34feee8",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "eda9d114-69a4-4b73-a30a-e3c81b82ed95",
+                            ConcurrencyStamp = "eda9d114-69a4-4b73-a30a-e3c81b82ed95",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = "4eb146cd-a18e-45eb-b866-6174bd10eb60",
+                            ConcurrencyStamp = "4eb146cd-a18e-45eb-b866-6174bd10eb60",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -172,6 +193,20 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("LanguageId");
 
                     b.ToTable("Courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5a90cc79-6d02-4bd9-a59a-352b7b24b992",
+                            LanguageId = "1bd6d239-07a9-4408-b239-61c9fe01e33a",
+                            Title = "Beginners"
+                        },
+                        new
+                        {
+                            Id = "a01ebc98-e27f-4934-9d13-30b93630ea46",
+                            LanguageId = "1bd6d239-07a9-4408-b239-61c9fe01e33a",
+                            Title = "Amateurs"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.ExerciseOrders", b =>
@@ -192,6 +227,24 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("ExerciseBeforeId");
 
                     b.ToTable("ExerciseOrders");
+
+                    b.HasData(
+                        new
+                        {
+                            ExerciseId = "1da64959-d898-4615-b6d4-1e32da99166f",
+                            ExerciseAfterId = "40a625ea-1274-49aa-beff-dfc9a734ff2f"
+                        },
+                        new
+                        {
+                            ExerciseId = "40a625ea-1274-49aa-beff-dfc9a734ff2f",
+                            ExerciseAfterId = "cf02e77c-a160-43ed-b7e9-36c65de29393",
+                            ExerciseBeforeId = "1da64959-d898-4615-b6d4-1e32da99166f"
+                        },
+                        new
+                        {
+                            ExerciseId = "cf02e77c-a160-43ed-b7e9-36c65de29393",
+                            ExerciseBeforeId = "40a625ea-1274-49aa-beff-dfc9a734ff2f"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Exercises", b =>
@@ -229,6 +282,35 @@ namespace Puroguramu.Infrastructures.Migrations
                         .IsUnique();
 
                     b.ToTable("Exercises");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1da64959-d898-4615-b6d4-1e32da99166f",
+                            DifficultyLevel = 1,
+                            Instructions = "Instructions Here",
+                            LessonId = "afea81b3-7804-4944-83ab-99c4323ffbc0",
+                            Skeleton = "Skeleton Here",
+                            Title = "HelloWorld"
+                        },
+                        new
+                        {
+                            Id = "40a625ea-1274-49aa-beff-dfc9a734ff2f",
+                            DifficultyLevel = 1,
+                            Instructions = "Instructions Here",
+                            LessonId = "afea81b3-7804-4944-83ab-99c4323ffbc0",
+                            Skeleton = "Skeleton Here",
+                            Title = "HelloThere"
+                        },
+                        new
+                        {
+                            Id = "cf02e77c-a160-43ed-b7e9-36c65de29393",
+                            DifficultyLevel = 1,
+                            Instructions = "Instructions Here",
+                            LessonId = "afea81b3-7804-4944-83ab-99c4323ffbc0",
+                            Skeleton = "Skeleton Here",
+                            Title = "Obi-Wan"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Groups", b =>
@@ -247,6 +329,28 @@ namespace Puroguramu.Infrastructures.Migrations
                         .IsUnique();
 
                     b.ToTable("Groups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "854e354b-acac-43f7-9128-4a02d11e1be8",
+                            Name = "2i1"
+                        },
+                        new
+                        {
+                            Id = "53bc120b-0379-4d38-94ae-3022718728b0",
+                            Name = "2i2"
+                        },
+                        new
+                        {
+                            Id = "61232cb2-4d10-4b61-bc59-94797d3ee930",
+                            Name = "2i3"
+                        },
+                        new
+                        {
+                            Id = "5169d657-c9bb-4d9e-87c2-46321d4ff679",
+                            Name = "2i4"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Languages", b =>
@@ -264,6 +368,18 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasAlternateKey("Name");
 
                     b.ToTable("Languages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1bd6d239-07a9-4408-b239-61c9fe01e33a",
+                            Name = "C#"
+                        },
+                        new
+                        {
+                            Id = "eb3e93da-bf95-4afa-bd9d-a5a4e1df61a1",
+                            Name = "Java"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.LessonOrders", b =>
@@ -284,6 +400,24 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("LessonBeforeId");
 
                     b.ToTable("LessonOrders");
+
+                    b.HasData(
+                        new
+                        {
+                            LessonId = "3908c31b-94a3-48c3-ba00-37bcb42b79d5",
+                            LessonAfterId = "afea81b3-7804-4944-83ab-99c4323ffbc0"
+                        },
+                        new
+                        {
+                            LessonId = "afea81b3-7804-4944-83ab-99c4323ffbc0",
+                            LessonAfterId = "1bf087ce-524f-47e1-84b3-dd0783989dc6",
+                            LessonBeforeId = "3908c31b-94a3-48c3-ba00-37bcb42b79d5"
+                        },
+                        new
+                        {
+                            LessonId = "1bf087ce-524f-47e1-84b3-dd0783989dc6",
+                            LessonBeforeId = "afea81b3-7804-4944-83ab-99c4323ffbc0"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Lessons", b =>
@@ -315,6 +449,32 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Lessons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3908c31b-94a3-48c3-ba00-37bcb42b79d5",
+                            CourseId = "5a90cc79-6d02-4bd9-a59a-352b7b24b992",
+                            Description = "",
+                            IsVisible = true,
+                            Title = "Variables"
+                        },
+                        new
+                        {
+                            Id = "afea81b3-7804-4944-83ab-99c4323ffbc0",
+                            CourseId = "5a90cc79-6d02-4bd9-a59a-352b7b24b992",
+                            Description = "",
+                            IsVisible = true,
+                            Title = "Functions"
+                        },
+                        new
+                        {
+                            Id = "1bf087ce-524f-47e1-84b3-dd0783989dc6",
+                            CourseId = "5a90cc79-6d02-4bd9-a59a-352b7b24b992",
+                            Description = "",
+                            IsVisible = true,
+                            Title = "Classes"
+                        });
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Users", b =>
@@ -336,8 +496,18 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("GroupId")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
