@@ -5,31 +5,52 @@ namespace Puroguramu.Infrastructures.Data;
 
 public class EntitiesModelMapper
 {
-    public Users UserToEFUser(AppUser user, string groupId) => new()
-    {
-        FirstName = user.FirstName,
-        LastName = user.LastName,
-        Email = user.Email,
-        GroupId = groupId,
-        RegistrationNumber = user.Matricule,
-    };
+    public Users UserToUserDto(AppUser user, string groupId)
+        =>
+            new()
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            GroupId = groupId,
+            RegistrationNumber = user.Matricule,
+        };
 
-    public AppUser EFUserToUser(Users user, string groupName) =>
-        new(user.RegistrationNumber,
-            user.LastName,
-            user.FirstName,
-            user.Email,
-            groupName);
+    public AppUser UserDtoToUser(Users user, string groupName)
+        =>
+            new(
+                user.RegistrationNumber,
+                user.LastName,
+                user.FirstName,
+                user.Email,
+                groupName);
 
-    public Course EFCourseToCourse() => throw new NotImplementedException();
+    public Course CourseDtoToCourse()
+        => throw new NotImplementedException();
 
-    public Courses CourseToEFCourse() => throw new NotImplementedException();
+    public Courses CourseToCourseDto()
+        => throw new NotImplementedException();
 
-    public Lesson EFLessonToLesson() => throw new NotImplementedException();
+    public Lesson LessonDtoToLesson(Lessons lesson) //TODO Faire les liens avec les exercises
+        =>
+            new(lesson.Title)
+            {
+                Description = lesson.Description,
+                IsVisible = lesson.IsVisible,
+            };
 
-    public Lessons LessonToEFLesson() => throw new NotImplementedException();
+    public Lessons LessonToLessonDto(Lesson lesson) //TODO Faire les liens avec les exercises et ordre
+        =>
+            new()
+            {
+                Title = lesson.Title,
+                Description = lesson.Description,
+                IsVisible = lesson.IsVisible,
+            };
 
-    public Exercises ExerciseToEFExercise(Exercise exercise) => throw new NotImplementedException();
+    public Exercises ExerciseToExerciseDto(Exercise exercise)
+        => throw new NotImplementedException();
 
-    public Exercise EFExerciseToExercise(Exercises exercise) => throw new NotImplementedException();
+    public Exercise ExerciseDtoToExercise(Exercises exercise)
+        => throw new NotImplementedException();
 }
