@@ -7,7 +7,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="px-4">
-        <a asp-page="/User/Dashboard" class="cursor-pointer flex items-center">
+        <a asp-area="User" asp-page="/Lessons/Dashboard" class="cursor-pointer flex items-center">
             <span class="material-symbols-outlined px-2">
                 space_dashboard
             </span>
@@ -17,7 +17,7 @@
         </a>
     </li>
     <li class="px-4">
-        <a asp-page="/User/Profile" class="cursor-pointer relative flex items-center">
+        <a asp-area="Identity" asp-page="/Account/EditProfile" class="cursor-pointer relative flex items-center">
             <span class="material-symbols-outlined px-2">
                 manage_accounts
             </span>
@@ -42,7 +42,9 @@ else
     <li class="px-4">
         <a class="cursor-pointer relative flex items-center" id="register" asp-area="Identity" asp-page="/Account/Register">
             <span class="material-symbols-outlined px-2">
-                person_add
+                <span class="material-symbols-outlined">
+                    how_to_reg
+                </span>
             </span>
             <p class="relative after:block after:content-[''] after:absolute after:bottom-0 after:h-[2px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center">
                 Inscription

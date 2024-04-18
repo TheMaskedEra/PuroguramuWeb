@@ -2,6 +2,31 @@
 @model Puroguramu.App.Areas.Teacher.Pages.Lessons.CreateExerciseModel
 
 @{
-    ViewData["Title"] = "Création d'exercice";
+    ViewData["Title"] = "Exercice";
     ViewData["PageTitle"] = "Création d'exercice";
 }
+
+<section class="w-1/2 mx-auto">
+    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" method="post">
+        <p class="text-center">
+            Veuillez entrer le titre de votre exercice ci-dessous, vous serez ensuite redirigé vers le formulaire 
+            d'édition d'exercices afin d'ajouter les données manquantes de l'exercice.
+        </p>
+        <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+        
+        <div>
+            <label asp-for="Input.Title" class="block mb-2 text-sm font-medium">
+                Titre de l'exercice <span class="text-red-500">*</span>
+            </label>
+            <input asp-for="Input.Title"
+                   placeholder="Titre de l'exercice"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" 
+                   aria-required="true">
+        </div>
+        
+        <button type="submit"
+                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">
+            Créer l'exercice
+        </button>
+    </form>
+</section>
