@@ -6,27 +6,4 @@
     ViewData["PageTitle"] = "Création de leçon";
 }
 
-<section class="w-1/2 mx-auto">
-    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" method="post">
-        <p class="text-center">
-            Veuillez entrer le titre de votre leçon ci-dessous, vous serez ensuite redirigé vers le formulaire 
-            d'édition de leçon afin d'ajouter les données manquantes de la leçon.
-        </p>
-        <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
-        
-        <div>
-            <label asp-for="Input.Title" class="block mb-2 text-sm font-medium">
-                Titre de la leçon <span class="text-red-500">*</span>
-            </label>
-            <input asp-for="Input.Title"
-                   placeholder="Titre de la leçon"
-                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" 
-                   aria-required="true">
-        </div>
-        
-        <button type="submit"
-                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">
-            Créer la leçon
-        </button>
-    </form>
-</section>
+<partial name="_CreateFormPartial" model="@Model.FormModel"/>

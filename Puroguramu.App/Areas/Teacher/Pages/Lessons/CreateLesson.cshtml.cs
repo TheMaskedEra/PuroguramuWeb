@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Puroguramu.App.Areas.Teacher.Models;
 
 namespace Puroguramu.App.Areas.Teacher.Pages.Lessons;
 
@@ -9,7 +10,9 @@ namespace Puroguramu.App.Areas.Teacher.Pages.Lessons;
 public class CreateLessonModel : PageModel
 {
     [BindProperty]
-    public InputModel Input { get; set; }
+    public InputModel Input { get; set; } = new();
+
+    public CreateFormModel FormModel { get; set; }
 
     public class InputModel
     {
@@ -18,11 +21,15 @@ public class CreateLessonModel : PageModel
         public string Title { get; set; }
     }
 
-    public void OnGet()
-    {
-    }
+    public void OnGet() => InitializeFormModel();
 
     public async Task OnPostAsync()
     {
+        if (!ModelState.IsValid)
+        {
+            InitializeFormModel();
+        }
     }
+
+    private void InitializeFormModel() => FormModel = new CreateFormModel { Type = "leçon", Title = "la leçon", InputValue = Input.Title };
 }
