@@ -25,13 +25,17 @@ public class EntitiesModelMapper
                 user.Email,
                 groupName);
 
-    public Course CourseDtoToCourse()
+    public Course CourseDtoToCourse(Courses course)
         => throw new NotImplementedException();
 
-    public Courses CourseToCourseDto()
-        => throw new NotImplementedException();
+    public Courses CourseToCourseDto(Course course, string languageId)
+        => new()
+        {
+            Title = course.Title,
+            LanguageId = languageId,
+        };
 
-    public Lesson LessonDtoToLesson(Lessons lesson) //TODO Faire les liens avec les exercises
+    public Lesson? LessonDtoToLesson(Lessons lesson) //TODO Faire les liens avec les exercises
         =>
             new(lesson.Title)
             {

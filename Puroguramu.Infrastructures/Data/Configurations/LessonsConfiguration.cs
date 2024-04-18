@@ -28,6 +28,6 @@ public class LessonsConfiguration : IEntityTypeConfiguration<Lessons>
         {
             new() { Id = VariablesId.ToString(), CourseId = CoursesConfiguration.CSharpBeginnersId.ToString(), Title = "Variables", IsVisible = true },
             new() { Id = FunctionsId.ToString(), CourseId = CoursesConfiguration.CSharpBeginnersId.ToString(), Title = "Functions", IsVisible = true},
-            new () { Id =  ClassesId.ToString(), CourseId = CoursesConfiguration.CSharpBeginnersId.ToString(), Title = "Classes", IsVisible = true},
+            new() { Id =  ClassesId.ToString(), CourseId = CoursesConfiguration.CSharpBeginnersId.ToString(), Title = "Classes", IsVisible = true},
         });
 }

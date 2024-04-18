@@ -6,7 +6,7 @@ public interface ILessonRepository
 {
     Task<int> GetTotalNumberAsync();
 
-    void GetAllFromCourse(Course course);
+    Task<SortedList<int, Lesson>> GetAllFromCourse(Course course);
 
     void Insert(Lesson lesson);
 

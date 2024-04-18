@@ -314,117 +314,117 @@ namespace Puroguramu.Infrastructures.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "4eb146cd-a18e-45eb-b866-6174bd10eb60", "4eb146cd-a18e-45eb-b866-6174bd10eb60", "Student", "STUDENT" });
+                values: new object[] { "014eb349-88a2-4262-a461-d9ee111495c7", "014eb349-88a2-4262-a461-d9ee111495c7", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "cab0375a-825e-4973-a826-2bd9d34feee8", "cab0375a-825e-4973-a826-2bd9d34feee8", "Admin", "ADMIN" });
+                values: new object[] { "430166a7-b1c6-4d4d-9745-3337d0293440", "430166a7-b1c6-4d4d-9745-3337d0293440", "Student", "STUDENT" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "eda9d114-69a4-4b73-a30a-e3c81b82ed95", "eda9d114-69a4-4b73-a30a-e3c81b82ed95", "Teacher", "TEACHER" });
+                values: new object[] { "b11580dd-350f-4b2e-a68e-e253c511e2ac", "b11580dd-350f-4b2e-a68e-e253c511e2ac", "Teacher", "TEACHER" });
 
             migrationBuilder.InsertData(
                 table: "Groups",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { "5169d657-c9bb-4d9e-87c2-46321d4ff679", "2i4" });
+                values: new object[] { "48ee7054-66c7-4561-a31b-3e3e209f8cbb", "2i3" });
 
             migrationBuilder.InsertData(
                 table: "Groups",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { "53bc120b-0379-4d38-94ae-3022718728b0", "2i2" });
+                values: new object[] { "62f4b178-6a07-451a-b981-872f1f9f511d", "2i4" });
 
             migrationBuilder.InsertData(
                 table: "Groups",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { "61232cb2-4d10-4b61-bc59-94797d3ee930", "2i3" });
+                values: new object[] { "87c1d836-a8eb-4ee8-abe1-7396a865fa33", "2i1" });
 
             migrationBuilder.InsertData(
                 table: "Groups",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { "854e354b-acac-43f7-9128-4a02d11e1be8", "2i1" });
+                values: new object[] { "f0725632-2a8e-45fa-a1ab-ad5bc76bc501", "2i2" });
 
             migrationBuilder.InsertData(
                 table: "Languages",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { "1bd6d239-07a9-4408-b239-61c9fe01e33a", "C#" });
+                values: new object[] { "85eedd5a-5a41-42b0-be88-1add870d4c87", "C#" });
 
             migrationBuilder.InsertData(
                 table: "Languages",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { "eb3e93da-bf95-4afa-bd9d-a5a4e1df61a1", "Java" });
+                values: new object[] { "f34847d7-66ce-4bb3-8e1f-7497a18624fd", "Java" });
 
             migrationBuilder.InsertData(
                 table: "Courses",
                 columns: new[] { "Id", "LanguageId", "Title" },
-                values: new object[] { "5a90cc79-6d02-4bd9-a59a-352b7b24b992", "1bd6d239-07a9-4408-b239-61c9fe01e33a", "Beginners" });
+                values: new object[] { "83c17675-b7c9-4de3-91ab-ef7189f82f91", "85eedd5a-5a41-42b0-be88-1add870d4c87", "Amateurs" });
 
             migrationBuilder.InsertData(
                 table: "Courses",
                 columns: new[] { "Id", "LanguageId", "Title" },
-                values: new object[] { "a01ebc98-e27f-4934-9d13-30b93630ea46", "1bd6d239-07a9-4408-b239-61c9fe01e33a", "Amateurs" });
+                values: new object[] { "990e61bd-6aef-4caf-8c0b-629f14ee846e", "85eedd5a-5a41-42b0-be88-1add870d4c87", "Beginners" });
 
             migrationBuilder.InsertData(
                 table: "Lessons",
                 columns: new[] { "Id", "CourseId", "Description", "IsVisible", "Title" },
-                values: new object[] { "1bf087ce-524f-47e1-84b3-dd0783989dc6", "5a90cc79-6d02-4bd9-a59a-352b7b24b992", "", true, "Classes" });
+                values: new object[] { "6af64676-6a05-4d26-a1e8-a6a8f1b5bc90", "990e61bd-6aef-4caf-8c0b-629f14ee846e", "", true, "Classes" });
 
             migrationBuilder.InsertData(
                 table: "Lessons",
                 columns: new[] { "Id", "CourseId", "Description", "IsVisible", "Title" },
-                values: new object[] { "3908c31b-94a3-48c3-ba00-37bcb42b79d5", "5a90cc79-6d02-4bd9-a59a-352b7b24b992", "", true, "Variables" });
+                values: new object[] { "b90b9dca-bfd8-4040-8a52-7e2744970c75", "990e61bd-6aef-4caf-8c0b-629f14ee846e", "", true, "Variables" });
 
             migrationBuilder.InsertData(
                 table: "Lessons",
                 columns: new[] { "Id", "CourseId", "Description", "IsVisible", "Title" },
-                values: new object[] { "afea81b3-7804-4944-83ab-99c4323ffbc0", "5a90cc79-6d02-4bd9-a59a-352b7b24b992", "", true, "Functions" });
+                values: new object[] { "d0cd4abf-1d5e-41cd-af74-2859cf375130", "990e61bd-6aef-4caf-8c0b-629f14ee846e", "", true, "Functions" });
 
             migrationBuilder.InsertData(
                 table: "Exercises",
                 columns: new[] { "Id", "DifficultyLevel", "Instructions", "LessonId", "Skeleton", "Title" },
-                values: new object[] { "1da64959-d898-4615-b6d4-1e32da99166f", 1, "Instructions Here", "afea81b3-7804-4944-83ab-99c4323ffbc0", "Skeleton Here", "HelloWorld" });
+                values: new object[] { "1e8558c0-cc59-471d-90f2-3e53a378b236", 1, "Instructions Here", "d0cd4abf-1d5e-41cd-af74-2859cf375130", "Skeleton Here", "Obi-Wan" });
 
             migrationBuilder.InsertData(
                 table: "Exercises",
                 columns: new[] { "Id", "DifficultyLevel", "Instructions", "LessonId", "Skeleton", "Title" },
-                values: new object[] { "40a625ea-1274-49aa-beff-dfc9a734ff2f", 1, "Instructions Here", "afea81b3-7804-4944-83ab-99c4323ffbc0", "Skeleton Here", "HelloThere" });
+                values: new object[] { "50be4e0c-980c-4956-a547-c4748a16640a", 1, "Instructions Here", "d0cd4abf-1d5e-41cd-af74-2859cf375130", "Skeleton Here", "HelloThere" });
 
             migrationBuilder.InsertData(
                 table: "Exercises",
                 columns: new[] { "Id", "DifficultyLevel", "Instructions", "LessonId", "Skeleton", "Title" },
-                values: new object[] { "cf02e77c-a160-43ed-b7e9-36c65de29393", 1, "Instructions Here", "afea81b3-7804-4944-83ab-99c4323ffbc0", "Skeleton Here", "Obi-Wan" });
+                values: new object[] { "dba8be7e-2166-4e28-a146-8ef232eb55ee", 1, "Instructions Here", "d0cd4abf-1d5e-41cd-af74-2859cf375130", "Skeleton Here", "HelloWorld" });
 
             migrationBuilder.InsertData(
                 table: "LessonOrders",
                 columns: new[] { "LessonId", "LessonAfterId", "LessonBeforeId" },
-                values: new object[] { "1bf087ce-524f-47e1-84b3-dd0783989dc6", null, "afea81b3-7804-4944-83ab-99c4323ffbc0" });
+                values: new object[] { "6af64676-6a05-4d26-a1e8-a6a8f1b5bc90", null, "d0cd4abf-1d5e-41cd-af74-2859cf375130" });
 
             migrationBuilder.InsertData(
                 table: "LessonOrders",
                 columns: new[] { "LessonId", "LessonAfterId", "LessonBeforeId" },
-                values: new object[] { "3908c31b-94a3-48c3-ba00-37bcb42b79d5", "afea81b3-7804-4944-83ab-99c4323ffbc0", null });
+                values: new object[] { "b90b9dca-bfd8-4040-8a52-7e2744970c75", "d0cd4abf-1d5e-41cd-af74-2859cf375130", null });
 
             migrationBuilder.InsertData(
                 table: "LessonOrders",
                 columns: new[] { "LessonId", "LessonAfterId", "LessonBeforeId" },
-                values: new object[] { "afea81b3-7804-4944-83ab-99c4323ffbc0", "1bf087ce-524f-47e1-84b3-dd0783989dc6", "3908c31b-94a3-48c3-ba00-37bcb42b79d5" });
+                values: new object[] { "d0cd4abf-1d5e-41cd-af74-2859cf375130", "6af64676-6a05-4d26-a1e8-a6a8f1b5bc90", "b90b9dca-bfd8-4040-8a52-7e2744970c75" });
 
             migrationBuilder.InsertData(
                 table: "ExerciseOrders",
                 columns: new[] { "ExerciseId", "ExerciseAfterId", "ExerciseBeforeId" },
-                values: new object[] { "1da64959-d898-4615-b6d4-1e32da99166f", "40a625ea-1274-49aa-beff-dfc9a734ff2f", null });
+                values: new object[] { "1e8558c0-cc59-471d-90f2-3e53a378b236", null, "50be4e0c-980c-4956-a547-c4748a16640a" });
 
             migrationBuilder.InsertData(
                 table: "ExerciseOrders",
                 columns: new[] { "ExerciseId", "ExerciseAfterId", "ExerciseBeforeId" },
-                values: new object[] { "40a625ea-1274-49aa-beff-dfc9a734ff2f", "cf02e77c-a160-43ed-b7e9-36c65de29393", "1da64959-d898-4615-b6d4-1e32da99166f" });
+                values: new object[] { "50be4e0c-980c-4956-a547-c4748a16640a", "1e8558c0-cc59-471d-90f2-3e53a378b236", "dba8be7e-2166-4e28-a146-8ef232eb55ee" });
 
             migrationBuilder.InsertData(
                 table: "ExerciseOrders",
                 columns: new[] { "ExerciseId", "ExerciseAfterId", "ExerciseBeforeId" },
-                values: new object[] { "cf02e77c-a160-43ed-b7e9-36c65de29393", null, "40a625ea-1274-49aa-beff-dfc9a734ff2f" });
+                values: new object[] { "dba8be7e-2166-4e28-a146-8ef232eb55ee", "50be4e0c-980c-4956-a547-c4748a16640a", null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

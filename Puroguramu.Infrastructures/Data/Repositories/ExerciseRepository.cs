@@ -16,19 +16,23 @@ public class ExerciseRepository : IExerciseRepository
         _dbContext = dbContext;
     }
 
-    public async Task<int> GetTotalNumberAsync() => await _dbContext.Exercises.CountAsync();
+    public async Task<int> GetTotalNumberAsync()
+        => await _dbContext.Exercises.CountAsync();
 
-    public Exercise GetExercise(Guid exerciseId) => throw new NotImplementedException();
+    public Exercise GetExercise(Guid exerciseId)
+        => throw new NotImplementedException();
 
     public async Task AddExerciseAsync(Exercise exercise)
     {
-        var exerciseDto = _mapper.ExerciseToEFExercise(exercise);
+        var exerciseDto = _mapper.ExerciseToExerciseDto(exercise);
         _dbContext.Exercises.Add(exerciseDto);
 
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateExerciseAsync(Guid exerciseId) => throw new NotImplementedException();
+    public async Task UpdateExerciseAsync(Guid exerciseId)
+        => throw new NotImplementedException();
 
-    public async Task DeleteExerciseAsync(Guid exerciseId) => throw new NotImplementedException();
+    public async Task DeleteExerciseAsync(Guid exerciseId)
+        => throw new NotImplementedException();
 }

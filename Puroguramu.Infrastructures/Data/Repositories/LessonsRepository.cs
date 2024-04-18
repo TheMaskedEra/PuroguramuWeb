@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections;
+using Microsoft.EntityFrameworkCore;
 using Puroguramu.Domains.Models;
 using Puroguramu.Domains.Repositories;
+using Puroguramu.Infrastructures.Data.Entities;
+using Lesson = Puroguramu.Domains.Models.Lesson;
 
 namespace Puroguramu.Infrastructures.Data.Repositories;
 
@@ -15,13 +18,70 @@ public class LessonsRepository : ILessonRepository
         _dbContext = dbContext;
     }
 
-    public async Task<int> GetTotalNumberAsync() => await _dbContext.Lessons.CountAsync();
+    public async Task<int> GetTotalNumberAsync()
+        => await _dbContext.Lessons.CountAsync();
 
-    public void GetAllFromCourse(Course course) => throw new NotImplementedException();
+    public async Task<SortedList<int, Lesson>> GetAllFromCourse(Course course) //TODO S'occuper d'exception si retourne null ?
+    {
+        var lessonList = new SortedList<int,Lesson>();
+        var currentLessonId = await FindFirstLessonIdInCourseAsync(course);
 
-    public void Insert(Lesson lesson) => throw new NotImplementedException();
+        if (currentLessonId == null)
+        {
+            return lessonList;
+        }
 
-    public void Update(Lesson lesson) => throw new NotImplementedException();
+        var i = 0;
 
-    public void Delete(Lesson lesson) => throw new NotImplementedException();
+        while (currentLessonId != null)
+        {
+            var lesson = await FindLessonById(currentLessonId);
+            if (lesson == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            lessonList.Add(i++, lesson);
+
+            currentLessonId = await FindNextLessonId(currentLessonId);
+        }
+
+        return lessonList;
+    }
+
+    private async Task<string?> FindFirstLessonIdInCourseAsync(Course course)
+    {
+        var courseId = await _dbContext.Courses
+            .Where(c => c.Title.Equals(course.Title) && c.LanguageId.Equals(course.Language))
+            .Select(c => c.Id)
+            .FirstOrDefaultAsync();
+
+        return await _dbContext.Lessons
+            .Join(_dbContext.LessonOrders, l => l.Id, lo => lo.LessonId, (l, lo) => new { Lessons = l, LessonOrders = lo })
+            .Where(t => t.LessonOrders.LessonBeforeId == null && t.Lessons.CourseId == courseId)
+            .Select(t => t.Lessons.Id)
+            .FirstOrDefaultAsync();
+    }
+
+    private async Task<string?> FindNextLessonId(string lessonId)
+        => await _dbContext.Lessons
+            .Join(_dbContext.LessonOrders, l => l.Id, lo => lo.LessonId, (l, lo) => new { Lessons = l, LessonOrders = lo })
+            .Where(t => t.LessonOrders.LessonId == lessonId)
+            .Select(t => t.LessonOrders.LessonAfterId)
+            .FirstOrDefaultAsync();
+
+    private async Task<Lesson?> FindLessonById(string id)
+    {
+        var lessonDto = await _dbContext.Lessons.Where(l => l.Id == id).FirstOrDefaultAsync();
+        return lessonDto == null ? null : _mapper.LessonDtoToLesson(lessonDto);
+    }
+
+    public void Insert(Lesson lesson)
+        => throw new NotImplementedException();
+
+    public void Update(Lesson lesson)
+        => throw new NotImplementedException();
+
+    public void Delete(Lesson lesson)
+        => throw new NotImplementedException();
 }

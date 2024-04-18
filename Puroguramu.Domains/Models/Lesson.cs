@@ -15,6 +15,8 @@ public class Lesson
 
     public bool IsVisible { get; set; } = false;
 
+    public int Order { get; set; } = -1;
+
     public int FinishedPercentage { get; set; }
 
     //TODO public ICollection<Exercise> Exercises { get; set; } = new SortedList();

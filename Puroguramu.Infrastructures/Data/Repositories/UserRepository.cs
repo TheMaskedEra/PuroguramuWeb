@@ -30,7 +30,7 @@ public class UserRepository : IUserRepository
                 throw new Exception("Group not found"); //TODO
             }
 
-            var userDto = _mapper.UserToEFUser(appUser, group.Id);
+            var userDto = _mapper.UserToUserDto(appUser, group.Id);
             userDto.PasswordHash = hashedPassword;
 
             _dbContext.Users.Add(userDto);

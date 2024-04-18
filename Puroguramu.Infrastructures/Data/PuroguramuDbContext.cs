@@ -19,7 +19,11 @@ public class PuroguramuDbContext : IdentityDbContext<Users>
 
     public DbSet<Courses> Courses { get; set; }
 
+    public DbSet<LessonOrders> LessonOrders { get; set; }
+
     public DbSet<Lessons> Lessons { get; set; }
+
+    public DbSet<ExerciseOrders> ExerciseOrders { get; set; }
 
     public DbSet<Exercises> Exercises { get; set; }
 
