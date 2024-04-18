@@ -22,6 +22,7 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
       <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -30,6 +31,14 @@
 
   <ItemGroup>
     <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\User\Profile.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Lessons\Forms\Create\CreateExercise.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Lessons\Forms\Create\CreateLesson.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Lessons\Forms\Edit\EditExercise.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Lessons\Forms\Edit\EditLesson.cshtml" />
   </ItemGroup>
 
   <Target Name="Tailwind" BeforeTargets="Build">

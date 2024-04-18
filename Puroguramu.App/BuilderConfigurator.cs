@@ -42,7 +42,7 @@ public static class BuilderConfigurator
         }
 
         builder.Services
-            .AddDefaultIdentity<Users>(options =>
+            .AddDefaultIdentity<IdentityUser>(options =>
             {
                 options.User.RequireUniqueEmail = true;
             })

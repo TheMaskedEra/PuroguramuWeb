@@ -22,28 +22,7 @@
             <h1 class="text-lg md:text-2xl font-semibold">Puroguramu</h1>
         </span>
         
-        <ul class="flex">
-            <li class="px-4">
-                <a asp-page="/User/Dashboard" class="cursor-pointer flex items-center">
-                    <span class="material-symbols-outlined px-2">
-                        space_dashboard
-                    </span>
-                    <p class="relative after:block after:content-[''] after:absolute after:bottom-0 after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center">
-                        Tableau de bord
-                    </p>
-                </a>
-            </li>
-            <li class="px-4">
-                <a asp-page="/User/Profile" class="cursor-pointer relative flex items-center">
-                    <span class="material-symbols-outlined px-2">
-                        manage_accounts
-                    </span>
-                    <p class="relative after:block after:content-[''] after:absolute after:bottom-0 after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center">
-                        Paramètres
-                    </p>
-                </a>
-            </li>
-        </ul>
+        <partial name="_LoginPartial"/>
     </nav>
     <hr class="w-full border-t-1 border-gray-400" />
 </header>
@@ -60,5 +39,7 @@
     <hr class="w-full border-t-1 border-gray-400" />
     <p class="text-center w-10/12 md:w-fit mx-auto py-5">Vullo Enzo - Vanden Broeck Alexis <br/> &copy; <br/> 2024 Puroguramu</p>
 </footer>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
