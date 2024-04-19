@@ -8,18 +8,20 @@
 
 <section class="w-3/4 mx-auto">
     <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto flex flex-col items-center" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+        
         <div class="w-3/4 mx-auto">
             <label asp-for="Input.Title" class="block mb-2 text-sm font-medium">
                 Titre de l'exercice <span class="text-red-500">*</span>
             </label>
-            <input asp-for="Input.Title" 
-                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" 
-                   placeholder="Titre de l'exercice" 
-                   aria-required="true" 
+            <input asp-for="Input.Title"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                   placeholder="Titre de l'exercice"
+                   aria-required="true"
                    value="@Model.Input.Title"/>
             <span asp-validation-for="Input.Title" class="text-sm text-red-500"></span>
         </div>
-        
+
         <div class="w-full">
             <label asp-for="Input.Description" class="block mb-2 text-sm font-medium">
                 Énoncé de l'exercice <span class="text-red-500">*</span>
@@ -31,7 +33,7 @@
                       aria-required="true">@Model.Input.Description</textarea>
             <span asp-validation-for="Input.Description" class="text-sm text-red-500"></span>
         </div>
-        
+
         <div class="w-full">
             <label asp-for="Input.Model" class="block mb-2 text-sm font-medium">
                 Modèle de l'exercice <span class="text-red-500">*</span>
@@ -40,7 +42,7 @@
             <input asp-for="Input.Model" id="Model" type="hidden" value="@Model.Input.Model"/>
             <span asp-validation-for="Input.Model" class="text-sm text-red-500"></span>
         </div>
-        
+
         <div class="w-full">
             <label asp-for="Input.Answer" class="block mb-2 text-sm font-medium">
                 Réponse de l'exercice <span class="text-red-500">*</span>
