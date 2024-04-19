@@ -1,8 +1,18 @@
 document.addEventListener('DOMContentLoaded', (evt) => {
+    loadEditor("ProposalEditor", "Proposal");
+    loadEditor("ProposalEditor", "Model");
+    loadEditor("ProposalAnswerEditor", "Answer");
+});
 
-    const proposalEditor = ace.edit("ProposalEditor");
-    const proposalInput = document.getElementById("Proposal");
-
+function loadEditor(proposalEditorId, proposalInputId) {
+    const proposalEditor = ace.edit(proposalEditorId);
+    
+    if (!proposalEditor) return;
+    
+    const proposalInput = document.getElementById(proposalInputId);
+    
+    if (!proposalInput) return;
+    
     proposalEditor.setTheme("ace/theme/xcode");
     proposalEditor.session.setMode("ace/mode/csharp");
 
@@ -10,4 +20,4 @@ document.addEventListener('DOMContentLoaded', (evt) => {
     proposalEditor.session.on('change', (evt) => {
         proposalInput.value = proposalEditor.session.getValue();
     });
-});
+}
