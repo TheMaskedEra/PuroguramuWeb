@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Puroguramu.Domains.Repositories;
 using Puroguramu.Infrastructures.Data.Entities;
 
 namespace Puroguramu.App.Areas.Identity.Pages.Account;
@@ -22,12 +23,15 @@ public class RegisterModel : PageModel
     private readonly ILogger<RegisterModel> _logger;
     private readonly IEmailSender _emailSender;
 
+    private readonly IGroupRepository _groupRepository;
+
     public RegisterModel(
         UserManager<Users> userManager,
         IUserStore<Users> userStore,
         SignInManager<Users> signInManager,
         ILogger<RegisterModel> logger,
-        IEmailSender emailSender)
+        IEmailSender emailSender,
+        IGroupRepository groupRepository)
     {
         _userManager = userManager;
         _userStore = userStore;
@@ -35,7 +39,10 @@ public class RegisterModel : PageModel
         _signInManager = signInManager;
         _logger = logger;
         _emailSender = emailSender;
+        _groupRepository = groupRepository;
     }
+
+    public List<string> Groups { get; set; }
 
     [BindProperty]
     public InputModel Input { get; set; }
@@ -83,6 +90,7 @@ public class RegisterModel : PageModel
     {
         ReturnUrl = returnUrl;
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+        Groups = await _groupRepository.GetAllGroupNamesAsync();
     }
 
     public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -94,7 +102,7 @@ public class RegisterModel : PageModel
             return Page();
         }
 
-        var user = CreateUser();
+        var user = await CreateUserAsync();
 
         await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
         await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -137,18 +145,15 @@ public class RegisterModel : PageModel
         return Page();
     }
 
-    private Users CreateUser()
+    private async Task<Users> CreateUserAsync()
     {
-        try
+        var groupId = await _groupRepository.GetGroupIdFromName(Input.Group);
+        if (groupId == null)
         {
-            return Activator.CreateInstance<Users>();
+            throw new NotImplementedException();
         }
-        catch
-        {
-            throw new InvalidOperationException($"Can't create an instance of '{nameof(Users)}'. " +
-                                                $"Ensure that '{nameof(Users)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                                                $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-        }
+
+        return new Users() { FirstName = Input.FirstName, LastName = Input.Name, RegistrationNumber = Input.Matricule, GroupId = groupId };
     }
 
     private IUserEmailStore<Users> GetEmailStore()

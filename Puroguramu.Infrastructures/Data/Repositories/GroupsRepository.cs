@@ -13,10 +13,13 @@ public class GroupsRepository : IGroupRepository
     }
 
     public async Task<List<string>> GetAllGroupNamesAsync()
-        => await _dbContext.Groups.Select(g => g.Name).ToListAsync();
+        => await _dbContext.Groups.OrderBy(g => g.Name)
+            .Select(g => g.Name)
+            .ToListAsync();
 
     public async Task<string?> GetGroupIdFromName(string groupName)
-        => await _dbContext.Groups.Select(g => g.Name)
-            .Where(name => name.Equals(groupName))
+        => await _dbContext.Groups
+            .Where(g => g.Name.Equals(groupName))
+            .Select(g => g.Id)
             .FirstOrDefaultAsync();
 }
