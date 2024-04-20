@@ -21,7 +21,7 @@ public class LessonsRepository : ILessonRepository
     public async Task<int> GetTotalNumberAsync()
         => await _dbContext.Lessons.CountAsync();
 
-    public async Task<SortedList<int, Lesson>> GetAllFromCourse(Course course) //TODO S'occuper d'exception si retourne null ?
+    public async Task<SortedList<int, Lesson>> GetAllFromCourseAsync(Course course) //TODO S'occuper d'exception si retourne null ?
     {
         var lessonList = new SortedList<int,Lesson>();
         var currentLessonId = await FindFirstLessonIdInCourseAsync(course);
@@ -76,12 +76,12 @@ public class LessonsRepository : ILessonRepository
         return lessonDto == null ? null : _mapper.LessonDtoToLesson(lessonDto);
     }
 
-    public void Insert(Lesson lesson)
+    public Task InsertAsync(Lesson lesson)
         => throw new NotImplementedException();
 
-    public void Update(Lesson lesson)
+    public Task UpdateAsync(Lesson lesson)
         => throw new NotImplementedException();
 
-    public void Delete(Lesson lesson)
+    public Task DeleteAsync(Lesson lesson)
         => throw new NotImplementedException();
 }
