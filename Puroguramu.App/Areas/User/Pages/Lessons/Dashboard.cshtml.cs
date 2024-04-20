@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Puroguramu.App.Pages.Models;
 using Puroguramu.Domains.Models;
 
 namespace Puroguramu.App.Areas.User.Pages.Lessons;
@@ -11,7 +12,7 @@ public class DashboardModel : PageModel
     {
     }
 
-    public AppUser AppUser => new("123456", "Doe", "John", "john.doe@gmail.com", "2i3");
+    public UserDashboardModel UserDashboard { get; set; } = new() { Name = "Doe", FirstName = "John" };
 
     public List<Lesson> Lessons => new()
     {

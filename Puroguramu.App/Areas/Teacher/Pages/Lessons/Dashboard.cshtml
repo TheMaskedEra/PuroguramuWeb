@@ -1,0 +1,91 @@
+@page
+@model Puroguramu.App.Areas.Teacher.Pages.Lessons.DashboardModel
+
+@{
+    ViewData["Title"] = "Tableau de bord";
+    ViewData["PageTitle"] = "Bienvenue sur votre tableau de bord !";
+}
+
+<section class="flex flex-col justify-center">
+    <section class="flex items-center">
+        <section class="w-1/2">
+            <partial name="_UserDashboardPartial" model="Model.UserDashboard"/>
+        </section>
+
+        <section class="w-1/2">
+            <ul class="w-5/6 mx-auto flex-col space-y-6 mt-10 h-[50vh] overflow-y-auto">
+                @foreach (var lesson in Model.Lessons)
+                {
+                    <li class="w-full flex items-center justify-between">
+                        <div class="flex flex-col justify-between mr-2">
+                            <button class="mb-1 bg-blue-800 p-1 rounded-md hover:bg-blue-900 flex items-center justify-center">
+                                <span class="material-symbols-outlined">expand_less</span>
+                            </button>
+
+                            <button class="mt-1 bg-blue-800 p-1 rounded-md hover:bg-blue-900 flex items-center justify-center">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+                        </div>
+
+                        <div class="w-full flex flex-nowrap justify-between items-center bg-blue-800 px-4 py-2 rounded-md">
+                            <div class="flex flex-col">
+                                <p class="mb-2">
+                                    @lesson.Title
+                                </p>
+                                <div class="w-full flex justify-around items-center text-sm">
+                                    <button class="flex items-center bg-white px-2 py-1 rounded-md hover:bg-gray-300 text-blue-600 mr-2">
+                                        <span class="material-symbols-outlined mr-2 text-sm">
+                                            visibility_off
+                                        </span>
+                                        <p>Masquer</p>
+                                    </button>
+                                    <button class="flex items-center bg-red-600 px-2 py-1 rounded-md hover:bg-red-700 ml-2">
+                                        <span class="material-symbols-outlined mr-2 text-sm">
+                                            delete
+                                        </span>
+                                        <p>Supprimer</p>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <a href="#">
+                                <span class="material-symbols-outlined ml-2">
+                                    chevron_right
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </section>
+    </section>
+    
+    <section class="w-10/12 my-10 mx-auto">
+        <h3 class="text-2xl font-bold text-center mb-10">Statistiques</h3>
+        <div id="chart_div" class="w-full h-[50vh] rounded-md -z-10"></div>
+    </section>
+</section>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Leçons', 'Moyenne', 'Élève 1'],
+            ['Leçon 1',  1000,      400],
+            ['Leçon 2',  1170,      460],
+            ['Leçon 3',  660,       1120],
+            ['Leçon 4',  1030,      540]
+        ]);
+
+        var options = {
+            title: 'Statistiques de réussite des élèves par leçons',
+            vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
