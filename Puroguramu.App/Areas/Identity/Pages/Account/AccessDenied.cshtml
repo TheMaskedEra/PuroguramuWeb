@@ -1,0 +1,23 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Accès refusé";
+    ViewData["PageTitle"] = "Vous n'avez pas accès à cette ressource";
+}
+
+<section class="w-1/2 mx-auto flex flex-col items-center">
+    <p class="text-center mt-10">
+        Votre rôle ne vous permet pas d'accéder à cette ressource. <br/> 
+        Si vous pensez qu'il s'agit d'une erreur, veuillez contacter l'administrateur du site.
+    </p>
+    
+    <p class="text-center my-10">
+        Pour retourner à votre tableau de bord, cliquez sur ce bouton.
+    </p>
+    
+    <a asp-area="User" 
+       asp-page="/Lessons/Dashboard"
+       class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">
+        Tableau de bord
+    </a>
+</section>

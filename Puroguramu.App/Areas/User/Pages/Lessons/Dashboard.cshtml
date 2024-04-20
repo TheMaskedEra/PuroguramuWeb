@@ -1,0 +1,56 @@
+@page
+@model Puroguramu.App.Areas.User.Pages.Lessons.DashboardModel
+
+@{
+    ViewData["Title"] = "Tableau de bord";
+    ViewData["PageTitle"] = "Bienvenue sur votre tableau de bord !";
+}
+
+<section class="flex items-center">
+
+    <section class="w-1/2 mr-auto ml-5 mt-10">
+        <img class="mt-10 h-40 rounded-full bg-white mx-auto border-2 border-blue-600" src="~/assets/default.png" alt="app logo">
+
+        <p class="text-center my-4 text-lg font-semibold">@Model.AppUser.FirstName @Model.AppUser.LastName</p>
+
+        <p class="text-center my-4">Éditer votre profil ? <a href="#" class="text-blue-600 hover:underline">Profil</a></p>
+
+        <a href="#" class="w-fit mx-auto px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700 flex items-center gap-4">
+            <p>Prochain exercice</p>
+            <span class="material-symbols-outlined">
+                start
+            </span>
+        </a>
+    </section>
+
+    <section class="w-1/2 ml-auto mr-5 mt-10">
+        <h3 class="text-center text-xl font-semibold">Vos leçons en cours</h3>
+
+        <ul class="w-5/6 h-[50vh] mx-auto flex-col space-y-6 mt-10 overflow-y-auto">
+            
+            @foreach (var lesson in Model.Lessons)
+            {
+                <li class="bg-blue-800 px-4 py-2 rounded-md hover:bg-blue-900">
+                    <a href="#" class="flex justify-between items-center">
+                        <div class="flex flex-col w-full">
+                            <p class="mb-2">@lesson.Title</p>
+
+                            <div class="flex items-center">
+                                <span class="block h-1 bg-white text-white rounded-md"
+                                      style="width: @Model.GetFinishedPercentage(lesson)%">
+                                </span>
+                                <p class="text-xs ml-2">@lesson.FinishedPercentage%</p>
+                            </div>
+                        </div>
+
+                        <span class="material-symbols-outlined ml-2">
+                            chevron_right
+                        </span>
+                    </a>
+                </li>
+            }
+        </ul>
+        
+    </section>
+    
+</section>

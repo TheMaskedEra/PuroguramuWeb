@@ -1,0 +1,92 @@
+@page
+@model Puroguramu.App.Areas.Teacher.Pages.Lessons.EditLessonModel
+
+@{
+    ViewData["Title"] = "Leçon";
+    ViewData["PageTitle"] = "Édition de la leçon";
+}
+
+<form class="w-full flex flex-col justify-center items-center" method="post">
+    <section class="w-full flex items-center mb-10">
+        <section class="w-1/2 space-y-4 md:space-y-6 my-10 flex flex-col items-center">
+            <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+
+            <div class="w-3/4">
+                <label asp-for="Input.Title" class="block mb-2 text-sm font-medium">
+                    Titre de la leçon <span class="text-red-500">*</span>
+                </label>
+                <input asp-for="Input.Title"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                       placeholder="Titre de la leçon"
+                       aria-required="true"
+                       value="@Model.Input.Title"/>
+            </div>
+
+            <div class="w-3/4">
+                <label asp-for="Input.Description" class="block mb-2 text-sm font-medium">
+                    Description de la leçon <span class="text-red-500">*</span>
+                </label>
+                <textarea asp-for="Input.Description"
+                          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                          rows="5"
+                          placeholder="Description de la leçon"
+                          aria-required="true">@Model.Input.Description</textarea>
+            </div>
+        </section>
+
+        <section class="w-1/2">
+            <ul class="w-5/6 mx-auto flex-col space-y-6 mt-10 h-[50vh] overflow-y-auto">
+                @foreach (var exercise in Model.Exercises)
+                {
+                    <li class="w-full flex items-center justify-between">
+                        <div class="flex flex-col justify-between mr-2">
+                            <button class="mb-1 bg-blue-800 p-1 rounded-md hover:bg-blue-900 flex items-center justify-center">
+                                <span class="material-symbols-outlined">expand_less</span>
+                            </button>
+
+                            <button class="mt-1 bg-blue-800 p-1 rounded-md hover:bg-blue-900 flex items-center justify-center">
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+                        </div>
+
+                        <div class="w-full flex flex-nowrap justify-between items-center bg-blue-800 px-4 py-2 rounded-md">
+                            <div class="flex flex-col">
+                                <p class="mb-2">
+                                    @exercise.Title
+                                </p>
+                                <div class="w-full flex justify-around items-center text-sm">
+                                    <button class="flex items-center bg-white px-2 py-1 rounded-md hover:bg-gray-300 text-blue-600 mr-2">
+                                        <span class="material-symbols-outlined mr-2 text-sm">
+                                            visibility_off
+                                        </span>
+                                        <p>Masquer</p>
+                                    </button>
+                                    <button class="flex items-center bg-red-600 px-2 py-1 rounded-md hover:bg-red-700 ml-2">
+                                        <span class="material-symbols-outlined mr-2 text-sm">
+                                            delete
+                                        </span>
+                                        <p>Supprimer</p>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <a href="#">
+                                <span class="material-symbols-outlined ml-2">
+                                    chevron_right
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </section>
+    </section>
+
+    <div class="flex justify-center">
+        <button id="lesson-submit"
+                type="submit"
+                class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">
+            Sauvegarder les modifications
+        </button>
+    </div>
+</form>

@@ -1,0 +1,131 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Inscription";
+    ViewData["PageTitle"] = "Créer votre compte";
+}
+
+<section class="w-1/2 mx-auto">
+    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+
+        <div class="w-full flex items-center justify-between">
+            <div class="w-1/2 mr-1">
+                <label asp-for="Input.Name" class="block mb-2 text-sm font-medium">
+                    Nom <span class="text-red-500">*</span>
+                </label>
+                <input asp-for="Input.Name" 
+                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
+                       placeholder="Doe" 
+                       aria-required="true">
+            </div>
+            <div class="w-1/2 ml-2">
+                <label asp-for="Input.FirstName" class="block mb-2 text-sm font-medium">
+                    Prénom <span class="text-red-500">*</span>
+                </label>
+                <input asp-for="Input.FirstName" 
+                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
+                       placeholder="John" 
+                       aria-required="true">
+            </div>
+            
+            <span asp-validation-for="Input.Name" class="text-red-500 text-sm"></span>
+            <span asp-validation-for="Input.FirstName" class="text-red-500 text-sm"></span>
+        </div>
+        
+        <div>
+            <label asp-for="Input.Email">
+                Email <span class="text-red-500">*</span>
+            </label>
+            <input asp-for="Input.Email"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                   placeholder="name@company.com" 
+                   autocomplete="username" 
+                   aria-required="true" />
+            <span asp-validation-for="Input.Email" class="text-red-500 text-sm"></span>
+        </div>
+        
+        <div>
+            <label asp-for="Input.Password">
+                Mot de passe <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+                <input asp-for="Input.Password" 
+                       id="password"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                       placeholder="••••••••"
+                       autocomplete="new-password" 
+                       aria-required="true" />
+                
+                <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-900 hover:text-black focus:text-black focus:outline-none">
+                    <span id="eyeIconPassword" class="material-symbols-outlined">visibility_off</span>
+                </button>
+            </div>
+            <span asp-validation-for="Input.Password" class="text-red-500 text-sm"></span>
+        </div>
+        
+        <div>
+            <label asp-for="Input.ConfirmPassword">
+                Confirmation du mot de passe <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+                <input asp-for="Input.ConfirmPassword" 
+                       id="confirmPassword"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
+                       placeholder="••••••••"
+                       autocomplete="new-password" 
+                       aria-required="true" />
+
+                <button type="button" id="toggleConfirmPassword" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-900 hover:text-black focus:text-black focus:outline-none">
+                    <span id="eyeIconConfirmPassword" class="material-symbols-outlined">visibility_off</span>
+                </button>
+            </div>
+            <span asp-validation-for="Input.ConfirmPassword" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="w-full flex items-center justify-between">
+            <div class="w-1/2 mr-1">
+                <label asp-for="Input.Group" class="block mb-2 text-sm font-medium">
+                    Groupe <span class="text-red-500">*</span>
+                </label>
+                <select asp-for="Input.Group" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" aria-required="true">
+                    <option value="2i1">2i1</option>
+                    <option value="2i2">2i2</option>
+                    <option value="2i3">2i3</option>
+                    <option value="2i4">2i4</option>
+                </select>
+            </div>
+            <div class="w-1/2 ml-2">
+                <label asp-for="Input.Matricule" class="block mb-2 text-sm font-medium">
+                    Matricule <span class="text-red-500">*</span>
+                </label>
+                <input asp-for="Input.Matricule" 
+                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
+                       placeholder="X000000" 
+                       aria-required="true">
+            </div>
+            
+            <span asp-validation-for="Input.Group" class="text-red-500 text-sm"></span>
+            <span asp-validation-for="Input.Matricule" class="text-red-500 text-sm"></span>
+        </div>
+        
+        <button id="registerSubmit"
+                type="submit"
+                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">
+            Inscription
+        </button>
+
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Déjà membre de la plateforme ? 
+            <a asp-area="Identity" asp-page="/Account/Login" class="font-medium text-blue-600 hover:underline">
+                Se connecter
+            </a>
+        </p>
+    </form>
+</section>
+
+<script src="~/js/passwordUtils.js" defer></script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

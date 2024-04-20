@@ -1,0 +1,36 @@
+@page
+@model Puroguramu.App.Areas.User.Pages.Lessons.LessonPageModel
+
+@{
+    ViewData["Title"] = Model.Lesson.Title;
+    ViewData["PageTitle"] = Model.Lesson.Title;
+}
+
+<p class="text-center my-10">
+    @Model.Lesson.Description
+</p>
+
+<section class="w-3/4 mx-auto">
+    <h3 class="text-center text-xl font-semibold">Vos exercices</h3>
+
+    <ul class="w-5/6 mx-auto flex-col space-y-6 mt-10">
+        
+        @foreach (var exercise in Model.Exercises)
+        {
+            <li class="bg-blue-800 px-4 py-2 rounded-md hover:bg-blue-900">
+                <a href="#" class="flex justify-between items-center">
+                    <div class="flex flex-col w-full">
+                        <p class="mb-2">@exercise.Title<span class="text-green-500 ml-2 font-semibold">@exercise.Difficulty.ToString()</span></p>
+
+                        <p class="text-xs">@exercise.Status.ToString()</p>
+                    </div>
+
+                    <span class="material-symbols-outlined ml-2">
+                        chevron_right
+                    </span>
+                </a>
+            </li>
+        }
+        
+    </ul>
+</section>

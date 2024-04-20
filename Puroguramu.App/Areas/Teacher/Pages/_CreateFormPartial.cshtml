@@ -1,0 +1,27 @@
+@model Puroguramu.App.Areas.Teacher.Models.CreateFormModel
+
+<section class="w-1/2 mx-auto">
+    <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" method="post">
+        <p class="text-center">
+            Veuillez entrer le titre de votre @Model.Type ci-dessous, vous serez ensuite redirigé vers le formulaire 
+            d'édition afin d'ajouter les données manquantes.
+        </p>
+        <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+            
+        <div>
+            <label asp-for="@Model.InputValue" class="block mb-2 text-sm font-medium">
+                Titre de @Model.Title <span class="text-red-500">*</span>
+            </label>
+            <input asp-for="@Model.InputValue"
+                   placeholder="Titre de @Model.Title"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5" 
+                   aria-required="true">
+            <span asp-validation-for="@Model.InputValue" class="text-red-500 text-sm"></span>
+        </div>
+            
+        <button type="submit"
+                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center">
+            Créer @Model.Title
+        </button>
+    </form>
+</section>
