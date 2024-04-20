@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Puroguramu.Domains;
+using Puroguramu.Domains.Models;
 
 namespace Puroguramu.App.Areas.Teacher.Pages.Lessons;
 
