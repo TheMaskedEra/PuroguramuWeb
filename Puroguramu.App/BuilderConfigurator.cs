@@ -23,6 +23,7 @@ public static class BuilderConfigurator
 
         builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
         builder.Services.AddScoped<ILessonRepository, LessonsRepository>();
+        builder.Services.AddScoped<IGroupRepository, GroupsRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
 
         builder.Services.AddRazorPages();
