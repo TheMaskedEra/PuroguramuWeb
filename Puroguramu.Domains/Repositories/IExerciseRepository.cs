@@ -10,7 +10,7 @@ public interface IExerciseRepository
 
     Task AddExerciseAsync(Exercise exercise);
 
-    Task UpdateExerciseAsync(Guid exerciseId);
+    Task UpdateExerciseAsync(Exercise exercise);
 
-    Task DeleteExerciseAsync(Guid exerciseId);
+    Task DeleteExerciseAsync(Exercise exercise);
 }

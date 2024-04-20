@@ -6,11 +6,11 @@ public interface ILessonRepository
 {
     Task<int> GetTotalNumberAsync();
 
-    Task<SortedList<int, Lesson>> GetAllFromCourse(Course course);
+    Task<SortedList<int, Lesson>> GetAllFromCourseAsync(Course course);
 
-    void Insert(Lesson lesson);
+    Task InsertAsync(Lesson lesson);
 
-    void Update(Lesson lesson);
+    Task UpdateAsync(Lesson lesson);
 
-    void Delete(Lesson lesson);
+    Task DeleteAsync(Lesson lesson);
 }

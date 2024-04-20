@@ -30,9 +30,9 @@ public class ExerciseRepository : IExerciseRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateExerciseAsync(Guid exerciseId)
+    public async Task UpdateExerciseAsync(Exercise exercise)
         => throw new NotImplementedException();
 
-    public async Task DeleteExerciseAsync(Guid exerciseId)
+    public async Task DeleteExerciseAsync(Exercise exercise)
         => throw new NotImplementedException();
 }

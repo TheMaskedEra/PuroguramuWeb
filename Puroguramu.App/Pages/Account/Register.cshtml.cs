@@ -17,11 +17,7 @@ public class RegisterModel : PageModel
         _passwordHasher = passwordHasher;
     }
 
-    public void OnGet()
-    {
-    }
-
-    public async Task<IActionResult> OnPost(string name, string firstname, string email, string password, string passwordConf, string group, string matricule)
+    public async Task<IActionResult> OnPostAsync(string name, string firstname, string email, string password, string passwordConf, string group, string matricule)
     {
         if (password != passwordConf)
         {
