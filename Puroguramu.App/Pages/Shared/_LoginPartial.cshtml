@@ -1,7 +1,9 @@
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Puroguramu.Infrastructures.Data.Entities
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<Users> SignInManager
+@inject UserManager<Users> UserManager
 
 <ul class="flex">
 @if (SignInManager.IsSignedIn(User))

@@ -21,9 +21,10 @@ public static class BuilderConfigurator
         builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
         builder.Services.AddScoped<IPasswordHasher<AppUser>, PasswordHasher<AppUser>>();
 
-            builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
-            builder.Services.AddScoped<ILessonRepository, LessonsRepository>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
+        builder.Services.AddScoped<ILessonRepository, LessonsRepository>();
+        builder.Services.AddScoped<IGroupRepository, GroupsRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
 
         builder.Services.AddRazorPages();
 
@@ -43,7 +44,7 @@ public static class BuilderConfigurator
         }
 
         builder.Services
-            .AddDefaultIdentity<IdentityUser>(options =>
+            .AddDefaultIdentity<Users>(options =>
             {
                 options.User.RequireUniqueEmail = true;
             })
