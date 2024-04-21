@@ -102,7 +102,18 @@ public class RegisterModel : PageModel
             return Page();
         }
 
-        var user = await CreateUserAsync();
+        var user = CreateUser();
+
+        user.RegistrationNumber = Input.Matricule.ToUpper();
+        var groupId = await _groupRepository.GetGroupIdFromName(Input.Group);
+        if (groupId == null)
+        {
+            throw new NotImplementedException();
+        }
+
+        user.GroupId = groupId;
+        user.LastName = Input.Name;
+        user.FirstName = Input.FirstName;
 
         await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
         await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
@@ -145,15 +156,18 @@ public class RegisterModel : PageModel
         return Page();
     }
 
-    private async Task<Users> CreateUserAsync()
+    private Users CreateUser()
     {
-        var groupId = await _groupRepository.GetGroupIdFromName(Input.Group);
-        if (groupId == null)
+        try
         {
-            throw new NotImplementedException();
+            return Activator.CreateInstance<Users>();
         }
-
-        return new Users() { FirstName = Input.FirstName, LastName = Input.Name, RegistrationNumber = Input.Matricule, GroupId = groupId };
+        catch
+        {
+            throw new InvalidOperationException($"Can't create an instance of '{nameof(Users)}'. " +
+                                                $"Ensure that '{nameof(Users)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                                                $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+        }
     }
 
     private IUserEmailStore<Users> GetEmailStore()
