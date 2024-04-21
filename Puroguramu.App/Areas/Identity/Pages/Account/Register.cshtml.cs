@@ -3,6 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -24,6 +25,7 @@ public class RegisterModel : PageModel
     private readonly IEmailSender _emailSender;
 
     private readonly IGroupRepository _groupRepository;
+    private readonly IUserRepository _userRepository;
 
     public RegisterModel(
         UserManager<Users> userManager,
@@ -31,7 +33,8 @@ public class RegisterModel : PageModel
         SignInManager<Users> signInManager,
         ILogger<RegisterModel> logger,
         IEmailSender emailSender,
-        IGroupRepository groupRepository)
+        IGroupRepository groupRepository,
+        IUserRepository userRepository)
     {
         _userManager = userManager;
         _userStore = userStore;
@@ -40,6 +43,7 @@ public class RegisterModel : PageModel
         _logger = logger;
         _emailSender = emailSender;
         _groupRepository = groupRepository;
+        _userRepository = userRepository;
     }
 
     public List<string> Groups { get; set; }
@@ -62,12 +66,13 @@ public class RegisterModel : PageModel
         public string FirstName { get; set; }
 
         [Required]
-        [EmailAddress]
+        [DataType(DataType.Text)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100,
+            ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -77,13 +82,14 @@ public class RegisterModel : PageModel
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Veuillez choisir un groupe")]
         public string Group { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
-        [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 7)]
-        public string Matricule { get; set; }
+        [StringLength(7,
+            ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 7)]
+        public string RegistrationNumber { get; set; }
     }
 
     public async Task OnGetAsync(string returnUrl = null)
@@ -95,6 +101,8 @@ public class RegisterModel : PageModel
 
     public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     {
+        Groups = await _groupRepository.GetAllGroupNamesAsync(); //TODO trouver une solution pour éviter l'erreur de nullité
+
         returnUrl ??= Url.Content("~/");
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         if (!ModelState.IsValid)
@@ -103,9 +111,19 @@ public class RegisterModel : PageModel
         }
 
         var user = CreateUser();
+        var registrationNumber = Input.RegistrationNumber.ToUpper();
 
-        user.RegistrationNumber = Input.Matricule.ToUpper();
+        var regValid = await IsRegistrationNumberValidAsync(registrationNumber);
+        var emailValid = await IsEmailValid(Input.Email);
+
+        if (!regValid || !emailValid)
+        {
+            return Page();
+        }
+
+        user.RegistrationNumber = registrationNumber;
         var groupId = await _groupRepository.GetGroupIdFromName(Input.Group);
+
         if (groupId == null)
         {
             throw new NotImplementedException();
@@ -122,9 +140,11 @@ public class RegisterModel : PageModel
         if (result.Succeeded)
         {
             _logger.LogInformation("User created a new account with password.");
+            await _userManager.AddToRoleAsync(user, "Student");
 
             var userId = await _userManager.GetUserIdAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
@@ -154,6 +174,40 @@ public class RegisterModel : PageModel
 
         // If we got this far, something failed, redisplay form
         return Page();
+    }
+
+    private async Task<bool> IsRegistrationNumberValidAsync(string registrationNumber)
+    {
+        if (!Regex.IsMatch(registrationNumber, @"^(E|e|Q|q)\d{6}$"))
+        {
+            ModelState.AddModelError("Input.RegistrationNumber", "Le matricule ne contient pas le bon format.");
+            return false;
+        }
+
+        if (!await _userRepository.RegistrationNumberExistsAsync(registrationNumber))
+        {
+            return true;
+        }
+
+        ModelState.AddModelError("Input.RegistrationNumber", "Un compte avec ce matricule a déjà été engregisté.");
+        return false;
+    }
+
+    private async Task<bool> IsEmailValid(string email)
+    {
+        /*if (!Regex.IsMatch(email, @""))
+        {
+            ModelState.AddModelError("Input.Email", "L'adresse email n'est pas correct"); //TODO Changer pour vérifier que les emails de helmo ou vérifier si email valide avec mail ?
+            return false;
+        }*/
+
+        if (!await _userRepository.EmailExistsAsync(email))
+        {
+            return true;
+        }
+
+        ModelState.AddModelError("Input.Email", "Un compte avec cet email a déjà été enregistré.");
+        return false;
     }
 
     private Users CreateUser()

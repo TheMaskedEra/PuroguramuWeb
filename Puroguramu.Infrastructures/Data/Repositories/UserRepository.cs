@@ -16,28 +16,14 @@ public class UserRepository : IUserRepository
     }
 
     //TODO Rajouter le filtre role étudiant
-    public async Task<int> GetTotalStudentNumberAsync() => await _dbContext.Users.CountAsync();
+    public async Task<int> GetTotalStudentNumberAsync()
+        => await _dbContext.Users.CountAsync();
 
-    public async Task InsertAsync(AppUser appUser, string hashedPassword)
-    {
-        await using (_dbContext)
-        {
-            var group = _dbContext.Groups
-                .FirstOrDefault(g => g.Name.Equals(appUser.Group));
+    public async Task<bool> RegistrationNumberExistsAsync(string registrationNumber)
+        => await _dbContext.Users.AnyAsync(u => u.RegistrationNumber.Equals(registrationNumber));
 
-            if (group == null)
-            {
-                throw new Exception("Group not found"); //TODO
-            }
-
-            var userDto = _mapper.UserToUserDto(appUser, group.Id);
-            userDto.PasswordHash = hashedPassword;
-
-            _dbContext.Users.Add(userDto);
-
-            await _dbContext.SaveChangesAsync();
-        }
-    }
+    public async Task<bool> EmailExistsAsync(string email)
+        => await _dbContext.Users.AnyAsync(u => u.Email.Equals(email));
 
     public Task UpdateAsync(AppUser appUser) => throw new NotImplementedException();
 }

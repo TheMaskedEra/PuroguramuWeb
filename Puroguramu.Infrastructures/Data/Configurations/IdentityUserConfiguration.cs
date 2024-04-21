@@ -21,6 +21,5 @@ public class IdentityUserConfiguration : IEntityTypeConfiguration<Users>
 
     private static void SeedData(EntityTypeBuilder<Users> builder)
     {
-
     }
 }
