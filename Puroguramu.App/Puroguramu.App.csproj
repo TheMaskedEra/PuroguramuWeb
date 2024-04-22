@@ -44,8 +44,8 @@
     <_ContentIncludedByDefault Remove="Pages\Lessons\Forms\Edit\EditLesson.cshtml" />
   </ItemGroup>
 
-  <Target Name="Tailwind" BeforeTargets="Build">
-    <Exec Command="npm run css:build" />
-  </Target>
+<!--  <Target Name="Tailwind" BeforeTargets="Build">-->
+<!--    <Exec Command="npm run css:build" />-->
+<!--  </Target>-->
 
 </Project>
