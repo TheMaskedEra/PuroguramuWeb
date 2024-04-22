@@ -2,7 +2,6 @@
 
 public class Course
 {
-
     public Course(string title, string language, ICollection<Lesson> lessons)
     {
         Title = title;

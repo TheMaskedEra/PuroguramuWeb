@@ -22,7 +22,6 @@ public class RegisterModel : PageModel
     private readonly IUserStore<Users> _userStore;
     private readonly IUserEmailStore<Users> _emailStore;
     private readonly ILogger<RegisterModel> _logger;
-    private readonly IEmailSender _emailSender;
 
     private readonly IGroupRepository _groupRepository;
     private readonly IUserRepository _userRepository;
@@ -32,7 +31,6 @@ public class RegisterModel : PageModel
         IUserStore<Users> userStore,
         SignInManager<Users> signInManager,
         ILogger<RegisterModel> logger,
-        IEmailSender emailSender,
         IGroupRepository groupRepository,
         IUserRepository userRepository)
     {
@@ -41,7 +39,6 @@ public class RegisterModel : PageModel
         _emailStore = GetEmailStore();
         _signInManager = signInManager;
         _logger = logger;
-        _emailSender = emailSender;
         _groupRepository = groupRepository;
         _userRepository = userRepository;
     }
@@ -103,9 +100,10 @@ public class RegisterModel : PageModel
     {
         returnUrl ??= Url.Content("~/");
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+        Groups = await _groupRepository.GetAllGroupNamesAsync();
+
         if (!ModelState.IsValid)
         {
-            Groups = await _groupRepository.GetAllGroupNamesAsync();
             return Page();
         }
 
@@ -136,7 +134,7 @@ public class RegisterModel : PageModel
         await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, Input.Password);
 
-        if (result.Succeeded) //TODO Faire une vérification de role ? Fair eun repo pour gérer la transaction d'ajout de role ?
+        if (result.Succeeded) //TODO Faire une vérification de role ? Faire un repo pour gérer la transaction d'ajout de role ?
         {
             _logger.LogInformation("User created a new account with password.");
 
@@ -159,7 +157,7 @@ public class RegisterModel : PageModel
 
     private async Task<bool> IsRegistrationNumberValidAsync(string registrationNumber)
     {
-        if (!Regex.IsMatch(registrationNumber, @"^(E|e|Q|q)\d{6}$"))
+        if (!Regex.IsMatch(registrationNumber, @"^[a-zA-Z]\d{6}$"))
         {
             ModelState.AddModelError("Input.RegistrationNumber", "Le matricule ne contient pas le bon format.");
             return false;
@@ -176,11 +174,11 @@ public class RegisterModel : PageModel
 
     private async Task<bool> IsEmailValid(string email)
     {
-        /*if (!Regex.IsMatch(email, @""))
+        if (!Regex.IsMatch(email, @".*@student\.helmo\.be$"))
         {
-            ModelState.AddModelError("Input.Email", "L'adresse email n'est pas correct"); //TODO Changer pour vérifier que les emails de helmo ou vérifier si email valide avec mail ?
+            ModelState.AddModelError("Input.Email", "L'adresse email ne correspond pas à une adresse helmo.");
             return false;
-        }*/
+        }
 
         if (!await _userRepository.EmailExistsAsync(email))
         {
