@@ -22,7 +22,6 @@ public class RegisterModel : PageModel
     private readonly IUserStore<Users> _userStore;
     private readonly IUserEmailStore<Users> _emailStore;
     private readonly ILogger<RegisterModel> _logger;
-    private readonly IEmailSender _emailSender;
 
     private readonly IGroupRepository _groupRepository;
     private readonly IUserRepository _userRepository;
@@ -41,7 +40,6 @@ public class RegisterModel : PageModel
         _emailStore = GetEmailStore();
         _signInManager = signInManager;
         _logger = logger;
-        _emailSender = emailSender;
         _groupRepository = groupRepository;
         _userRepository = userRepository;
     }
@@ -142,22 +140,6 @@ public class RegisterModel : PageModel
             _logger.LogInformation("User created a new account with password.");
             await _userManager.AddToRoleAsync(user, "Student");
 
-            var userId = await _userManager.GetUserIdAsync(user);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
-                "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { area = "Identity", userId, code, returnUrl },
-                protocol: Request.Scheme);
-
-            if (callbackUrl != null)
-            {
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-            }
-
             if (_userManager.Options.SignIn.RequireConfirmedAccount)
             {
                 return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
@@ -172,13 +154,12 @@ public class RegisterModel : PageModel
             ModelState.AddModelError(string.Empty, error.Description);
         }
 
-        // If we got this far, something failed, redisplay form
         return Page();
     }
 
     private async Task<bool> IsRegistrationNumberValidAsync(string registrationNumber)
     {
-        if (!Regex.IsMatch(registrationNumber, @"^(E|e|Q|q)\d{6}$"))
+        if (!Regex.IsMatch(registrationNumber, @"^[a-z|A-Z]\d{6}$"))
         {
             ModelState.AddModelError("Input.RegistrationNumber", "Le matricule ne contient pas le bon format.");
             return false;
@@ -189,7 +170,7 @@ public class RegisterModel : PageModel
             return true;
         }
 
-        ModelState.AddModelError("Input.RegistrationNumber", "Un compte avec ce matricule a déjà été engregisté.");
+        ModelState.AddModelError("Input.RegistrationNumber", "Un compte avec ce matricule a déjà été enregistré.");
         return false;
     }
 

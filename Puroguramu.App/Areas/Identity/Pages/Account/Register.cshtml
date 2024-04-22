@@ -9,28 +9,32 @@
     <form class="space-y-4 md:space-y-6 w-3/4 my-10 mx-auto" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
 
-        <div class="w-full flex items-center justify-between">
-            <div class="w-1/2 mr-1">
-                <label asp-for="Input.Name" class="block mb-2 text-sm font-medium">
-                    Nom <span class="text-red-500">*</span>
-                </label>
-                <input asp-for="Input.Name" 
-                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
-                       placeholder="Doe" 
-                       aria-required="true">
+        <div class="flex flex-col">
+            <div class="w-full flex items-center justify-between">
+                <div class="w-1/2 mr-1">
+                    <label asp-for="Input.Name" class="block mb-2 text-sm font-medium">
+                        Nom <span class="text-red-500">*</span>
+                    </label>
+                    <input asp-for="Input.Name" 
+                           class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
+                           placeholder="Doe" 
+                           aria-required="true">
 
 
-                <span asp-validation-for="Input.Name" class="text-red-500 text-sm"></span>
+                </div>
+                <div class="w-1/2 ml-2">
+                    <label asp-for="Input.FirstName" class="block mb-2 text-sm font-medium">
+                        Prénom <span class="text-red-500">*</span>
+                    </label>
+                    <input asp-for="Input.FirstName" 
+                           class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
+                           placeholder="John" 
+                           aria-required="true">
+
+                </div>
             </div>
-            <div class="w-1/2 ml-2">
-                <label asp-for="Input.FirstName" class="block mb-2 text-sm font-medium">
-                    Prénom <span class="text-red-500">*</span>
-                </label>
-                <input asp-for="Input.FirstName" 
-                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
-                       placeholder="John" 
-                       aria-required="true">
-
+            <div>
+                <span asp-validation-for="Input.Name" class="text-red-500 text-sm"></span>
                 <span asp-validation-for="Input.FirstName" class="text-red-500 text-sm"></span>
             </div>
         </div>
@@ -85,29 +89,33 @@
             <span asp-validation-for="Input.ConfirmPassword" class="text-red-500 text-sm"></span>
         </div>
 
-        <div class="w-full flex items-center justify-between">
-            <div class="w-1/2 mr-1">
-                <label asp-for="Input.Group" class="block mb-2 text-sm font-medium">
-                    Groupe <span class="text-red-500">*</span>
-                </label>
-                <select asp-for="Input.Group" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" aria-required="true">
-                    <option value="">Choisissez un groupe</option>
-                    @foreach (var groupOption in Model.Groups)
-                    {
-                        <option value="@groupOption">@groupOption</option>
-                    }
-                </select>
-                <span asp-validation-for="Input.Group" class="text-red-500 text-sm"></span>
-            </div>
-            <div class="w-1/2 ml-2">
-                <label asp-for="Input.RegistrationNumber" class="block mb-2 text-sm font-medium">
-                    Matricule <span class="text-red-500">*</span>
-                </label>
+        <div class="flex flex-col">
+            <div class="w-full flex items-center justify-between">
+                <div class="w-1/2 mr-1">
+                    <label asp-for="Input.Group" class="block mb-2 text-sm font-medium">
+                        Groupe <span class="text-red-500">*</span>
+                    </label>
+                    <select asp-for="Input.Group" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" aria-required="true">
+                        <option value="">Choisissez un groupe</option>
+                        @foreach (var groupOption in Model.Groups)
+                        {
+                            <option value="@groupOption">@groupOption</option>
+                        }
+                    </select>
+                </div>
+                <div class="w-1/2 ml-2">
+                    <label asp-for="Input.RegistrationNumber" class="block mb-2 text-sm font-medium">
+                        Matricule <span class="text-red-500">*</span>
+                    </label>
                 
-                <input asp-for="Input.RegistrationNumber"
-                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5"
-                       placeholder="X000000"
-                       aria-required="true">
+                    <input asp-for="Input.RegistrationNumber"
+                           class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5"
+                           placeholder="X000000"
+                           aria-required="true">
+                </div>
+            </div>
+            <div>
+                <span asp-validation-for="Input.Group" class="text-red-500 text-sm"></span>
                 <span asp-validation-for="Input.RegistrationNumber" class="text-red-500 text-sm"></span>
             </div>
         </div>
