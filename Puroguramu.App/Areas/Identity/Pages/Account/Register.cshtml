@@ -18,6 +18,9 @@
                        class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
                        placeholder="Doe" 
                        aria-required="true">
+
+
+                <span asp-validation-for="Input.Name" class="text-red-500 text-sm"></span>
             </div>
             <div class="w-1/2 ml-2">
                 <label asp-for="Input.FirstName" class="block mb-2 text-sm font-medium">
@@ -27,10 +30,9 @@
                        class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
                        placeholder="John" 
                        aria-required="true">
+
+                <span asp-validation-for="Input.FirstName" class="text-red-500 text-sm"></span>
             </div>
-            
-            <span asp-validation-for="Input.Name" class="text-red-500 text-sm"></span>
-            <span asp-validation-for="Input.FirstName" class="text-red-500 text-sm"></span>
         </div>
         
         <div>
@@ -53,7 +55,7 @@
                 <input asp-for="Input.Password" 
                        id="password"
                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
-                       placeholder="••••••••"
+                       placeholder="Mot de Passe"
                        autocomplete="new-password" 
                        aria-required="true" />
                 
@@ -72,7 +74,7 @@
                 <input asp-for="Input.ConfirmPassword" 
                        id="confirmPassword"
                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
-                       placeholder="••••••••"
+                       placeholder="Confirmation Mot de Passe"
                        autocomplete="new-password" 
                        aria-required="true" />
 
@@ -89,24 +91,25 @@
                     Groupe <span class="text-red-500">*</span>
                 </label>
                 <select asp-for="Input.Group" class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" aria-required="true">
-                    <option value="2i1">2i1</option>
-                    <option value="2i2">2i2</option>
-                    <option value="2i3">2i3</option>
-                    <option value="2i4">2i4</option>
+                    <option value="">Choisissez un groupe</option>
+                    @foreach (var groupOption in Model.Groups)
+                    {
+                        <option value="@groupOption">@groupOption</option>
+                    }
                 </select>
+                <span asp-validation-for="Input.Group" class="text-red-500 text-sm"></span>
             </div>
             <div class="w-1/2 ml-2">
-                <label asp-for="Input.Matricule" class="block mb-2 text-sm font-medium">
+                <label asp-for="Input.RegistrationNumber" class="block mb-2 text-sm font-medium">
                     Matricule <span class="text-red-500">*</span>
                 </label>
-                <input asp-for="Input.Matricule" 
-                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5" 
-                       placeholder="X000000" 
+                
+                <input asp-for="Input.RegistrationNumber"
+                       class="w-full bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-600 focus:border-blue-600 block p-2.5"
+                       placeholder="X000000"
                        aria-required="true">
+                <span asp-validation-for="Input.RegistrationNumber" class="text-red-500 text-sm"></span>
             </div>
-            
-            <span asp-validation-for="Input.Group" class="text-red-500 text-sm"></span>
-            <span asp-validation-for="Input.Matricule" class="text-red-500 text-sm"></span>
         </div>
         
         <button id="registerSubmit"

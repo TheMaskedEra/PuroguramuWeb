@@ -13,22 +13,13 @@ public class IdentityUserConfiguration : IEntityTypeConfiguration<Users>
             .WithMany()
             .HasForeignKey(u => u.GroupId);
 
+        builder.HasAlternateKey(u => u.RegistrationNumber);
+        builder.HasAlternateKey(u => u.Email);
+
         SeedData(builder);
     }
 
     private static void SeedData(EntityTypeBuilder<Users> builder)
     {
-        var ph = new PasswordHasher<Users>();
-        var alexis = new Users()
-        {
-            FirstName = "Alexis",
-            LastName = "LastName",
-            Email = "a.vandenbroeck@student.helmo.be",
-            RegistrationNumber = "E200971",
-            GroupId = GroupsConfiguration.ThirdGroupId.ToString(),
-        };
-        ph.HashPassword(alexis, "123456");
-
-        builder.HasData(alexis);
     }
 }
