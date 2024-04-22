@@ -101,12 +101,11 @@ public class RegisterModel : PageModel
 
     public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     {
-        Groups = await _groupRepository.GetAllGroupNamesAsync(); //TODO trouver une solution pour éviter l'erreur de nullité
-
         returnUrl ??= Url.Content("~/");
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         if (!ModelState.IsValid)
         {
+            Groups = await _groupRepository.GetAllGroupNamesAsync();
             return Page();
         }
 
@@ -137,31 +136,13 @@ public class RegisterModel : PageModel
         await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, Input.Password);
 
-        if (result.Succeeded)
+        if (result.Succeeded) //TODO Faire une vérification de role ? Fair eun repo pour gérer la transaction d'ajout de role ?
         {
             _logger.LogInformation("User created a new account with password.");
+
             await _userManager.AddToRoleAsync(user, "Student");
 
             var userId = await _userManager.GetUserIdAsync(user);
-            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-
-            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
-                "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { area = "Identity", userId, code, returnUrl },
-                protocol: Request.Scheme);
-
-            if (callbackUrl != null)
-            {
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-            }
-
-            if (_userManager.Options.SignIn.RequireConfirmedAccount)
-            {
-                return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
-            }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
             return LocalRedirect(returnUrl);
