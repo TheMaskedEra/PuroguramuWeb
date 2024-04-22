@@ -1,25 +1,3 @@
-#include:
-#  - project: 'lessons/info/ue19/ci'
-#    ref: main
-#    file:
-#      - 'dotnet.yml'
-#  
-#
-#variables:
-#  NET_VERSION: "6.0"
-#  BUILD_DOCKER: "true"
-#
-#image: mcr.microsoft.com/dotnet/sdk:6.0
-#
-#before_script:
-#  - apt-get update && apt-get install -y curl
-#  - curl -sL https://deb.nodesource.com/setup_21.x | bash -
-#  - apt-get install -y nodejs
-#  - npm install -g npm@latest
-#  - cd Puroguramu.App
-#  - npm install
-#  - dotnet build -c $CONFIGURATION
-
 include:
   - project: 'lessons/info/ue19/ci'
     ref: main
