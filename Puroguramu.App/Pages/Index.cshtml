@@ -1,6 +1,9 @@
 ﻿@page
 
+@using Microsoft.AspNetCore.Identity
+@using Puroguramu.Infrastructures.Data.Entities
 @model Puroguramu.App.Pages.IndexModel
+@inject SignInManager<Users> SignInManager
 
 @{
     ViewData["Title"] = "Accueil";
@@ -43,17 +46,30 @@
         connectez-vous pour continuer à perfectionner vos compétences.
     </p>
 
-    <div class="w-fit mx-auto flex gap-4 my-10">
-        <a asp-area="Identity"
-           asp-page="/Account/Register"
-           class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">
-            Inscription
-        </a>
-        <a asp-area="Identity"
-           asp-page="/Account/Login"
-           class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">
-            Connexion
-        </a>
-    </div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="w-fit mx-auto flex gap-4 my-10">
+            <a asp-area="User" 
+               asp-page="/Lessons/Dashboard"
+               class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                Tableau de bord
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="w-fit mx-auto flex gap-4 my-10">
+            <a asp-area="Identity"
+               asp-page="/Account/Register"
+               class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                Inscription
+            </a>
+            <a asp-area="Identity"
+               asp-page="/Account/Login"
+               class="px-4 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                Connexion
+            </a>
+        </div>
+    }
 
 </section>

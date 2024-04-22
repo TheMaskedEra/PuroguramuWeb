@@ -19,7 +19,6 @@ public static class BuilderConfigurator
         builder.Services.AddScoped<ILogger, Logger<object>>();
         builder.Services.AddScoped<ReverseProxyLinksMiddleware>();
         builder.Services.AddScoped<IAssessExercise, RoslynAssessor>();
-        builder.Services.AddScoped<IPasswordHasher<AppUser>, PasswordHasher<AppUser>>();
 
         builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
         builder.Services.AddScoped<ILessonRepository, LessonsRepository>();
@@ -50,9 +49,5 @@ public static class BuilderConfigurator
             })
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<PuroguramuDbContext>();
-
-        builder.Services
-            .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie();
     }
 }

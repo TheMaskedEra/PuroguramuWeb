@@ -1,0 +1,16 @@
+@model Puroguramu.App.Pages.Models.UserDashboardModel
+
+<div class="w-1/2 mx-auto mt-10">
+    <img class="mt-10 h-40 rounded-full bg-white mx-auto border-2 border-blue-600" src="~/assets/default.png" alt="app logo">
+
+    <p class="text-center my-4 text-lg font-semibold">@Model.FirstName @Model.Name</p>
+
+    <p class="text-center my-4">
+        Éditer votre profil ? 
+        <a asp-area="Identity" 
+           asp-page="/Account/EditProfile" 
+           class="text-blue-600 hover:underline">
+            Mon profil
+        </a>
+    </p>
+</div>

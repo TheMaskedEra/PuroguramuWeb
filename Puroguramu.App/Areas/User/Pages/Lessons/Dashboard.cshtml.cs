@@ -1,17 +1,35 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Puroguramu.App.Pages.Models;
 using Puroguramu.Domains.Models;
+using Puroguramu.Infrastructures.Data.Entities;
 
 namespace Puroguramu.App.Areas.User.Pages.Lessons;
 
-// [Authorize(Roles = "Student, Teacher")]
+[Authorize(Roles = "Student")]
 public class DashboardModel : PageModel
 {
-    public void OnGet()
+    private readonly ILogger<DashboardModel> _logger;
+    private readonly UserManager<Users> _userManager;
+
+    public DashboardModel(ILogger<DashboardModel> logger, UserManager<Users> userManager)
     {
+        _logger = logger;
+        _userManager = userManager;
     }
 
-    public AppUser AppUser => new("123456", "Doe", "John", "john.doe@gmail.com", "2i3");
+    public async Task OnGetAsync()
+    {
+        if (User.Identity is { IsAuthenticated: true })
+        {
+            var user = await _userManager.GetUserAsync(User);
+            UserDashboard.Name = user.LastName;
+            UserDashboard.FirstName = user.FirstName;
+        }
+    }
+
+    public UserDashboardModel UserDashboard { get; set; } = new ();
 
     public List<Lesson> Lessons => new()
     {
