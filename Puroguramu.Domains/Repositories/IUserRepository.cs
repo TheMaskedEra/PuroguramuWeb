@@ -6,7 +6,9 @@ public interface IUserRepository
 {
     Task<int> GetTotalStudentNumberAsync();
 
-    Task InsertAsync(AppUser appUser, string hashedPassword);
+    Task<bool> RegistrationNumberExistsAsync(string registrationNumber);
+
+    Task<bool> EmailExistsAsync(string email);
 
     Task UpdateAsync(AppUser appUser);
 }
