@@ -2,7 +2,7 @@
 
 public class UserDashboardModel
 {
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = string.Empty;
 }

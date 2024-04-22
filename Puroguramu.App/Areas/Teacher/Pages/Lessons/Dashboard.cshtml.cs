@@ -1,11 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Puroguramu.App.Pages.Models;
 using Puroguramu.Domains.Models;
+using Puroguramu.Infrastructures.Data.Entities;
 
 namespace Puroguramu.App.Areas.Teacher.Pages.Lessons;
 
 public class DashboardModel : PageModel
 {
+    private readonly UserManager<Users> _userManager;
+
+    public DashboardModel(UserManager<Users> userManager)
+    {
+        _userManager = userManager;
+    }
+
     public List<Lesson> Lessons => new()
     {
         new Lesson("Lesson 1") { Description = "Description 1", FinishedPercentage = 100 },
@@ -17,9 +26,15 @@ public class DashboardModel : PageModel
         new Lesson("Lesson 7") { Description = "Description 7", FinishedPercentage = 0 },
     };
 
-    public UserDashboardModel UserDashboard { get; set; } = new () { Name = "Doe", FirstName = "John" };
+    public UserDashboardModel UserDashboard { get; set; } = new ();
 
-    public void OnGet()
+    public async Task OnGetAsync()
     {
+        if (User.Identity is { IsAuthenticated: true })
+        {
+            var user = await _userManager.GetUserAsync(User);
+            UserDashboard.Name = user.LastName;
+            UserDashboard.FirstName = user.FirstName;
+        }
     }
 }
