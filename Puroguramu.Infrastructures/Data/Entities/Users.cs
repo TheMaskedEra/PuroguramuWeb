@@ -17,4 +17,6 @@ public class Users : IdentityUser
     public string GroupId { get; set; } = string.Empty;
 
     public Groups Group { get; set; } = null!;
+
+    public byte[]? ProfilePicturePath { get; set; }
 }
