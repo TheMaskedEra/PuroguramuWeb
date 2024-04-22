@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Puroguramu.App.Pages.Models;
+using Puroguramu.App.Pages.ViewModels;
 using Puroguramu.Domains.Models;
 using Puroguramu.Infrastructures.Data.Entities;
 
@@ -26,15 +26,15 @@ public class DashboardModel : PageModel
         new Lesson("Lesson 7") { Description = "Description 7", FinishedPercentage = 0 },
     };
 
-    public UserDashboardModel UserDashboard { get; set; } = new ();
+    public UserDashboardViewModel UserDashboardView { get; set; } = new ();
 
     public async Task OnGetAsync()
     {
         if (User.Identity is { IsAuthenticated: true })
         {
             var user = await _userManager.GetUserAsync(User);
-            UserDashboard.Name = user.LastName;
-            UserDashboard.FirstName = user.FirstName;
+            UserDashboardView.Name = user.LastName;
+            UserDashboardView.FirstName = user.FirstName;
         }
     }
 }
