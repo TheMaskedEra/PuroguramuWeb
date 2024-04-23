@@ -25,5 +25,12 @@ public class UserRepository : IUserRepository
     public async Task<bool> EmailExistsAsync(string email)
         => await _dbContext.Users.AnyAsync(u => u.Email.Equals(email));
 
-    public Task UpdateAsync(AppUser appUser) => throw new NotImplementedException();
+    public async Task<string?> FindEmailFromRegistrationNumber(string registrationNumber)
+        => await _dbContext.Users
+            .Where(u => u.RegistrationNumber.Equals(registrationNumber))
+            .Select(u => u.Email)
+            .FirstOrDefaultAsync();
+
+    public Task UpdateAsync(AppUser appUser)
+        => throw new NotImplementedException();
 }

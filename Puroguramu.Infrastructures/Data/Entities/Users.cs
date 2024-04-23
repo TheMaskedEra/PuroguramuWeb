@@ -14,7 +14,9 @@ public class Users : IdentityUser
     [StringLength(15)]
     public string RegistrationNumber { get; set; } = string.Empty;
 
-    public string GroupId { get; set; } = string.Empty;
+    public string? GroupId { get; set; }
 
-    public Groups Group { get; set; } = null!;
+    public Groups? Group { get; set; }
+
+    public byte[]? ProfilePicturePath { get; set; }
 }

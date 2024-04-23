@@ -43,5 +43,7 @@ public class PuroguramuDbContext : IdentityDbContext<Users>
 
         builder.ApplyConfiguration(new IdentityRoleConfiguration());
         builder.ApplyConfiguration(new IdentityUserConfiguration());
+
+        builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { RoleId = IdentityRoleConfiguration.TeacherId.ToString(), UserId = IdentityUserConfiguration.VanAssId.ToString() });
     }
 }

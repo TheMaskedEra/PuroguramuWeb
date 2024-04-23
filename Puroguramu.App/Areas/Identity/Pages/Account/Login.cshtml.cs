@@ -1,10 +1,12 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Puroguramu.Domains.Repositories;
 using Puroguramu.Infrastructures.Data.Entities;
 
 namespace Puroguramu.App.Areas.Identity.Pages.Account;
@@ -14,10 +16,13 @@ public class LoginModel : PageModel
     private readonly SignInManager<Users> _signInManager;
     private readonly ILogger<LoginModel> _logger;
 
-    public LoginModel(SignInManager<Users> signInManager, ILogger<LoginModel> logger)
+    private readonly IUserRepository _userRepository;
+
+    public LoginModel(SignInManager<Users> signInManager, ILogger<LoginModel> logger, IUserRepository userRepository)
     {
         _signInManager = signInManager;
         _logger = logger;
+        _userRepository = userRepository;
     }
 
     [BindProperty]
@@ -31,8 +36,7 @@ public class LoginModel : PageModel
     public class InputModel
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -65,9 +69,20 @@ public class LoginModel : PageModel
             return Page();
         }
 
+        string username;
+        if (Regex.IsMatch(Input.UserName, @"^[a-zA-Z]\d{6}$"))
+        {
+            username = await _userRepository.FindEmailFromRegistrationNumber(Input.UserName.ToUpper()) ?? string.Empty;
+        }
+        else
+        {
+            username = Input.UserName;
+        }
+
         // This doesn't count login failures towards account lockout
         // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-        var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+        var result = await _signInManager.PasswordSignInAsync(username, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
         if (result.Succeeded)
         {
             _logger.LogInformation("User logged in.");

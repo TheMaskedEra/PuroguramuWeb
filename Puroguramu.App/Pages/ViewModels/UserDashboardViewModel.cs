@@ -1,6 +1,6 @@
-﻿namespace Puroguramu.App.Pages.Models;
+﻿namespace Puroguramu.App.Pages.ViewModels;
 
-public class UserDashboardModel
+public class UserDashboardViewModel
 {
     public string Name { get; set; } = string.Empty;
 

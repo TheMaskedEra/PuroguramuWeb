@@ -13,9 +13,12 @@ public class LessonsRepository : ILessonRepository
 
     private readonly EntitiesModelMapper _mapper = new ();
 
-    public LessonsRepository(PuroguramuDbContext dbContext)
+    private readonly ICourseRepository _courseRepository;
+
+    public LessonsRepository(PuroguramuDbContext dbContext, ICourseRepository courseRepository)
     {
         _dbContext = dbContext;
+        _courseRepository = courseRepository;
     }
 
     public async Task<int> GetTotalNumberAsync()
@@ -76,12 +79,63 @@ public class LessonsRepository : ILessonRepository
         return lessonDto == null ? null : _mapper.LessonDtoToLesson(lessonDto);
     }
 
-    public Task InsertAsync(Lesson lesson)
-        => throw new NotImplementedException();
+    public async Task InsertAsync(Course course, Lesson lesson)
+    {
+        var lessonDto = _mapper.LessonToLessonDto(lesson);
+        await _dbContext.Lessons.AddAsync(lessonDto);
+        await _dbContext.SaveChangesAsync();
+    }
 
-    public Task UpdateAsync(Lesson lesson)
-        => throw new NotImplementedException();
+    public async Task UpdateAsync(Course course, Lesson lesson)
+    {
+        var courseId = await _courseRepository.GetCourseId(course);
+        if (courseId == null)
+        {
+            throw new NotImplementedException();
+        }
 
-    public Task DeleteAsync(Lesson lesson)
-        => throw new NotImplementedException();
+        var id = await FindLessonId(courseId, lesson);
+        if (id == null)
+        {
+            throw new NotImplementedException();
+        }
+
+        var lessonDto = _mapper.LessonToLessonDto(lesson);
+        lessonDto.Id = id;
+
+        _dbContext.Lessons.Update(lessonDto);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    private async Task<string?> FindLessonId(string courseId, Lesson lesson) =>
+        await _dbContext.Lessons
+            .Join(_dbContext.Courses, l => l.CourseId, c => c.Id, (l, c) => new { Lessons = l, Courses = c })
+            .Where(t => t.Courses.Id.Equals(courseId) && t.Lessons.Title.Equals(lesson.Title))
+            .Select(t => t.Lessons.Id)
+            .FirstOrDefaultAsync();
+
+    public async Task DeleteAsync(Course course, Lesson lesson)
+    {
+        var courseId = await _courseRepository.GetCourseId(course);
+        if (courseId == null)
+        {
+            throw new NotImplementedException();
+        }
+
+        var id = await FindLessonId(courseId, lesson);
+        var lessonDto = _mapper.LessonToLessonDto(lesson);
+        if (id == null)
+        {
+            throw new NotImplementedException();
+        }
+
+        lessonDto.Id = id;
+        _dbContext.Remove(lessonDto);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public Task ChangeLessonOrdersAsync(Lesson lesson, Lesson lessonBefore, Lesson lessonAfter)
+    {
+        throw new NotImplementedException();
+    }
 }

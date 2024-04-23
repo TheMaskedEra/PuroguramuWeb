@@ -10,7 +10,7 @@
 <section class="flex items-center">
 
     <section class="w-1/2 mr-auto ml-5 mt-10">
-        <partial name="_UserDashboardPartial" model="@Model.UserDashboard"/>
+        <partial name="_UserDashboardPartial" model="@Model.UserDashboardView"/>
 
         <a href="#" class="w-fit mx-auto px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-700 flex items-center gap-4">
             <p>Prochain exercice</p>
@@ -24,27 +24,9 @@
         <h3 class="text-center text-xl font-semibold">Vos leçons en cours</h3>
 
         <ul class="w-5/6 h-[40vh] mx-auto flex-col space-y-6 mt-10 overflow-y-auto">
-            
             @foreach (var lesson in Model.Lessons)
             {
-                <li class="bg-blue-800 px-4 py-2 rounded-md hover:bg-blue-900">
-                    <a href="#" class="flex justify-between items-center">
-                        <div class="flex flex-col w-full">
-                            <p class="mb-2">@lesson.Title</p>
-
-                            <div class="flex items-center">
-                                <span class="block h-1 bg-white text-white rounded-md"
-                                      style="width: @Model.GetFinishedPercentage(lesson)%">
-                                </span>
-                                <p class="text-xs ml-2">@lesson.FinishedPercentage%</p>
-                            </div>
-                        </div>
-
-                        <span class="material-symbols-outlined ml-2">
-                            chevron_right
-                        </span>
-                    </a>
-                </li>
+                <partial name="_LessonPartial" model="lesson"/>
             }
         </ul>
         

@@ -45,22 +45,22 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "63a05289-0fa2-455c-97d5-ed85d1f3ef40",
-                            ConcurrencyStamp = "63a05289-0fa2-455c-97d5-ed85d1f3ef40",
+                            Id = "6dd437c2-15bd-4850-887b-62edc43d88c6",
+                            ConcurrencyStamp = "6dd437c2-15bd-4850-887b-62edc43d88c6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "10613db7-ddbf-48b1-99b2-4344cfe49914",
-                            ConcurrencyStamp = "10613db7-ddbf-48b1-99b2-4344cfe49914",
+                            Id = "46fbfafb-1f5a-4742-a584-4942fed5b5b9",
+                            ConcurrencyStamp = "46fbfafb-1f5a-4742-a584-4942fed5b5b9",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "ff935a7b-947d-4681-8322-575b683b0fea",
-                            ConcurrencyStamp = "ff935a7b-947d-4681-8322-575b683b0fea",
+                            Id = "51bb534e-79c5-48b7-8340-b491a0e778db",
+                            ConcurrencyStamp = "51bb534e-79c5-48b7-8340-b491a0e778db",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -149,6 +149,13 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "90fbb053-5bee-47f7-8623-0d85c32cc8c7",
+                            RoleId = "46fbfafb-1f5a-4742-a584-4942fed5b5b9"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -197,14 +204,14 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7020fc68-0641-454e-8056-4c9725d07eb3",
-                            LanguageId = "9dd30e42-8cdb-4e72-8ab7-60b1918f2d18",
+                            Id = "99c32534-ac3a-47f5-993d-9b0f41dc415c",
+                            LanguageId = "df1ca4a2-568c-4a74-85e9-a031d89dc957",
                             Title = "Beginners"
                         },
                         new
                         {
-                            Id = "c9cff2c5-8799-41f1-b2bb-64069efb9681",
-                            LanguageId = "9dd30e42-8cdb-4e72-8ab7-60b1918f2d18",
+                            Id = "dd74a194-b2b5-49fe-a316-be04dd3f490e",
+                            LanguageId = "df1ca4a2-568c-4a74-85e9-a031d89dc957",
                             Title = "Amateurs"
                         });
                 });
@@ -231,19 +238,19 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            ExerciseId = "07d52aa0-0211-4253-b9a0-25cc3491ea0e",
-                            ExerciseAfterId = "bbaccb82-248e-4328-8b6d-172a5f1f404e"
+                            ExerciseId = "5acadeb7-7d93-4cd2-8ec6-db36d7e940f5",
+                            ExerciseAfterId = "9ef43de7-4897-42c0-99a3-cb4e0eade23d"
                         },
                         new
                         {
-                            ExerciseId = "bbaccb82-248e-4328-8b6d-172a5f1f404e",
-                            ExerciseAfterId = "f58bd871-c329-4afd-a285-f71c0a1d199b",
-                            ExerciseBeforeId = "07d52aa0-0211-4253-b9a0-25cc3491ea0e"
+                            ExerciseId = "9ef43de7-4897-42c0-99a3-cb4e0eade23d",
+                            ExerciseAfterId = "1e21dc9d-aba7-4358-8b42-493b11c91c31",
+                            ExerciseBeforeId = "5acadeb7-7d93-4cd2-8ec6-db36d7e940f5"
                         },
                         new
                         {
-                            ExerciseId = "f58bd871-c329-4afd-a285-f71c0a1d199b",
-                            ExerciseBeforeId = "bbaccb82-248e-4328-8b6d-172a5f1f404e"
+                            ExerciseId = "1e21dc9d-aba7-4358-8b42-493b11c91c31",
+                            ExerciseBeforeId = "9ef43de7-4897-42c0-99a3-cb4e0eade23d"
                         });
                 });
 
@@ -286,28 +293,28 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "07d52aa0-0211-4253-b9a0-25cc3491ea0e",
+                            Id = "5acadeb7-7d93-4cd2-8ec6-db36d7e940f5",
                             DifficultyLevel = 1,
                             Instructions = "Instructions Here",
-                            LessonId = "5f26e32d-31da-47d9-a04b-e49907c45015",
+                            LessonId = "f982c60c-937d-472f-a92f-38ba1b7b902b",
                             Skeleton = "Skeleton Here",
                             Title = "HelloWorld"
                         },
                         new
                         {
-                            Id = "bbaccb82-248e-4328-8b6d-172a5f1f404e",
+                            Id = "9ef43de7-4897-42c0-99a3-cb4e0eade23d",
                             DifficultyLevel = 1,
                             Instructions = "Instructions Here",
-                            LessonId = "5f26e32d-31da-47d9-a04b-e49907c45015",
+                            LessonId = "f982c60c-937d-472f-a92f-38ba1b7b902b",
                             Skeleton = "Skeleton Here",
                             Title = "HelloThere"
                         },
                         new
                         {
-                            Id = "f58bd871-c329-4afd-a285-f71c0a1d199b",
+                            Id = "1e21dc9d-aba7-4358-8b42-493b11c91c31",
                             DifficultyLevel = 1,
                             Instructions = "Instructions Here",
-                            LessonId = "5f26e32d-31da-47d9-a04b-e49907c45015",
+                            LessonId = "f982c60c-937d-472f-a92f-38ba1b7b902b",
                             Skeleton = "Skeleton Here",
                             Title = "Obi-Wan"
                         });
@@ -333,22 +340,22 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cfb0675c-1227-4b58-ace5-5a69a81f9690",
+                            Id = "0f3345be-c57e-4d2a-a021-ee8bb4f983d3",
                             Name = "2i1"
                         },
                         new
                         {
-                            Id = "e57f52df-d656-4fc1-8f91-dc5994c3751c",
+                            Id = "eeca3d56-8986-4102-ab33-e6b34315e29b",
                             Name = "2i2"
                         },
                         new
                         {
-                            Id = "b9cbc422-21f7-4cfd-85b4-8042ce07d373",
+                            Id = "547b5dbc-87aa-4949-8ba0-1902ad000b22",
                             Name = "2i3"
                         },
                         new
                         {
-                            Id = "a819f046-ec99-4b5b-ad72-05bdb25d10ff",
+                            Id = "4ca6fbce-95c7-4dae-98b8-ada62dc357d7",
                             Name = "2i4"
                         });
                 });
@@ -372,12 +379,12 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9dd30e42-8cdb-4e72-8ab7-60b1918f2d18",
+                            Id = "df1ca4a2-568c-4a74-85e9-a031d89dc957",
                             Name = "C#"
                         },
                         new
                         {
-                            Id = "2062b093-6773-4fd3-bbfa-047131e9002d",
+                            Id = "5ccc0afc-3ffd-4787-8df0-d34065983605",
                             Name = "Java"
                         });
                 });
@@ -404,19 +411,19 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            LessonId = "2bd3181f-44fb-4212-8d7d-0e16db9baf41",
-                            LessonAfterId = "5f26e32d-31da-47d9-a04b-e49907c45015"
+                            LessonId = "e02889dd-7c48-4e86-822a-1b37ccb02bd0",
+                            LessonAfterId = "f982c60c-937d-472f-a92f-38ba1b7b902b"
                         },
                         new
                         {
-                            LessonId = "5f26e32d-31da-47d9-a04b-e49907c45015",
-                            LessonAfterId = "79ce319d-963f-472f-9743-e8e16855a039",
-                            LessonBeforeId = "2bd3181f-44fb-4212-8d7d-0e16db9baf41"
+                            LessonId = "f982c60c-937d-472f-a92f-38ba1b7b902b",
+                            LessonAfterId = "71115d6c-0f00-47d3-9b63-94abf61ebce1",
+                            LessonBeforeId = "e02889dd-7c48-4e86-822a-1b37ccb02bd0"
                         },
                         new
                         {
-                            LessonId = "79ce319d-963f-472f-9743-e8e16855a039",
-                            LessonBeforeId = "5f26e32d-31da-47d9-a04b-e49907c45015"
+                            LessonId = "71115d6c-0f00-47d3-9b63-94abf61ebce1",
+                            LessonBeforeId = "f982c60c-937d-472f-a92f-38ba1b7b902b"
                         });
                 });
 
@@ -453,24 +460,24 @@ namespace Puroguramu.Infrastructures.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2bd3181f-44fb-4212-8d7d-0e16db9baf41",
-                            CourseId = "7020fc68-0641-454e-8056-4c9725d07eb3",
+                            Id = "e02889dd-7c48-4e86-822a-1b37ccb02bd0",
+                            CourseId = "99c32534-ac3a-47f5-993d-9b0f41dc415c",
                             Description = "",
                             IsVisible = true,
                             Title = "Variables"
                         },
                         new
                         {
-                            Id = "5f26e32d-31da-47d9-a04b-e49907c45015",
-                            CourseId = "7020fc68-0641-454e-8056-4c9725d07eb3",
+                            Id = "f982c60c-937d-472f-a92f-38ba1b7b902b",
+                            CourseId = "99c32534-ac3a-47f5-993d-9b0f41dc415c",
                             Description = "",
                             IsVisible = true,
                             Title = "Functions"
                         },
                         new
                         {
-                            Id = "79ce319d-963f-472f-9743-e8e16855a039",
-                            CourseId = "7020fc68-0641-454e-8056-4c9725d07eb3",
+                            Id = "71115d6c-0f00-47d3-9b63-94abf61ebce1",
+                            CourseId = "99c32534-ac3a-47f5-993d-9b0f41dc415c",
                             Description = "",
                             IsVisible = true,
                             Title = "Classes"
@@ -503,7 +510,6 @@ namespace Puroguramu.Infrastructures.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GroupId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
@@ -533,6 +539,9 @@ namespace Puroguramu.Infrastructures.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<byte[]>("ProfilePicturePath")
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
@@ -565,6 +574,27 @@ namespace Puroguramu.Infrastructures.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "90fbb053-5bee-47f7-8623-0d85c32cc8c7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "be0c2aca-2c4f-4e60-8ed5-b8d375a8de31",
+                            Email = "g.vanass@helmo.be",
+                            EmailConfirmed = false,
+                            FirstName = "Grégory",
+                            LastName = "Van Ass",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "G.VANASS@HELMO.BE",
+                            NormalizedUserName = "G.VANASS@HELMO.BE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEE2r8e9FKor+syHvFHh3nVQ028YGyQViGEu6W1Fpqva7Ueg7iFHWp3hiei7IQQ+IJA==",
+                            PhoneNumberConfirmed = false,
+                            RegistrationNumber = "P210020",
+                            SecurityStamp = "8ee95672-9bba-4f37-890d-0fa7b65a174e",
+                            TwoFactorEnabled = false,
+                            UserName = "g.vanass@helmo.be"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -700,10 +730,8 @@ namespace Puroguramu.Infrastructures.Migrations
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Users", b =>
                 {
                     b.HasOne("Puroguramu.Infrastructures.Data.Entities.Groups", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Students")
+                        .HasForeignKey("GroupId");
 
                     b.Navigation("Group");
                 });
@@ -717,6 +745,11 @@ namespace Puroguramu.Infrastructures.Migrations
                 {
                     b.Navigation("Order")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Groups", b =>
+                {
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("Puroguramu.Infrastructures.Data.Entities.Languages", b =>

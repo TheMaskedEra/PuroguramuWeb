@@ -10,5 +10,7 @@ public interface IUserRepository
 
     Task<bool> EmailExistsAsync(string email);
 
+    Task<string?> FindEmailFromRegistrationNumber(string registrationNumber);
+
     Task UpdateAsync(AppUser appUser);
 }
