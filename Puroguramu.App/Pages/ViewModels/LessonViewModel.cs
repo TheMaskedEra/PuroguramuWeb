@@ -13,6 +13,8 @@ public class LessonViewModel
 
     public string Title => _lesson.Title;
 
+    public bool IsVisible => _lesson.IsVisible;
+
     public int GetFinishedPercentage()
         => _lesson.FinishedPercentage == 0 ? 1 : _lesson.FinishedPercentage;
 }

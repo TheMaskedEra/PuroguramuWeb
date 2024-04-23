@@ -3,7 +3,7 @@
 @{
     Layout = null;
 }
-@if (User.IsInRole("Student"))
+@if (User.IsInRole("Student") && Model.IsVisible)
 {
     <li class="bg-blue-800 px-4 py-2 rounded-md hover:bg-blue-900">
         <a href="#" class="flex justify-between items-center">
