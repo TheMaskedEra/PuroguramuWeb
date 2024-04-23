@@ -8,4 +8,6 @@ public class Groups
 
     [StringLength(10)]
     public string Name { get; init; } = string.Empty;
+
+    public List<Users> Students { get; set; } = new ();
 }

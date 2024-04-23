@@ -7,7 +7,7 @@ using Puroguramu.Infrastructures.Data.Entities;
 
 namespace Puroguramu.App.Areas.User.Pages.Lessons;
 
-[Authorize(Roles = "Student")]
+[Authorize(Roles = "Student, Teacher")]
 public class DashboardModel : PageModel
 {
     private readonly ILogger<DashboardModel> _logger;
