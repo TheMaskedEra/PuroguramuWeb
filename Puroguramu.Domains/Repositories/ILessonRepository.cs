@@ -8,9 +8,11 @@ public interface ILessonRepository
 
     Task<SortedList<int, Lesson>> GetAllFromCourseAsync(Course course);
 
-    Task InsertAsync(Lesson lesson);
+    Task InsertAsync(Course course, Lesson lesson);
 
-    Task UpdateAsync(Lesson lesson);
+    Task UpdateAsync(Course course, Lesson lesson);
 
-    Task DeleteAsync(Lesson lesson);
+    Task DeleteAsync(Course course, Lesson lesson);
+
+    Task ChangeLessonOrdersAsync(Lesson lesson, Lesson lessonBefore, Lesson lessonAfter);
 }
